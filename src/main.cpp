@@ -1,11 +1,10 @@
 #include "cube.h"
 #include "debug.h"
-#include "solver.h"
-#include <iostream>
+#include "solver.h" //Solver for Mastermind and Rubiks Cube
 
 int main (int argc, char* argv[]) {
 	
-/*	//new 13.12.2019 adding debug by Thomas
+	//new 13.12.2019 adding debug by Thomas
 	debug Debugger;
 	Debugger.setdebug(0);
 	Debugger.setdebug(1);
@@ -41,25 +40,27 @@ int main (int argc, char* argv[]) {
 		
 	}
 	// parameter handling over
-*/	
+
 	
 	Cube solved;
 	Cube scrambled;
 
-/*	scrambled.scramble();
 	solved.printCube();
+	
+	scrambled.scramble();
+
+	scrambled.printCube();
+/*	solved.printCube();
 	cout << "------------------" << endl<<endl;
 	scrambled.printCube();
-*/
+
 	string s;
 	int n = 0;
-
 	cin >> n >> s;
-	solved.splitQuestion(s, n);
-	std::cout <<"test";
-	
+	scrambled.splitQuestion(s, n);
+*/
 	RubiksCubeSolver solver;
-	solver.calculateManhattanDistance(4);
+	//solver.calculateManhattanDistance(4);
 
     return 0;
 }
