@@ -1,5 +1,6 @@
 #include "cube.h"
-
+#include <stdio.h>//für memcpy
+#include <cstring>//für memcpy
 //-----------------------------------------------//
 //---------------------Moves---------------------//
 //-----------------------------------------------//
@@ -24,7 +25,7 @@ void Cube::r()
 	{
 		moves += "r  ";
 	}
-    
+
 	copyCube();
 	for (int i = 0; i < 3; i++)
 	{
@@ -37,7 +38,7 @@ void Cube::r()
 	_cube[3][2][2] = _old[3][0][2];
 	_cube[3][2][0] = _old[3][2][2];
 	_cube[3][0][0] = _old[3][2][0];
-    
+
 	_cube[3][1][2] = _old[3][0][1];
 	_cube[3][2][1] = _old[3][1][2];
 	_cube[3][1][0] = _old[3][2][1];
@@ -76,7 +77,7 @@ void Cube::ri()
 	_cube[3][0][2] = _old[3][2][2];
 	_cube[3][2][2] = _old[3][2][0];
 	_cube[3][2][0] = _old[3][0][0];
-    
+
 	_cube[3][0][1] = _old[3][1][2];
 	_cube[3][1][2] = _old[3][2][1];
 	_cube[3][2][1] = _old[3][1][0];
@@ -115,7 +116,7 @@ void Cube::l()
 	_cube[1][2][2] = _old[1][0][2];
 	_cube[1][2][0] = _old[1][2][2];
 	_cube[1][0][0] = _old[1][2][0];
-    
+
 	_cube[1][1][2] = _old[1][0][1];
 	_cube[1][2][1] = _old[1][1][2];
 	_cube[1][1][0] = _old[1][2][1];
@@ -154,7 +155,7 @@ void Cube::li()
 	_cube[1][0][2] = _old[1][2][2];
 	_cube[1][2][2] = _old[1][2][0];
 	_cube[1][2][0] = _old[1][0][0];
-    
+
 	_cube[1][0][1] = _old[1][1][2];
 	_cube[1][1][2] = _old[1][2][1];
 	_cube[1][2][1] = _old[1][1][0];
@@ -181,7 +182,7 @@ void Cube::u()
 	{
 		moves += "u  ";
 	}
-    
+
 	copyCube();
 	for (int i = 0; i < 3; i++)
 	{
@@ -194,7 +195,7 @@ void Cube::u()
 	_cube[0][0][2] = _old[0][0][0];
 	_cube[0][2][2] = _old[0][0][2];
 	_cube[0][2][0] = _old[0][2][2];
-    
+
 	_cube[0][0][1] = _old[0][1][0];
 	_cube[0][1][2] = _old[0][0][1];
 	_cube[0][2][1] = _old[0][1][2];
@@ -233,7 +234,7 @@ void Cube::ui()
 	_cube[0][0][0] = _old[0][0][2];
 	_cube[0][0][2] = _old[0][2][2];
 	_cube[0][2][2] = _old[0][2][0];
-    
+
 	_cube[0][1][0] = _old[0][0][1];
 	_cube[0][0][1] = _old[0][1][2];
 	_cube[0][1][2] = _old[0][2][1];
@@ -272,7 +273,7 @@ void Cube::d()
 	_cube[5][0][2] = _old[5][0][0];
 	_cube[5][2][2] = _old[5][0][2];
 	_cube[5][2][0] = _old[5][2][2];
-    
+
 	_cube[5][0][1] = _old[5][1][0];
 	_cube[5][1][2] = _old[5][0][1];
 	_cube[5][2][1] = _old[5][1][2];
@@ -311,7 +312,7 @@ void Cube::di()
 	_cube[5][0][0] = _old[5][0][2];
 	_cube[5][0][2] = _old[5][2][2];
 	_cube[5][2][2] = _old[5][2][0];
-    
+
 	_cube[5][1][0] = _old[5][0][1];
 	_cube[5][0][1] = _old[5][1][2];
 	_cube[5][1][2] = _old[5][2][1];
@@ -350,7 +351,7 @@ void Cube::f()
 	_cube[2][2][2] = _old[2][0][2];
 	_cube[2][2][0] = _old[2][2][2];
 	_cube[2][0][0] = _old[2][2][0];
-    
+
 	_cube[2][1][2] = _old[2][0][1];
 	_cube[2][2][1] = _old[2][1][2];
 	_cube[2][1][0] = _old[2][2][1];
@@ -389,7 +390,7 @@ void Cube::fi()
 	_cube[2][0][2] = _old[2][2][2];
 	_cube[2][2][2] = _old[2][2][0];
 	_cube[2][2][0] = _old[2][0][0];
-    
+
 	_cube[2][0][1] = _old[2][1][2];
 	_cube[2][1][2] = _old[2][2][1];
 	_cube[2][2][1] = _old[2][1][0];
@@ -428,7 +429,7 @@ void Cube::b()
 	_cube[4][2][2] = _old[4][0][2];
 	_cube[4][2][0] = _old[4][2][2];
 	_cube[4][0][0] = _old[4][2][0];
-    
+
 	_cube[4][1][2] = _old[4][0][1];
 	_cube[4][2][1] = _old[4][1][2];
 	_cube[4][1][0] = _old[4][2][1];
@@ -467,7 +468,7 @@ void Cube::bi()
 	_cube[4][0][2] = _old[4][2][2];
 	_cube[4][2][2] = _old[4][2][0];
 	_cube[4][2][0] = _old[4][0][0];
-    
+
 	_cube[4][0][1] = _old[4][1][2];
 	_cube[4][1][2] = _old[4][2][1];
 	_cube[4][2][1] = _old[4][1][0];
@@ -567,7 +568,7 @@ void Cube::scramble()
 
 /*void Cube::mapColor()
 {
-	
+
 }
 */
 void Cube::splitQuestion(string s, int n) //by Isabella Reithner
@@ -576,35 +577,92 @@ void Cube::splitQuestion(string s, int n) //by Isabella Reithner
 	char color = ' '; //Farbe
 	int question[n]; //Farbe aus der Frage
 	int reference[n]; //Farbe im verdrehten (übergebenen) Würfel
-	string tmp; //temporärer Speichererort des gespaltenen Strings 
+	string tmp; //temporärer Speichererort des gespaltenen Strings
 	int cnt = 0; //counter
 	int it = 0; //Zähler für Iterationen (ebenfalls ein Counter)
-	
+	//von Matthias Anfang
+	int rffp=0; //Zähler für Richte Farbe am Falschen Platz
+	int rfrp=0; //Zähler Richtige Farbe richtiger Platz
+	string feedback;
+	int tempReference[n];//für die Farbvergleiche
+
+
+
 	for(int j=0; j<n*3; j+=3){ //Spalten der Frage in Position und Farbe
-		for(int i=0; i<2; i++){
-			tmp[i] = s[i+j];
-		}
-		pos = stoi(tmp); //String to Int
+		it = 0;
+		int pos1=((int)(s[j])-'0');
+		int pos2=(int)(s[j+1])-'0';
+		pos = pos1*10+pos2;
+		//pos = ((int)(s[j])-'0')*10+((int)(s[j+1])-'0');
+
+		//cout << pos << ':'<< pos1 << ':' << pos2<< ':'<< endl;
 		color = s[j+2];
 		question[cnt] = (int)(color)-48; //ASCII-Zahl um 48 verschieben
-		
-		for(int a=0; a<6; a++){ //Durchgehen des übergebenen Würfels 
-			for(int b=0; b<3; b++){
-				for(int c=0; c<3; c++){
-					it++;
+
+//Durchgehen des übergebenen Würfels
+		for(int a=0; a<6; a++){ //Seite
+			for(int b=0; b<3; b++){ //Zeile
+				for(int c=0; c<3; c++){ //Spalten
 					if(it == pos){ //Wenn die Position befunden wurde, Farbe in reference schreiben
 						reference[cnt] = this->_cube[a][b][c];
-						break; 
+						//cout<<"ref "<< reference[cnt]<< endl;
 					}
+					it++;
 				}
 			}
 		}
 		cnt++;
 	}
-	
 	for(int k=0; k<n; k++){
 		cout << reference[k] << " " << question[k] << endl;
+		//this->generateMastermindAnswer(question,reference,n);
 	}
+	this->generateMastermindAnswer(&question[0],&reference[0],n);//reference sollte ground truth heißen
+
+}
 
 
+void Cube::generateMastermindAnswer(int *questions, int *reference, int n){
+
+	int rffp=0; //Zähler für Richte Farbe am Falschen Platz
+	int rfrp=0; //Zähler Richtige Farbe richtiger Platz
+	string feedback;
+	int tempReference[n];
+	int tempCode[n];
+
+for(int i=0;i<n;i++){ //memcpy hat manchmal nicht funktioniert
+	tempReference[i]=reference[i];
+}
+	//memcpy(tempReference,reference,n);//Eventuell ein Laufzeitfehler wegen N!!!!
+	//schwarz ist 1, weiß ist 0 und nix ist 2
+	for(int k=0; k<n; k++){
+		cout<< "que u ref u tempReference: "<< questions[k]<<" "<<reference[k]<<" "<<tempReference[k]<<endl;
+		if(reference[k]==questions[k]&&tempReference[k]!=9){//Farbe und Position richtig
+			rfrp++;
+			feedback.append("1");
+			tempReference[k]=9;//Diese Position wird 9 gesetzt, damit das Programm weiß, dass hier schon mal überprüft wurde, und keine Farben doppelt zählt
+		}
+	}
+	cout<<"rfrp "<<rfrp<< std::endl;
+
+	int k=0;
+	for(int j=0;j<n;j++){
+		if(tempReference[j]!=9)
+		{
+			//cout<< "que u ref u tempReference: "<< questions[j]<<" "<<reference[k]<<" "<<tempReference[j]<<endl;
+			if(reference[k]==questions[j]&&tempReference[j]!=9){
+				rffp++;
+				tempReference[j]=9;
+				feedback.append("0");
+			}
+		}
+		k++;
+	}
+	cout<<"rffp " << rffp<< std::endl;
+
+	//nur Richtig , wenn WENN n ANZAHL DER WERTE IST!!!
+	for(int i=rffp+rfrp;i<n;i++){//Hier wird mit x aufgefüllt (falls es etwas zum auffüllen gibt)
+		feedback.append("2");
+	}
+	std::cout <<"feedback: "<< feedback << std::endl; //Von Matthias hinzugefügt
 }

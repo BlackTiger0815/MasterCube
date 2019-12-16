@@ -28,22 +28,22 @@ private:
 	string moves = "";
 	string question = "";
 	string answer = "";
-	
-public: 
+
+public:
 	Cube(){};
 	~Cube(){};
-	
+
 //--------------- copied from --------------//
 //--https://github.com/ekuecks/rubiks-cube--//
 //------------- and modificated ------------//
-	void printCube(); 
+	void printCube();
 	void printMoves(); //print moves made previosly
 	void copyCube();
 	void removeLast(); //removes the last move performed
 	void clearMoves(); //clears all moves
 	string last();
 	void scramble();
-	
+
 // moves - see https://ruwix.com/the-rubiks-cube/notation/
 	void r();
 	void ri();
@@ -58,8 +58,10 @@ public:
 	void b();
 	void bi();
 //------------------------------------------//
-	
-	void splitQuestion(string s, int n); //Frage am Server spalten in Pos und Farbe
 
-	
+	void splitQuestion(string s, int n); //Frage am Server spalten in Pos und Farbe
+	void generateMastermindAnswer(int *questions, int *reference, int n); //generiert die Antwort auf die Frage nach den Farben
+
+
+
 };
