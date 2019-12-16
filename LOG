@@ -6,7 +6,7 @@ Beispieleintrag:
 ****************
 Datum
 Name
-Veränderte/Hinzugefügte Files: 
+Veränderte/Hinzugefügte Files:
 Tätigkeit 1; Tätigkeit 2; ...
 ****************
 01.12.2019
@@ -17,12 +17,12 @@ Erstellen der Automakeumgebung; Erstellen der Class Cube; Implementierung der no
 05.12.2019
 Isabella Reithner:
 Files: main.cpp, Cube.h, Cube.cpp
-Scramble Methode 
+Scramble Methode
 ****************
 07.12.2019
 Isabella Reithner:
 Files: main.cpp, Cube.h, Cube.cpp
-SplitQuestion Methode 
+SplitQuestion Methode
 ****************
 13.12.2019
 Thomas Studnicka
@@ -34,6 +34,7 @@ Isabella Reithner:
 Files: main.cpp, solver.h, solver.cpp
 Erstellen von Files für die beiden Solver; Parameter-Handling für Aufruf von ./src/MasterCube
 ****************
-
-
-
+16.12.2019
+Matthias Wirthmann:
+Files: Cube.cpp, Cube.h
+Die Überprüfung der Questions wurde fertiggestellt. Es wird ein Feedback-string ausgegeben
