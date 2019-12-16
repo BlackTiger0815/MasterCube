@@ -29,7 +29,11 @@ Thomas Studnicka
 Files: src/debug.h src/main.cpp
 Debug Klasse
 ****************
-
+15.12.2019
+Isabella Reithner:
+Files: main.cpp, solver.h, solver.cpp
+Erstellen von Files für die beiden Solver; Parameter-Handling für Aufruf von ./src/MasterCube
+****************
 
 
 
