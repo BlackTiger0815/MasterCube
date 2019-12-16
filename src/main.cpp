@@ -1,9 +1,11 @@
 #include "cube.h"
+#include "debug.h"
+#include "solver.h"
 #include <iostream>
 
 int main (int argc, char* argv[]) {
 	
-	//new 13.12.2019 adding debug by Thomas
+/*	//new 13.12.2019 adding debug by Thomas
 	debug Debugger;
 	Debugger.setdebug(0);
 	Debugger.setdebug(1);
@@ -39,7 +41,7 @@ int main (int argc, char* argv[]) {
 		
 	}
 	// parameter handling over
-	
+*/	
 	
 	Cube solved;
 	Cube scrambled;
