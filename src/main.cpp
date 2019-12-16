@@ -55,6 +55,9 @@ int main (int argc, char* argv[]) {
 	cin >> n >> s;
 	solved.splitQuestion(s, n);
 	std::cout <<"test";
+	
+	RubiksCubeSolver solver;
+	solver.calculateManhattanDistance(4);
 
     return 0;
 }
