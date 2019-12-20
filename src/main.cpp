@@ -14,7 +14,7 @@ int main (int argc, char* argv[]) {
 	//15.12.2019 handling of calling parameters by Isabella
 	// Port and IP-adress needs to be calculated from String for using it in communication 
 	// @Elisabeth -> bei mir melden wie dus brauchst ;)
-	string ServerIPAdress = "", ServerPort = "";
+	/*string ServerIPAdress = "", ServerPort = "";
 	string modus = "";
 	
 	if(argc == 1)
@@ -40,7 +40,7 @@ int main (int argc, char* argv[]) {
 		
 	}
 	// parameter handling over
-
+	*/
 	
 	Cube solved;
 	Cube scrambled;
