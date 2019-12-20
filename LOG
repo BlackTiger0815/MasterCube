@@ -39,5 +39,9 @@ Cajetan Koschat
 Files: cube.cpp
 Umschreiben der printCube() Funktion um die Ausgabe in ausgeschnittenem Format wiederzugeben;
 ****************
-
+20.12.2019
+Isabella Reithner:
+Files: main.cpp, Cube.h, Cube.cpp
+Erneutes Hinzufügen von GenerareMastermindAnswer();
+****************
 
