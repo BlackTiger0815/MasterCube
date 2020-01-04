@@ -58,6 +58,11 @@ public:
 	void b();
 	void bi();
 //------------------------------------------//
+
+// cube questions //
+	int array_to_int(int, int, int);
+	int int_to_array(int );
+
 	
 	void splitQuestion(string s, int n); //Frage am Server spalten in Pos und Farbe
 	void generateMastermindAnswer(int *questions, int *reference, int n);
