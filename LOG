@@ -44,4 +44,10 @@ Isabella Reithner:
 Files: main.cpp, Cube.h, Cube.cpp
 Erneutes Hinzufügen von GenerareMastermindAnswer();
 ****************
+03.01.2020
+Thomas Studnicka:
+Files: Cube.cpp, Cube.h main.cpp
+Ändern von abkürzung auf black/white
+hinzufügen von array to int und int to array für fragen von mastermind
+
 
