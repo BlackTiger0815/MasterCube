@@ -10,6 +10,7 @@ int main (int argc, char* argv[]) {
 	Debugger.setdebug(1);
 	Debugger.printf("MasterCube is starting");
 	// Debug inilasition over
+	
 
 	//15.12.2019 handling of calling parameters by Isabella
 	// Port and IP-adress needs to be calculated from String for using it in communication 
@@ -59,8 +60,20 @@ int main (int argc, char* argv[]) {
 	cin >> n >> s;
 	scrambled.splitQuestion(s, n);
 */
+	//Debugger.printf( scrambled.array_to_int(5,2,2) ); //this gets you 54
+	//Debugger.printf( scrambled.int_to_array(2) );  // if theres an int smaller than 100, then there are leading zeros to consider
 	RubiksCubeSolver solver;
 	//solver.calculateManhattanDistance(4);
+	
+	
+	
+	
+	
+	
+	//Mastermind solver
+	MastermindSolver clever;
+	clever.testing();
+	
 
     return 0;
 }

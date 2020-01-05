@@ -527,6 +527,7 @@ void Cube::printMoves(){
 
 void Cube::copyCube()
 {
+	
 	for (int i = 0; i < 6; i++)
 	{
 		for (int j = 0; j < 3; j++)
@@ -534,6 +535,7 @@ void Cube::copyCube()
 			for (int k = 0; k < 3; k++)
 			{
 				_old[i][j][k] = _cube[i][j][k];
+				
 			}
 		}
 	}
@@ -587,6 +589,88 @@ void Cube::scramble()
 		}
 	}
 }
+
+// cube questions //
+	int Cube::array_to_int(int i_1, int j_1, int k_1 )
+	{
+		int counter = 0;
+		for (int i = 0; i < 6 ;i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			for (int k = 0; k < 3; k++)
+			{
+				counter++;
+			if( i == i_1 && j_1 == j && k_1 == k)
+				{
+					return counter;
+				}				
+			}
+		}
+		
+	}
+		return 100000;
+	}
+	
+	int Cube::int_to_array( int counter)
+	{
+		int question_array[55] = { 0,
+1,
+2,
+10,
+11,
+12,
+20,
+21,
+22,
+100,
+101,
+102,
+110,
+111,
+112,
+120,
+121,
+122,
+200,
+201,
+202,
+210,
+211,
+212,
+220,
+221,
+222,
+300,
+301,
+302,
+310,
+311,
+312,
+320,
+321,
+322,
+400,
+401,
+402,
+410,
+411,
+412,
+420,
+421,
+422,
+500,
+501,
+502,
+510,
+511,
+512,
+520,
+521,
+522};		
+		return question_array[counter];
+	}
+// cube questions end //
 
 //-----------------------------------------------//
 //---------------Question/Answer-----------------//
