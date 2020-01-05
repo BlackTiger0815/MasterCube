@@ -49,5 +49,10 @@ Thomas Studnicka:
 Files: Cube.cpp, Cube.h main.cpp
 Ändern von abkürzung auf black/white
 hinzufügen von array to int und int to array für fragen von mastermind
-
+****************
+05.01.2020
+Isabella Reithner
+Files:
+main.cpp, Cube.h, solver.h, solver.cpp
+Hinzufügen des ersten Entwurfs der Manhatten Distanz für den IDA*
 

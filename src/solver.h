@@ -6,19 +6,14 @@ using namespace std;
 class RubiksCubeSolver
 {
 private:
-	int ManhattanDistance;
-	
-	
+	int ManhattanDistance; //Rückgabe Wert der ManhattenDistanz Heurisik
+
+
 public:
 	RubiksCubeSolver(){};
 	~RubiksCubeSolver(){};
-	
-	void calculateManhattanDistance(int x)
-	{
-		cout << x << endl;
-	}
 
-	
+	int calculateManhattanDistance(Cube c, int x, int y, int z); //Berechnen der Manhatten Distanz by Isabella
 };
 
 

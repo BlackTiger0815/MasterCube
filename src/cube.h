@@ -63,7 +63,8 @@ public:
 	int array_to_int(int, int, int);
 	int int_to_array(int );
 
-	
+	int returnCubie(int a, int b, int c) {return this->_cube[a][b][c]; } //Gibt Cubie an der Stelle (Seite, Zeile, Spalte) zurück
+
 	void splitQuestion(string s, int n); //Frage am Server spalten in Pos und Farbe
 	void generateMastermindAnswer(int *questions, int *reference, int n);
 	

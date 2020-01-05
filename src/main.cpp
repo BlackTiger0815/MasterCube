@@ -47,10 +47,9 @@ int main (int argc, char* argv[]) {
 	Cube scrambled;
 
 	solved.printCube();
-	
 	scrambled.scramble();
-
 	scrambled.printCube();
+
 /*	solved.printCube();
 	cout << "------------------" << endl<<endl;
 	scrambled.printCube();
@@ -62,17 +61,16 @@ int main (int argc, char* argv[]) {
 */
 	//Debugger.printf( scrambled.array_to_int(5,2,2) ); //this gets you 54
 	//Debugger.printf( scrambled.int_to_array(2) );  // if theres an int smaller than 100, then there are leading zeros to consider
-	RubiksCubeSolver solver;
-	//solver.calculateManhattanDistance(4);
-	
-	
-	
-	
-	
-	
+
+	//Rubiks Cube Solver
+	RubiksCubeSolver RubiksSolver;
+	int a,b,c;
+	cin >> a >> b >> c;
+	RubiksSolver.calculateManhattanDistance(scrambled, a, b, c);
+		
 	//Mastermind solver
 	MastermindSolver clever;
-	clever.testing();
+	//clever.testing();  //ENDLOSSCHLEIFE
 	
 
     return 0;
