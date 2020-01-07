@@ -28,22 +28,22 @@ private:
 	string moves = "";
 	string question = "";
 	string answer = "";
-	
-public: 
+
+public:
 	Cube(){};
 	~Cube(){};
-	
+
 //--------------- copied from --------------//
 //--https://github.com/ekuecks/rubiks-cube--//
 //------------- and modificated ------------//
-	void printCube(); 
+	void printCube();
 	void printMoves(); //print moves made previosly
 	void copyCube();
 	void removeLast(); //removes the last move performed
 	void clearMoves(); //clears all moves
 	string last();
 	void scramble();
-	
+
 // moves - see https://ruwix.com/the-rubiks-cube/notation/
 	void r();
 	void ri();
@@ -63,9 +63,29 @@ public:
 	int array_to_int(int, int, int);
 	int int_to_array(int );
 
-	int returnCubie(int a, int b, int c) {return this->_cube[a][b][c]; } //Gibt Cubie an der Stelle (Seite, Zeile, Spalte) zurück
+		int returnCubie(int a, int b, int c) {return this->_cube[a][b][c]; } //Gibt Cubie an der Stelle (Seite, Zeile, Spalte) zurück
 
 	void splitQuestion(string s, int n); //Frage am Server spalten in Pos und Farbe
 	void generateMastermindAnswer(int *questions, int *reference, int n);
-	
+
+};
+
+class TempCube //soll verebt werden
+{
+private:
+	int _tmp_cube[6][3][3] = {
+		{ { -1, -1, -1 }, { -1, -1, -1 }, { -1, -1, -1 } },
+		{ { -1, -1, -1 }, { -1, -1, -1 }, { -1, -1, -1 } },
+		{ { -1, -1, -1 }, { -1, -1, -1 }, { -1, -1, -1 } },
+		{ { -1, -1, -1 }, { -1, -1, -1 }, { -1, -1, -1 } },
+		{ { -1, -1, -1 }, { -1, -1, -1 }, { -1, -1, -1 } },
+		{ { -1, -1, -1 }, { -1, -1, -1 }, { -1, -1, -1 } } };
+
+	string moves = "";
+	string question = "";
+	string answer = "";
+
+public:
+	TempCube(){};
+	~TempCube(){};
 };

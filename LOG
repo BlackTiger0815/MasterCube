@@ -55,4 +55,10 @@ Isabella Reithner
 Files:
 main.cpp, Cube.h, solver.h, solver.cpp
 Hinzufügen des ersten Entwurfs der Manhatten Distanz für den IDA*
+****************
+07.01.2020
+Isabella Reithner
+Files:
+main.cpp, Cube.h, solver.h, solver.cpp
+Verbesserung Manhatten Dist, Number of unsolves Cubie - Heuristic, Klasse für Temp_Cube als Schnittstelle zwischen Mastermind und Rubiks Cube
 
