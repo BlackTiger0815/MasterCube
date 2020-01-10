@@ -1,0 +1,69 @@
+-----------------------------------------------
+--------Logfile / Protokoll des Projekts--------
+------------------------------------------------
+
+Beispieleintrag:
+****************
+Datum
+Name
+Veränderte/Hinzugefügte Files: 
+Tätigkeit 1; Tätigkeit 2; ...
+****************
+01.12.2019
+Isabella Reithner:
+Files: alles
+Erstellen der Automakeumgebung; Erstellen der Class Cube; Implementierung der notwendigen Drehungsfunktionen
+****************
+05.12.2019
+Isabella Reithner:
+Files: main.cpp, Cube.h, Cube.cpp
+Scramble Methode 
+****************
+07.12.2019
+Isabella Reithner:
+Files: main.cpp, Cube.h, Cube.cpp
+SplitQuestion Methode 
+****************
+13.12.2019
+Thomas Studnicka
+Files: src/debug.h src/main.cpp
+Debug Klasse
+****************
+15.12.2019
+Isabella Reithner:
+Files: main.cpp, solver.h, solver.cpp
+Erstellen von Files für die beiden Solver; Parameter-Handling für Aufruf von ./src/MasterCube
+****************
+16.12.2019
+Cajetan Koschat
+Files: cube.cpp
+Umschreiben der printCube() Funktion um die Ausgabe in ausgeschnittenem Format wiederzugeben;
+****************
+20.12.2019
+Isabella Reithner:
+Files: main.cpp, Cube.h, Cube.cpp
+Erneutes Hinzufügen von GenerareMastermindAnswer();
+****************
+03.01.2020
+Thomas Studnicka:
+Files: Cube.cpp, Cube.h main.cpp
+Ändern von abkürzung auf black/white
+hinzufügen von array to int und int to array für fragen von mastermind
+****************
+05.01.2020
+Isabella Reithner
+Files:
+main.cpp, Cube.h, solver.h, solver.cpp
+Hinzufügen des ersten Entwurfs der Manhatten Distanz für den IDA*
+****************
+07.01.2020
+Isabella Reithner
+****************
+10.01.2020
+Cajetan Koschat (Christoph Auer DANKE!)
+main.cpp, cube.h, cube.cpp
+es gibt jetzt einen "black-box-cube". Einfach ein Cube Objekt instanzieren mit 0 in der Instanzierung e.g. Cube tmp(0)
+Files:
+main.cpp, Cube.h, solver.h, solver.cpp
+Verbesserung Manhatten Dist, Number of unsolves Cubie - Heuristic, Klasse für Temp_Cube als Schnittstelle zwischen Mastermind und Rubiks Cube
+
