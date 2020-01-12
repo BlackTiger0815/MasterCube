@@ -521,6 +521,49 @@ void Cube::printCube()
 		}cout << endl;
 }
 
+// void TempCube::printCube()
+// {
+// 	for (int i = 0; i < 1; i++)
+// 		{
+// 			for (int j = 0; j < 3; j++)
+// 			{
+// 				cout << "    ";
+// 				for (int k = 0; k < 3; k++)
+// 				{
+// 					cout << _tmp_cube[i][j][k];
+// 				}
+// 				cout << endl;
+// 			}
+// 		}cout << endl;
+
+// 	for (int j = 0; j < 3; j++)
+// 		{
+// 			for (int i = 1; i < 5; i++)
+// 			{
+// 				for (int k = 0; k < 3; k++)
+// 				{
+// 					cout << _tmp_cube[i][j][k];
+// 				}
+// 				cout << " ";
+// 			}
+// 			cout << endl;
+// 		}
+// 		cout << endl;
+
+// 	for (int i = 5; i < 6; i++)
+// 		{
+// 			for (int j = 0; j < 3; j++)
+// 			{
+// 				cout << "    ";
+// 				for (int k = 0; k < 3; k++)
+// 				{
+// 					cout << _tmp_cube[i][j][k];
+// 				}
+// 				cout << endl;
+// 			}
+// 		}cout << endl;
+// }	
+
 void Cube::printMoves(){
 	cout << moves << endl;
 }
