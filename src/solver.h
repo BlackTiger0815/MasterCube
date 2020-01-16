@@ -93,7 +93,11 @@ public:
 	float max_CornerEdge_sum(Cube c); //Berechnen der Manhatten Distanz des Cubes by Isabella
 	void writeManhattenDistance(float dist) {_ManhattanDistance = dist; };
 
-	float calculateNumUnsolvedCubies(Cube c, bool admissible);
+	float calculateNumUnsolvedCubies(Cube c, bool admissible); //Berechnen der Anzahl an -cubies am falschen Platz by Isabella
 	void writeUnsolvedCubies(int num) {_unsolvedCubiesI = num; };
 	void writeUnsolvedCubies(float num) {_unsolvedCubiesF = num; };
+
+	//Metoden des IDA*
+	double IDAstarAlgorithm(Cube scrambledCube, int cost, int lastMove); //by Isabella
+	Cube performMove(Cube c, int i); //Cube drehen
 };

@@ -1,6 +1,7 @@
 #include "cube.h"
 #include "solver.h"
 
+#define MAXMOVES 10 //Maximale Anzal an Drehungen die durchgeführt werden darf 
 
 //------------------------------------------//
 //---------- Mastermind Solver -------------//
@@ -228,4 +229,80 @@ float RubiksCubeSolver::calculateNumUnsolvedCubies(Cube c, bool admissible){
 		}
 	}
 	return (admissible) ? num/8 : num;
+}
+
+Cube RubiksCubeSolver::performMove(Cube c, int i){ //by Isabella 16.01.2020
+	switch(i){
+		case 1:
+			c.r();
+			return c;
+		case 2:
+			c.ri();
+			return c;
+		case 3:
+			c.l();
+			return c;
+		case 4:
+			c.li();
+			return c;
+		case 5:
+			c.u();
+			return c;
+		case 6:
+			c.ui();
+			return c;
+		case 7:
+			c.d();
+			return c;
+		case 8:
+			c.di();
+			return c;
+		case 9:
+			c.f();
+			return c;
+		case 10:
+			c.fi();
+			return c;
+		case 11:
+			c.b();
+			return c;
+		case 12:
+			c.bi();
+			return c;
+		default:
+			;//nothing
+	}
+}
+
+double RubiksCubeSolver::IDAstarAlgorithm(Cube scrambledCube, int cost, int lastMove){ ////by Isabella 16.01.2020
+	//int cost = 0;
+	float heuritic = calculateNumUnsolvedCubies(scrambledCube, 1);
+	cout << "heuritic " << heuritic << endl;
+	if(heuritic == 0) return -1; //Cube ist bereits gelöst
+	float f = cost + heuritic;	//Geschätzte Kosten für den Cube
+	if(cost>50) return -10; //Error
+	int cntStates = 0;
+	Cube movedCube;
+
+	//int last_move = 0;
+
+	for(int i=1; i<MAXMOVES+1; i++){
+		//if(i >= 0 && (i/3 == last_move/3)) continue;
+		cntStates ++;
+		lastMove = lastMove++;
+		movedCube = performMove(scrambledCube, i);
+		movedCube.printMoves();
+		movedCube.printCube();
+
+		if(calculateNumUnsolvedCubies(scrambledCube, 1) > heuritic){
+			//undo moves
+		}
+		else{
+			//neuer move probieren
+		}
+
+		//double t = IDAstarAlgorithm(scrambledCube, cost+1, lastMove); //NICHT REKURSIV LÖSEN!!!
+		//if(calculateNumUnsolvedCubies(scrambledCube,1) > heuritic){
+
+	}
 }
