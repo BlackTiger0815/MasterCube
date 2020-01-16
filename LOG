@@ -66,4 +66,12 @@ es gibt jetzt einen "black-box-cube". Einfach ein Cube Objekt instanzieren mit 0
 Files:
 main.cpp, Cube.h, solver.h, solver.cpp
 Verbesserung Manhatten Dist, Number of unsolves Cubie - Heuristic, Klasse für Temp_Cube als Schnittstelle zwischen Mastermind und Rubiks Cube
+****************
+07.01.2020
+Isabella Reithner
+Erster Entwurf des IDA* Num of unsolved Cubies -Heuristik
+Files:
+main.cpp, cube.h, solver.h, solver.cpp
+
+
 

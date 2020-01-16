@@ -65,26 +65,26 @@ int main (int argc, char* argv[]) {
 	//Debugger.printf( scrambled.int_to_array(2) );  // if theres an int smaller than 100, then there are leading zeros to consider
 
 	//Rubiks Cube Solver
-	// RubiksCubeSolver RubiksSolver;
-	// int a,b,c;
-	// //cin >> a >> b >> c;
-	// //RubiksSolver.calculateManhattanDistance(scrambled, a, b, c);
-	// float h1 = RubiksSolver.max_CornerEdge_sum(scrambled);
-	// RubiksSolver.writeManhattenDistance(h1);
-	// cout << "Manhatten Distanz = " << h1 << endl;
+	RubiksCubeSolver RubiksSolver;
+	//int a,b,c;
+	//cin >> a >> b >> c;
+	//RubiksSolver.calculateManhattanDistance(scrambled, a, b, c);
+	float h1 = RubiksSolver.max_CornerEdge_sum(scrambled);
+	float h2 = RubiksSolver.max_CornerEdge_sum(solved);
+	RubiksSolver.writeManhattenDistance(h1);
+	cout << "Manhatten Distanz scrambled = " << h1 << endl;
+	cout << "Manhatten Distanz solved = " << h2 << endl;
 
-	// bool admissible = true;
-	// cin >> admissible;
-	// if(admissible == true){
-	// 	float h2 = RubiksSolver.calculateNumUnsolvedCubies(scrambled, admissible);
-	// 	//RubiksSolver.writeUnsolvedCubies(h2);
-	// 	cout << "Num unsolved Cubies = " << h2 << endl;
-	// }
-	// else{
-	// 	float h2 = RubiksSolver.calculateNumUnsolvedCubies(scrambled, admissible);
-	// 	//RubiksSolver.writeUnsolvedCubies(h2);
-	// 	cout << "Num unsolved Cubies = " << h2 << endl;
-	// }
+	bool admissible = true;
+	//cin >> admissible;
+	float h3 = RubiksSolver.calculateNumUnsolvedCubies(scrambled, admissible);
+	float h4 = RubiksSolver.calculateNumUnsolvedCubies(solved, admissible);
+	//RubiksSolver.writeUnsolvedCubies(h3);
+	cout << "Num unsolved Cubies scrabmled = " << h3 << endl;
+	cout << "Num unsolved Cubies solved = " << h4 << endl;
+
+	double IDA = RubiksSolver.IDAstarAlgorithm(scrambled,0,0);
+	cout << IDA << endl;
 
 
 

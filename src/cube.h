@@ -75,6 +75,10 @@ public:
 	void splitQuestion(string s, int n); //Frage am Server spalten in Pos und Farbe
 	void generateMastermindAnswer(int *questions, int *reference, int n);
 
+	void writeMoves(string newMove){ //Schreibt Moves
+		moves = moves + newMove;
+	}
+
 };
 
 // class TempCube : public Cube//soll verebt werden
