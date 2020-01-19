@@ -1,0 +1,13 @@
+Client:
+g++ -o client TCPEchoClient.cpp DieWithError.cpp
+(g++ -fpermissive -o client TCPEchoClient.cpp DieWithError.cpp)
+
+./client 127.0.0.1 4000
+(Programm Addresse Port)
+
+Server:
+g++ -o server TCPEchoServer.cpp DieWithError.cpp HandleTCPClient.cpp
+(g++ -fpermissive -o server TCPEchoServer.cpp DieWithError.cpp HandleTCPClient.cpp)
+
+./server 4000
+(Programm Port)
