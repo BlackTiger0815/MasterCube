@@ -437,7 +437,7 @@ Copyright (C) 2012 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/19-12-20_MasterCube-BlackTiger0815-einf-gen-generateMastermindAnswer'
+ac_pwd='/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
@@ -655,18 +655,12 @@ S["mkdir_p"]="$(MKDIR_P)"
 S["MKDIR_P"]="/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]=""
-S["install_sh"]="${SHELL} '/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/19-12-20_MasterCube-BlackTiger0815-einf-gen-generateMastermindAn"\
-"swer/install-sh'"
-S["MAKEINFO"]="${SHELL} \"/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/19-12-20_MasterCube-BlackTiger0815-einf-gen-generateMastermindAn"\
-"swer/missing\" makeinfo"
-S["AUTOHEADER"]="${SHELL} \"/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/19-12-20_MasterCube-BlackTiger0815-einf-gen-generateMastermindAn"\
-"swer/missing\" autoheader"
-S["AUTOMAKE"]="${SHELL} \"/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/19-12-20_MasterCube-BlackTiger0815-einf-gen-generateMastermindAn"\
-"swer/missing\" automake-1.16"
-S["AUTOCONF"]="${SHELL} \"/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/19-12-20_MasterCube-BlackTiger0815-einf-gen-generateMastermindAn"\
-"swer/missing\" autoconf"
-S["ACLOCAL"]="${SHELL} \"/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/19-12-20_MasterCube-BlackTiger0815-einf-gen-generateMastermindAn"\
-"swer/missing\" aclocal-1.16"
+S["install_sh"]="${SHELL} '/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/install-sh'"
+S["MAKEINFO"]="${SHELL} \"/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/missing\" makeinfo"
+S["AUTOHEADER"]="${SHELL} \"/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/missing\" autoheader"
+S["AUTOMAKE"]="${SHELL} \"/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/missing\" automake-1.16"
+S["AUTOCONF"]="${SHELL} \"/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/missing\" autoconf"
+S["ACLOCAL"]="${SHELL} \"/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/missing\" aclocal-1.16"
 S["VERSION"]="1.0"
 S["PACKAGE"]="mastercube"
 S["CYGPATH_W"]="echo"

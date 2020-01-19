@@ -49,3 +49,34 @@ Elisabeth Gittenberger
 Files: DieWithError.cpp, HandleTCPClient.cpp, TCPEchoServer.cpp, TCPEchoClient.cpp, (client, server, Terminal Anweisungen)
 Files für das Erstellen von Server und Client und die Kommunikation zwischen den beiden mittels Sockets
 ****************
+03.01.2020
+Thomas Studnicka:
+Files: Cube.cpp, Cube.h main.cpp
+Ändern von abkürzung auf black/white
+hinzufügen von array to int und int to array für fragen von mastermind
+****************
+05.01.2020
+Isabella Reithner
+Files:
+main.cpp, Cube.h, solver.h, solver.cpp
+Hinzufügen des ersten Entwurfs der Manhatten Distanz für den IDA*
+****************
+07.01.2020
+Isabella Reithner
+Files:
+main.cpp, Cube.h, solver.h, solver.cpp
+Verbesserung Manhatten Dist, Number of unsolves Cubie - Heuristic, Klasse für Temp_Cube als Schnittstelle zwischen Mastermind und Rubiks Cube
+****************
+10.01.2020
+Cajetan Koschat (Christoph Auer DANKE!)
+main.cpp, cube.h, cube.cpp
+es gibt jetzt einen "black-box-cube". Einfach ein Cube Objekt instanzieren mit 0 in der Instanzierung e.g. Cube tmp(0)
+Files:
+main.cpp, Cube.h, solver.h, solver.cpp
+Verbesserung Manhatten Dist, Number of unsolves Cubie - Heuristic, Klasse für Temp_Cube als Schnittstelle zwischen Mastermind und Rubiks Cube
+****************
+16.01.2020
+Isabella Reithner
+Erster Entwurf des IDA*; Num of unsolved Cubies -Heuristik
+Files:
+main.cpp, cube.h, solver.h, solver.cpp
