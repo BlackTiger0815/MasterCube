@@ -11,13 +11,28 @@ class Cube
 {
 public:
 	int _old[6][3][3];
-	int _cube[6][3][3]; //white side
+	int _cube[6][3][3]; //white side	
+	
+private:
+	/* int _old[6][3][3] = {
+		{ { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, //yellow side
+		{ { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, //orange side
+		{ { 2, 2, 2 }, { 2, 2, 2 }, { 2, 2, 2 } }, //blue side
+		{ { 3, 3, 3 }, { 3, 3, 3 }, { 3, 3, 3 } }, //red side
+		{ { 4, 4, 4 }, { 4, 4, 4 }, { 4, 4, 4 } }, //green side
+	};
+	int _cube[6][3][3] = {
+		{ { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, //yellow side
+		{ { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, //orange side
+		{ { 2, 2, 2 }, { 2, 2, 2 }, { 2, 2, 2 } }, //blue side
+		{ { 3, 3, 3 }, { 3, 3, 3 }, { 3, 3, 3 } }, //red side
+		{ { 4, 4, 4 }, { 4, 4, 4 }, { 4, 4, 4 } }, //green side
+		{ { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } } }; //white side */
 
 	string moves = "";
-	string question = "";
-	string answer = "";
-
-public:
+	
+	
+public: 
 	Cube(int n=1){
 		if(n==0){
 			for(int i=0;i<6;i++)
@@ -38,19 +53,19 @@ public:
 		}
 	}
 	~Cube(){};
-
+	
+	
 //--------------- copied from --------------//
 //--https://github.com/ekuecks/rubiks-cube--//
 //------------- and modificated ------------//
-
-	virtual void printCube();
+	virtual void printCube(); 
 	void printMoves(); //print moves made previosly
 	void copyCube();
 	void removeLast(); //removes the last move performed
 	void clearMoves(); //clears all moves
 	string last();
 	void scramble();
-
+	
 // moves - see https://ruwix.com/the-rubiks-cube/notation/
 	void r();
 	void ri();
@@ -70,15 +85,16 @@ public:
 	int array_to_int(int, int, int);
 	int int_to_array(int );
 
-		int returnCubie(int a, int b, int c) {return this->_cube[a][b][c]; } //Gibt Cubie an der Stelle (Seite, Zeile, Spalte) zurück
-
+	int returnCubie(int a, int b, int c) {return this->_cube[a][b][c]; } //Gibt Cubie an der Stelle (Seite, Zeile, Spalte) zurück
+	string feedback;
+	string question = ""; // changed here to i can access it easily in questio_cube
+	string answer = ""; // same as above
 	void splitQuestion(string s, int n); //Frage am Server spalten in Pos und Farbe
 	void generateMastermindAnswer(int *questions, int *reference, int n);
-
 	void writeMoves(string newMove){ //Schreibt Moves
 		moves = moves + newMove;
 	}
-
+	
 };
 
 // class TempCube : public Cube//soll verebt werden
