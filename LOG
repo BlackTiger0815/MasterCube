@@ -80,3 +80,10 @@ Isabella Reithner
 Erster Entwurf des IDA*; Num of unsolved Cubies -Heuristik
 Files:
 main.cpp, cube.h, solver.h, solver.cpp
+****************
+19.01.2020
+Thomas Studnicka
+Zweiter Patch für kleine n, änderungen zum besseren lesen in cube.cpp
+Files:
+main.cpp, cube.h, cube.cpp, solver.h, solver.cpp 
+****************
