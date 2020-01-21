@@ -564,6 +564,7 @@ void Cube::printCube()
 // 		}cout << endl;
 // }	
 
+
 void Cube::printMoves(){
 	cout << moves << endl;
 }
@@ -734,8 +735,8 @@ void Cube::splitQuestion(string s, int n) //by Isabella Reithner
 	int cnt = 0; //counter
 	int it = 0; //Zähler für Iterationen (ebenfalls ein Counter)
 	//von Matthias Anfang
-	int rffp=0; //Zähler für Richte Farbe am Falschen Platz
-	int rfrp=0; //Zähler Richtige Farbe richtiger Platz
+	int white=0; //Zähler für Richte Farbe am Falschen Platz
+	int black=0; //Zähler Richtige Farbe richtiger Platz
 	string feedback;
 	int tempReference[n];//für die Farbvergleiche
 
@@ -777,9 +778,10 @@ void Cube::splitQuestion(string s, int n) //by Isabella Reithner
 
 void Cube::generateMastermindAnswer(int *questions, int *reference, int n){
 
-	int rffp=0; //Zähler für Richte Farbe am Falschen Platz
-	int rfrp=0; //Zähler Richtige Farbe richtiger Platz
-	string feedback;
+	int white=0; //Zähler für Richte Farbe am Falschen Platz
+	int black=0; //Zähler Richtige Farbe richtiger Platz
+	//string feedback; is part of cube
+	feedback = "";
 	int tempReference[n];
 	int tempCode[n];
 
@@ -789,14 +791,14 @@ for(int i=0;i<n;i++){ //memcpy hat manchmal nicht funktioniert
 	//memcpy(tempReference,reference,n);//Eventuell ein Laufzeitfehler wegen N!!!!
 	//schwarz ist 1, weiß ist 0 und nix ist 2
 	for(int k=0; k<n; k++){
-		cout<< "que u ref u tempReference: "<< questions[k]<<" "<<reference[k]<<" "<<tempReference[k]<<endl;
+		//cout<< "que u ref u tempReference: "<< questions[k]<<" "<<reference[k]<<" "<<tempReference[k]<<endl;
 		if(reference[k]==questions[k]&&tempReference[k]!=9){//Farbe und Position richtig
-			rfrp++;
+			black++;
 			feedback.append("1");
 			tempReference[k]=9;//Diese Position wird 9 gesetzt, damit das Programm weiß, dass hier schon mal überprüft wurde, und keine Farben doppelt zählt
 		}
 	}
-	cout<<"rfrp "<<rfrp<< std::endl;
+	//cout<<"black "<<black<< std::endl;
 
 	int k=0;
 	for(int j=0;j<n;j++){
@@ -804,18 +806,20 @@ for(int i=0;i<n;i++){ //memcpy hat manchmal nicht funktioniert
 		{
 			//cout<< "que u ref u tempReference: "<< questions[j]<<" "<<reference[k]<<" "<<tempReference[j]<<endl;
 			if(reference[k]==questions[j]&&tempReference[j]!=9){
-				rffp++;
+				white++;
 				tempReference[j]=9;
 				feedback.append("0");
 			}
 		}
 		k++;
 	}
-	cout<<"rffp " << rffp<< std::endl;
+	//cout<<"white " << white<< std::endl;
 
 	//nur Richtig , wenn WENN n ANZAHL DER WERTE IST!!!
-	for(int i=rffp+rfrp;i<n;i++){//Hier wird mit x aufgefüllt (falls es etwas zum auffüllen gibt)
+	for(int i=white+black;i<n;i++){//Hier wird mit x aufgefüllt (falls es etwas zum auffüllen gibt)
 		feedback.append("2");
 	}
-	std::cout <<"feedback: "<< feedback << std::endl; //Von Matthias hinzugefügt
+	// std::cout <<"feedback: "<< feedback << std::endl; //Von Matthias hinzugefügt
+	
+	//shuffle?
 }

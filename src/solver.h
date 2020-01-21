@@ -1,75 +1,11 @@
 #include <iostream>
 #include <stdio.h>
-//#include "cube.h"
+#include <list>
+#include "cube.h"
+#include <string>
 using namespace std;
 
-//------------------------------------------//
-//---------- Mastermind Solver -------------//
-//------------------------------------------//
 
-class MastermindSolver
-{
-	private:
-	// information to save
-	int n;
-	string* questions;
-	string* answers;
-	string* possible_corret;
-
-
-
-	public:
-	// functions to use
-	MastermindSolver(){
-		cout << "solver is starting" << endl;
-	};
-	~MastermindSolver() {};
-
-	void set_n(int a)
-        {
-            n = a;
-        }
-
-	//testing
-	// all funcions are testet here (pls)
-	void testing();
-
-	// 1 //
-
-	void what_to_ask(); //switch n
-
-	// 2 //
-
-	int how_much_can_i_ask();
-
-
-
-	// 3 //
-
-	string which_question_to_choose();  // 2 asking itself with generateMastermindAnswer
-
-	// 4 //
-
-	string what_does_the_answer_mean(); //possible_corret -  answer //eliminate possibilities
-
-	// 5 // start at 1
-
-	// 6 //
-
-	string generic_evolution_solver();
-
-	// 7 //
-	// knut mastermind for low name
-	string all_possible();
-	// 2 to 4
-
-	// 8 //
-
-	// tabu search
-
-	// from colors generate puzzle 24 parts
-
-};
 
 
 //------------------------------------------//
@@ -100,4 +36,36 @@ public:
 	//Metoden des IDA*
 	double IDAstarAlgorithm(Cube scrambledCube, int cost, int lastMove); //by Isabella
 	Cube performMove(Cube c, int i); //Cube drehen
+};
+
+//------------------------------------------//
+//---------- Mastermind Solver -------------//
+//------------------------------------------//
+
+class MastermindSolver
+{
+	private:
+	// information to save
+	int n;
+	list <Cube> questions;
+	
+	public:
+	// functions to use
+	MastermindSolver(){
+		cout << "solver is starting" << endl;
+	};
+	~MastermindSolver() {};
+
+void generate_question();
+void set_n(int);
+void testing();
+void what_to_ask(); // base on n switches solver approach
+int how_much_can_i_ask(); //for low n generates possible questions / answers
+string all_possible(int guesses); 
+void convert_to_base_6(int i);
+string which_question_to_choose();  // 2 asking itself with generateMastermindAnswer
+string what_does_the_answer_mean(); //possible_corret -  answer //eliminate possibilities
+string generic_evolution_solver();
+string all_possible();
+
 };
