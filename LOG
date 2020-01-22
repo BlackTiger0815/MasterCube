@@ -87,3 +87,7 @@ Zweiter Patch für kleine n, änderungen zum besseren lesen in cube.cpp
 Files:
 main.cpp, cube.h, cube.cpp, solver.h, solver.cpp 
 ****************
+22.01.2020
+Elisabeth Gittenberger
+Files: main.cpp CreateServer.cpp CreateClient.cpp DieWithError.cpp
+Hinzufügen der Kommunikation mittels TCP Sockets in die main
