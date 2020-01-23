@@ -1,5 +1,7 @@
 #include "debug.h"
 #include "solver.h" //Solver for Mastermind and Rubiks Cube
+#include "cubie.h" // Stephanie
+#include "mastermindcube.h" // Stephanie
 #include <list>
 
 //21.01.2020 for communication by Elisabeth
@@ -17,22 +19,22 @@ int CreateServer(unsigned short serverPort); /* function for creating the server
 int CreateClient(char *serverIP, unsigned short serverPort); /*function for creating the client */
 
 int main (int argc, char* argv[]) {
-	
+
 	//new 13.12.2019 adding debug by Thomas
 	debug Debugger;
 	Debugger.setdebug(0);
 	Debugger.setdebug(1);
 	Debugger.printf("MasterCube is starting");
 	// Debug inilasition over
-	
-	
+
+
 	// here server
 	// wait for answer
 	// send answer
-	
-	
-	
-	
+
+
+
+
 	//here client
 	//get n
 	// generate solver
@@ -46,10 +48,10 @@ int main (int argc, char* argv[]) {
 	// calculate answer
 	// answer to IDA*
 	// rotate?
-	
+
 	//repeat
-	
-	
+
+
 
 	//15.12.2019 handling of calling parameters by Isabella
 	//21.01.2020 handling og calling parameters modified by Elisabeth
@@ -70,7 +72,7 @@ int main (int argc, char* argv[]) {
 		//for(int i=0; i<argc; i++){
 		//	cout << i<< ":  " << argv[i] << endl;
 		//}
-		
+
 		modus = argv[1];
 
 		//Client--------------------------------------------------------------------------------------
@@ -105,10 +107,10 @@ int main (int argc, char* argv[]) {
 				{
 					clientMessage = "fin"; //this message tells the server that the communicaton can be quit
 				}
-		
+
 				//for debug (see if "fin" was chosen correctly)
 				//std::cout << "The clientMessage is: " << clientMessage << std::endl;
-			
+
 				//Determine length of the message to be send
     			echoStringLen = strlen(clientMessage.c_str());
 				//std::cout << "echoStringLen: " << echoStringLen << std::endl;
@@ -127,10 +129,10 @@ int main (int argc, char* argv[]) {
 				//for debug
 				//std::cout << "bytesRcvd: " << bytesRcvd << "." << std::endl; //Anzahl der Zeichen die empfangen wurden
     			//std::cout << "echoBuffer: " << echoBuffer << "." << std::endl;
-			
+
 				//do something with the message recieved from the server
 				std::cout << "serverMessage: " << serverMessage << "." << std::endl;
-				
+
 			}while(solvingComplete == 0); //while the cube is not solved
 
     		close(sock); //this closes the Socket and ends the communication, it needs to be performed by both client and server => fin message to server
@@ -138,7 +140,7 @@ int main (int argc, char* argv[]) {
 		//Server--------------------------------------------------------------------------------------
 		else if(modus.compare ("server") == 0){
 			serverPort = atoi(argv[2]);  /* Second arg:  Server port */
-		
+
 			sock = CreateServer(serverPort); //create the server/the socket
 
 			std::string serverMessage;			/* Message that is sent to the client */
@@ -147,7 +149,7 @@ int main (int argc, char* argv[]) {
     		int recvMsgSize;                    /* Size of received message */
 			unsigned int stringLen;      /* Length of string to echo */
 			//int n;
-			
+
 			//This is my loop for the server, it includes ending the communication if the cube is solved
 			do
 			{
@@ -155,7 +157,7 @@ int main (int argc, char* argv[]) {
     			/* Receive message from client */
     			if ((recvMsgSize = recv(sock, clientMessageBuffer, RCVBUFSIZE, 0)) < 0)
         			DieWithError("recv() failed");
-	
+
 				//debug
 				//std::cout << "recvMsgSize: " << recvMsgSize << "." << std::endl;
 				//n = recvMsgSize/3; //n aus der Anzahl der erhaltenen Characters berechnen
@@ -165,7 +167,7 @@ int main (int argc, char* argv[]) {
 
 				//debug
 				//std::cout << "clientMessageBuffer: " << clientMessageBuffer << "." << std::endl;
-				
+
 				//do something with the message recieved from the client
 				std::cout << "clientMessage: " << clientMessage << "." << std::endl;
 
@@ -182,16 +184,16 @@ int main (int argc, char* argv[]) {
 
 				//debug
 				//std::cout << "The serverMessage is: " << serverMessage << std::endl;
-			
+
 				stringLen = strlen(serverMessage.c_str()); /* get lenght of the message to be send */
 				//std::cout << "stringLen: " << stringLen << std::endl;
-	
+
 				/* Send serverMessage to client */
 				if (send(sock, serverMessage.c_str(), stringLen, 0) != stringLen)
 					DieWithError("send() failed");
 
 			}while(clientMessage.compare("fin") != 0);
-			
+
     		close(sock); //this closes the Socket and ends the communication, it needs to be performed by both client and server => fin message to server
 
 		}
@@ -200,7 +202,7 @@ int main (int argc, char* argv[]) {
 		}
 	}
 
-	
+
 	Cube solved;
 	Cube scrambled;
 	Cube tmp(0);
