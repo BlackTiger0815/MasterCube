@@ -99,7 +99,10 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_MasterCube_OBJECTS = main.$(OBJEXT) cube.$(OBJEXT) solver.$(OBJEXT)
+am_MasterCube_OBJECTS = main.$(OBJEXT) cube.$(OBJEXT) solver.$(OBJEXT) \
+	cubie.$(OBJEXT) mastermindcube.$(OBJEXT) \
+	CreateClient.$(OBJEXT) CreateServer.$(OBJEXT) \
+	DieWithError.$(OBJEXT)
 MasterCube_OBJECTS = $(am_MasterCube_OBJECTS)
 MasterCube_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -117,8 +120,10 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/cube.Po ./$(DEPDIR)/main.Po \
-	./$(DEPDIR)/solver.Po
+am__depfiles_remade = ./$(DEPDIR)/CreateClient.Po \
+	./$(DEPDIR)/CreateServer.Po ./$(DEPDIR)/DieWithError.Po \
+	./$(DEPDIR)/cube.Po ./$(DEPDIR)/cubie.Po ./$(DEPDIR)/main.Po \
+	./$(DEPDIR)/mastermindcube.Po ./$(DEPDIR)/solver.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -262,7 +267,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-MasterCube_SOURCES = main.cpp cube.cpp cube.h solver.cpp solver.h
+MasterCube_SOURCES = main.cpp cube.cpp cube.h solver.cpp solver.h cubie.h cubie.cpp mastermindcube.h mastermindcube.cpp CreateClient.cpp CreateServer.cpp DieWithError.cpp
 all: all-am
 
 .SUFFIXES:
@@ -349,8 +354,13 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CreateClient.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CreateServer.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/DieWithError.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cube.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cubie.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mastermindcube.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/solver.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -500,8 +510,13 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/cube.Po
+		-rm -f ./$(DEPDIR)/CreateClient.Po
+	-rm -f ./$(DEPDIR)/CreateServer.Po
+	-rm -f ./$(DEPDIR)/DieWithError.Po
+	-rm -f ./$(DEPDIR)/cube.Po
+	-rm -f ./$(DEPDIR)/cubie.Po
 	-rm -f ./$(DEPDIR)/main.Po
+	-rm -f ./$(DEPDIR)/mastermindcube.Po
 	-rm -f ./$(DEPDIR)/solver.Po
 	-rm -f makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -548,8 +563,13 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/cube.Po
+		-rm -f ./$(DEPDIR)/CreateClient.Po
+	-rm -f ./$(DEPDIR)/CreateServer.Po
+	-rm -f ./$(DEPDIR)/DieWithError.Po
+	-rm -f ./$(DEPDIR)/cube.Po
+	-rm -f ./$(DEPDIR)/cubie.Po
 	-rm -f ./$(DEPDIR)/main.Po
+	-rm -f ./$(DEPDIR)/mastermindcube.Po
 	-rm -f ./$(DEPDIR)/solver.Po
 	-rm -f makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

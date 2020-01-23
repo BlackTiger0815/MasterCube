@@ -1,6 +1,6 @@
 #include "debug.h"
 #include "solver.h" //Solver for Mastermind and Rubiks Cube
-#include "cubie.h" // Stephanie
+//#include "cubie.h" // Stephanie
 #include "mastermindcube.h" // Stephanie
 #include <list>
 
@@ -39,9 +39,9 @@ int main (int argc, char* argv[]) {
 	//get n
 	// generate solver
 	//Mastermind solver
-	MastermindSolver clever;
-	clever.set_n(3);
-	clever.generate_question();
+	//MastermindSolver clever;
+	//clever.set_n(3);
+	//clever.generate_question();
 
 	// generate question
 	// send question
@@ -65,7 +65,7 @@ int main (int argc, char* argv[]) {
 
 	if(argc == 1)
 	{
-		std::cout << "Not enough parameters";
+		std::cout << "Not enough parameters" << endl;
 	}else
 	{
 
@@ -202,7 +202,7 @@ int main (int argc, char* argv[]) {
 		}
 	}
 
-
+/*
 	Cube solved;
 	Cube scrambled;
 	Cube tmp(0);
@@ -211,6 +211,7 @@ int main (int argc, char* argv[]) {
 	scrambled.scramble();
 	scrambled.printCube();
 	tmp.printCube();
+
 /*	solved.printCube();
 	cout << "------------------" << endl<<endl;
 	scrambled.printCube();
@@ -222,26 +223,6 @@ int main (int argc, char* argv[]) {
 */
 	//Debugger.printf( scrambled.array_to_int(5,2,2) ); //this gets you 54
 	//Debugger.printf( scrambled.int_to_array(2) );  // if theres an int smaller than 100, then there are leading zeros to consider
-	RubiksCubeSolver RubiksSolver;
-	//int a,b,c;
-	//cin >> a >> b >> c;
-	//RubiksSolver.calculateManhattanDistance(scrambled, a, b, c);
-	float h1 = RubiksSolver.max_CornerEdge_sum(scrambled);
-	float h2 = RubiksSolver.max_CornerEdge_sum(solved);
-	RubiksSolver.writeManhattenDistance(h1);
-	cout << "Manhatten Distanz scrambled = " << h1 << endl;
-	cout << "Manhatten Distanz solved = " << h2 << endl;
-
-	bool admissible = true;
-	//cin >> admissible;
-	float h3 = RubiksSolver.calculateNumUnsolvedCubies(scrambled, admissible);
-	float h4 = RubiksSolver.calculateNumUnsolvedCubies(solved, admissible);
-	//RubiksSolver.writeUnsolvedCubies(h3);
-	cout << "Num unsolved Cubies scrabmled = " << h3 << endl;
-	cout << "Num unsolved Cubies solved = " << h4 << endl;
-
-	double IDA = RubiksSolver.IDAstarAlgorithm(scrambled,0,0);
-	cout << IDA << endl;
 
 
     return 0;
