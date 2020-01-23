@@ -99,7 +99,10 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_MasterCube_OBJECTS = main.$(OBJEXT) cube.$(OBJEXT) solver.$(OBJEXT)
+am_MasterCube_OBJECTS = main.$(OBJEXT) cube.$(OBJEXT) solver.$(OBJEXT) \
+	cubie.$(OBJEXT) mastermindcube.$(OBJEXT) \
+	CreateClient.$(OBJEXT) CreateServer.$(OBJEXT) \
+	DieWithError.$(OBJEXT)
 MasterCube_OBJECTS = $(am_MasterCube_OBJECTS)
 MasterCube_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_$(V))
@@ -117,8 +120,10 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/cube.Po ./$(DEPDIR)/main.Po \
-	./$(DEPDIR)/solver.Po
+am__depfiles_remade = ./$(DEPDIR)/CreateClient.Po \
+	./$(DEPDIR)/CreateServer.Po ./$(DEPDIR)/DieWithError.Po \
+	./$(DEPDIR)/cube.Po ./$(DEPDIR)/cubie.Po ./$(DEPDIR)/main.Po \
+	./$(DEPDIR)/mastermindcube.Po ./$(DEPDIR)/solver.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -173,12 +178,12 @@ ETAGS = etags
 CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/makefile.in $(top_srcdir)/depcomp
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} "/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/missing" aclocal-1.16
+ACLOCAL = ${SHELL} "/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/MasterCube-Datenstruktur-Stephanie/missing" aclocal-1.16
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} "/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/missing" autoconf
-AUTOHEADER = ${SHELL} "/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/missing" autoheader
-AUTOMAKE = ${SHELL} "/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/missing" automake-1.16
+AUTOCONF = ${SHELL} "/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/MasterCube-Datenstruktur-Stephanie/missing" autoconf
+AUTOHEADER = ${SHELL} "/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/MasterCube-Datenstruktur-Stephanie/missing" autoheader
+AUTOMAKE = ${SHELL} "/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/MasterCube-Datenstruktur-Stephanie/missing" automake-1.16
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -203,7 +208,7 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} "/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/missing" makeinfo
+MAKEINFO = ${SHELL} "/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/MasterCube-Datenstruktur-Stephanie/missing" makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
 PACKAGE = mastercube
@@ -218,10 +223,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = 
 VERSION = 1.0
-abs_builddir = /home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/src
-abs_srcdir = /home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/src
-abs_top_builddir = /home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master
-abs_top_srcdir = /home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master
+abs_builddir = /home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/MasterCube-Datenstruktur-Stephanie/src
+abs_srcdir = /home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/MasterCube-Datenstruktur-Stephanie/src
+abs_top_builddir = /home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/MasterCube-Datenstruktur-Stephanie
+abs_top_srcdir = /home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/MasterCube-Datenstruktur-Stephanie
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 am__include = include
@@ -241,7 +246,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} '/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/20-01-16_MasterCube-master/install-sh'
+install_sh = ${SHELL} '/home/isabella/Documents/MMR1_2019/MPK/Projekt MasterCube/MasterCube Code/MasterCube-Datenstruktur-Stephanie/install-sh'
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -262,7 +267,7 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-MasterCube_SOURCES = main.cpp cube.cpp cube.h solver.cpp solver.h
+MasterCube_SOURCES = main.cpp cube.cpp cube.h solver.cpp solver.h cubie.h cubie.cpp mastermindcube.h mastermindcube.cpp CreateClient.cpp CreateServer.cpp DieWithError.cpp
 all: all-am
 
 .SUFFIXES:
@@ -349,8 +354,13 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/CreateClient.Po # am--include-marker
+include ./$(DEPDIR)/CreateServer.Po # am--include-marker
+include ./$(DEPDIR)/DieWithError.Po # am--include-marker
 include ./$(DEPDIR)/cube.Po # am--include-marker
+include ./$(DEPDIR)/cubie.Po # am--include-marker
 include ./$(DEPDIR)/main.Po # am--include-marker
+include ./$(DEPDIR)/mastermindcube.Po # am--include-marker
 include ./$(DEPDIR)/solver.Po # am--include-marker
 
 $(am__depfiles_remade):
@@ -500,8 +510,13 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/cube.Po
+		-rm -f ./$(DEPDIR)/CreateClient.Po
+	-rm -f ./$(DEPDIR)/CreateServer.Po
+	-rm -f ./$(DEPDIR)/DieWithError.Po
+	-rm -f ./$(DEPDIR)/cube.Po
+	-rm -f ./$(DEPDIR)/cubie.Po
 	-rm -f ./$(DEPDIR)/main.Po
+	-rm -f ./$(DEPDIR)/mastermindcube.Po
 	-rm -f ./$(DEPDIR)/solver.Po
 	-rm -f makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -548,8 +563,13 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/cube.Po
+		-rm -f ./$(DEPDIR)/CreateClient.Po
+	-rm -f ./$(DEPDIR)/CreateServer.Po
+	-rm -f ./$(DEPDIR)/DieWithError.Po
+	-rm -f ./$(DEPDIR)/cube.Po
+	-rm -f ./$(DEPDIR)/cubie.Po
 	-rm -f ./$(DEPDIR)/main.Po
+	-rm -f ./$(DEPDIR)/mastermindcube.Po
 	-rm -f ./$(DEPDIR)/solver.Po
 	-rm -f makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

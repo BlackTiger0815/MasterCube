@@ -87,3 +87,9 @@ Zweiter Patch für kleine n, änderungen zum besseren lesen in cube.cpp
 Files:
 main.cpp, cube.h, cube.cpp, solver.h, solver.cpp 
 ****************
+23.01.2020Stephanie Kump
+Hinzufügen von cubie.h, cubie.cpp, mastermindcube.h und mastermindcube.cpp. Keine Änderung an übrigen Files
+Datenstruktur für die MastermindCube-Klasse, Cubie-Klassenobjekte. Wird von Mastermindsolver mit Informationen zu Farben, Probabilities und übrig gebliebenen MÖglichkeiten für Farben befüllt und vom Cube-Solver gedreht.
+Es gibt Getter- und Settermethoden, Konstruktor mit Default-Werten und print-Funktionen.
+
+
