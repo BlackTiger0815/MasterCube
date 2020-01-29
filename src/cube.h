@@ -11,8 +11,8 @@ class Cube
 {
 public:
 	int _old[6][3][3];
-	int _cube[6][3][3]; //white side	
-	
+	int _cube[6][3][3]; //white side
+
 private:
 	/* int _old[6][3][3] = {
 		{ { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, //yellow side
@@ -30,9 +30,9 @@ private:
 		{ { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } } }; //white side */
 
 	string moves = "";
-	
-	
-public: 
+
+
+public:
 	Cube(int n=1){
 		if(n==0){
 			for(int i=0;i<6;i++)
@@ -47,25 +47,25 @@ public:
 				for(int j=0;j<3;j++)
 					for(int k=0;k<3;k++)
 					{
-						_cube[i][j][k]=i+1;
-						_old[i][j][k]=i+1;  //Erzeugung eines Cubes mit zufälligen Farben (Zahlen)
+						_cube[i][j][k]=i;
+						_old[i][j][k]=i;  //Erzeugung eines Cubes mit zufälligen Farben (Zahlen)
 					}
 		}
 	}
 	~Cube(){};
-	
-	
+
+
 //--------------- copied from --------------//
 //--https://github.com/ekuecks/rubiks-cube--//
 //------------- and modificated ------------//
-	virtual void printCube(); 
+	virtual void printCube();
 	void printMoves(); //print moves made previosly
 	void copyCube();
 	void removeLast(); //removes the last move performed
 	void clearMoves(); //clears all moves
 	string last();
 	void scramble();
-	
+
 // moves - see https://ruwix.com/the-rubiks-cube/notation/
 	void r();
 	void ri();
@@ -79,6 +79,38 @@ public:
 	void fi();
 	void b();
 	void bi();
+
+	void solveCube();
+
+	void solveTopCross();
+	void findNextTopEdge(int & s, int & p);
+	void moveTopEdges();
+	void solveTopCorners();
+	void findNextTopCorner(int & s, int & p);
+	void moveTopCorners();
+	void solveMiddleLayer();
+	int findBottomMatch(int color);
+	void placeMiddleEdge(int color, int edgeSide);
+	void middleAlgorithm(int color, int direction);
+	void solveBottomLayer();
+	void positionBottomCorners();
+	int numCorrectCorners();
+	void getCorner(int num, int corners[]);
+	void swapCorners(int face);
+	void positionBottomEdges();
+	int numEdgesInCorrectPos();
+	void rotateEdges(int face, bool rotClockwise);
+	void correctBottomCorners();
+	int cornerOrientation();
+	int findBestFace(int cornerNum = 5);
+	void twoCornerRotate(int face, bool goForward);
+	void correctBottomEdges();
+	void twoEdgeRotate(int face, bool isNextTo);
+
+
+
+
+	void switchEdges(int top, int direction);
 //------------------------------------------//
 
 // cube questions //
@@ -94,6 +126,5 @@ public:
 	void writeMoves(string newMove){ //Schreibt Moves
 		moves = moves + newMove;
 	}
-	
-};
 
+};
