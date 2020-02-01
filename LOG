@@ -91,5 +91,9 @@ main.cpp, cube.h, cube.cpp, solver.h, solver.cpp
 Hinzufügen von cubie.h, cubie.cpp, mastermindcube.h und mastermindcube.cpp. Keine Änderung an übrigen Files
 Datenstruktur für die MastermindCube-Klasse, Cubie-Klassenobjekte. Wird von Mastermindsolver mit Informationen zu Farben, Probabilities und übrig gebliebenen MÖglichkeiten für Farben befüllt und vom Cube-Solver gedreht.
 Es gibt Getter- und Settermethoden, Konstruktor mit Default-Werten und print-Funktionen.
-
+****************
+29.01.2020
+Isabella Reithner
+Entfernen des IDA* und implementierung der Methode SolveCube um einen kompletten würfel zu lösen
+main.cpp, cube.h, solver.h, solver.cpp, cube.cpp
 
