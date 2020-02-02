@@ -96,4 +96,9 @@ Es gibt Getter- und Settermethoden, Konstruktor mit Default-Werten und print-Fun
 Isabella Reithner
 Entfernen des IDA* und implementierung der Methode SolveCube um einen kompletten würfel zu lösen
 main.cpp, cube.h, solver.h, solver.cpp, cube.cpp
-
+****************
+02.02.2020
+Isabella Reithner
+Implementierung der Methoden um den Cube im Raum zu drehen (left, rigtht, up, down)
+Hinzufügen einer Option im Konstruktor des Cubs um den Wüfel mit den Indizes anzeigen zu lassen 
+main.cpp, cube.h, cube.cpp

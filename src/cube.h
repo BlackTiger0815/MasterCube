@@ -9,11 +9,10 @@ using namespace std;
 
 class Cube
 {
-public:
+private:
 	int _old[6][3][3];
 	int _cube[6][3][3]; //white side
 
-private:
 	/* int _old[6][3][3] = {
 		{ { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, //yellow side
 		{ { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, //orange side
@@ -40,9 +39,21 @@ public:
 					for(int k=0;k<3;k++)
 					{
 						_cube[i][j][k]=-1;
-						_old[i][j][k]=-1;  //Erzeugung eines Cubes mit zufälligen Farben (Zahlen)
+						_old[i][j][k]=-1;  //Erzeugung eines Cubes mit leeren Farben (-1)
 					}
-		}else{
+		}
+		else if(n==-1){
+			int cnt = 0;
+			for(int i=1;i<7;i++)
+				for(int j=1;j<4;j++)
+					for(int k=1;k<4;k++)
+					{
+						_cube[i-1][j-1][k-1]=cnt;
+						_old[i-1][j-1][k-1]=cnt;  //Erzeugung eines Cubes mit indizes
+						cnt++;
+					}
+		}
+		else{
 			for(int i=0;i<6;i++)
 				for(int j=0;j<3;j++)
 					for(int k=0;k<3;k++)
@@ -65,7 +76,6 @@ public:
 	void clearMoves(); //clears all moves
 	string last();
 	void scramble();
-
 // moves - see https://ruwix.com/the-rubiks-cube/notation/
 	void r();
 	void ri();
@@ -79,9 +89,6 @@ public:
 	void fi();
 	void b();
 	void bi();
-
-	void solveCube();
-
 	void solveTopCross();
 	void findNextTopEdge(int & s, int & p);
 	void moveTopEdges();
@@ -107,11 +114,15 @@ public:
 	void correctBottomEdges();
 	void twoEdgeRotate(int face, bool isNextTo);
 
-
-
-
-	void switchEdges(int top, int direction);
 //------------------------------------------//
+	//Globale drehungen des Würfels im Raum
+	void globalRotationR(); //global Right
+	void globalRotationL(); //global Left
+	void globalRotationD(); //global Down
+	void globalRotationU(); //global Up
+
+	void solveCube();
+	void switchEdges(int top, int direction);
 
 // cube questions //
 	int array_to_int(int, int, int);

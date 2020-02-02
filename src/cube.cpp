@@ -1,6 +1,141 @@
 #include "cube.h"
 
 //-----------------------------------------------//
+//---------------Globale Drehungen---------------//
+//-----------------------------------------------//
+void Cube::globalRotationR(){
+	copyCube(); //copiere den aktuellen Cube in den _old
+	for(int i=1; i<5; i++){
+		for(int j=0; j<3; j++){
+			for(int k=0; k<3; k++){
+				if(i==4){
+					_cube[i-3][j][k]=_old[i][j][k];
+				}
+				else{
+					_cube[i+1][j][k]=_old[i][j][k];
+				}
+			}
+		}
+	}
+
+	//corners der oberseite
+	_cube[0][0][0] = _old[0][2][0];
+	_cube[0][2][0] = _old[0][2][2];
+	_cube[0][2][2] = _old[0][0][2];
+	_cube[0][0][2] = _old[0][0][0];
+	//edges der oberseite
+	_cube[0][0][1] = _old[0][1][0];
+	_cube[0][1][0] = _old[0][2][1];
+	_cube[0][2][1] = _old[0][1][2];
+	_cube[0][1][2] = _old[0][0][1];
+	//corners der unterseite
+	_cube[5][0][0] = _old[5][2][0];
+	_cube[5][2][0] = _old[5][2][2];
+	_cube[5][2][2] = _old[5][0][2];
+	_cube[5][0][2] = _old[5][0][0];
+	//edges der unterseite
+	_cube[5][0][1] = _old[5][1][0];
+	_cube[5][1][0] = _old[5][2][1];
+	_cube[5][2][1] = _old[5][1][2];
+	_cube[5][1][2] = _old[5][0][1];
+}
+
+void Cube::globalRotationL(){
+	copyCube(); //copiere den aktuellen Cube in den _old
+	for(int i=1; i<5; i++){
+		for(int j=0; j<3; j++){
+			for(int k=0; k<3; k++){
+				if(i==1){
+					_cube[i+3][j][k]=_old[i][j][k];
+				}
+				else{
+					_cube[i-1][j][k]=_old[i][j][k];
+				}
+			}
+		}
+	}
+	//corners der oberseite
+	_cube[0][0][0] = _old[0][0][2];
+	_cube[0][0][2] = _old[0][2][2];
+	_cube[0][2][2] = _old[0][2][0];
+	_cube[0][2][0] = _old[0][0][0];
+	//edges der oberseite
+	_cube[0][0][1] = _old[0][1][2];
+	_cube[0][1][0] = _old[0][0][1];
+	_cube[0][2][1] = _old[0][1][0];
+	_cube[0][1][2] = _old[0][2][1];
+
+
+}
+
+void Cube::globalRotationD(){
+	copyCube(); //copiere den aktuellen Cube in den _old
+	for(int i=0; i<6; i++){
+		for(int j=0; j<3; j++){
+			for(int k=0; k<3; k++){
+				if(i==0) _cube[i+2][j][k] = _old[i][j][k];
+				if(i==2) _cube[i+3][j][k] = _old[i][j][k];
+				if(i==4) _cube[i-4][j][k] = _old[i][j][k];
+				if(i==5) _cube[i-1][j][k] = _old[i][j][k];
+			}
+		}
+	}
+	//corners linken Seite -> drehung nach rechts
+	_cube[1][0][0] = _old[1][2][0];
+	_cube[1][2][0] = _old[1][2][2];
+	_cube[1][2][2] = _old[1][0][2];
+	_cube[1][0][2] = _old[1][0][0];
+	//edges der linken Seite -> drehung nach rechts
+	_cube[1][0][1] = _old[1][1][0];
+	_cube[1][1][0] = _old[1][2][1];
+	_cube[1][2][1] = _old[1][1][2];
+	_cube[1][1][2] = _old[1][0][1];
+	//corners der rechten Seite - > Dreheung nach links
+	_cube[3][0][0] = _old[3][0][2];
+	_cube[3][0][2] = _old[3][2][2];
+	_cube[3][2][2] = _old[3][2][0];
+	_cube[3][2][0] = _old[3][0][0];
+	//edges der rechten Seite - > Dreheung nach links
+	_cube[3][0][1] = _old[3][1][2];
+	_cube[3][1][0] = _old[3][0][1];
+	_cube[3][2][1] = _old[3][1][0];
+	_cube[3][1][2] = _old[3][2][1];
+}
+
+void Cube::globalRotationU(){
+	copyCube(); //copiere den aktuellen Cube in den _old
+	for(int i=0; i<6; i++){
+		for(int j=0; j<3; j++){
+			for(int k=0; k<3; k++){
+				if(i==0) _cube[i+4][j][k] = _old[i][j][k];
+				if(i==2) _cube[i-2][j][k] = _old[i][j][k];
+				if(i==4) _cube[i+1][j][k] = _old[i][j][k];
+				if(i==5) _cube[i-3][j][k] = _old[i][j][k];
+			}
+		}
+	}
+	//corners der linken Seite - > Dreheung nach links
+	_cube[1][0][0] = _old[1][0][2];
+	_cube[1][0][2] = _old[1][2][2];
+	_cube[1][2][2] = _old[1][2][0];
+	_cube[1][2][0] = _old[1][0][0];
+	//edges der linken Seite - > Dreheung nach links
+	_cube[1][0][1] = _old[1][1][2];
+	_cube[1][1][0] = _old[1][0][1];
+	_cube[1][2][1] = _old[1][1][0];
+	_cube[1][1][2] = _old[1][2][1];
+	//corners rechten Seite -> drehung nach rechts
+	_cube[3][0][0] = _old[3][2][0];
+	_cube[3][2][0] = _old[3][2][2];
+	_cube[3][2][2] = _old[3][0][2];
+	_cube[3][0][2] = _old[3][0][0];
+	//edges der rechten Seite -> drehung nach rechts
+	_cube[3][0][1] = _old[3][1][0];
+	_cube[3][1][0] = _old[3][2][1];
+	_cube[3][2][1] = _old[3][1][2];
+	_cube[3][1][2] = _old[3][0][1];
+}
+//-----------------------------------------------//
 //---------------------Moves---------------------//
 //-----------------------------------------------//
 
@@ -2395,8 +2530,6 @@ void/* MY NAME IS */ Cube::solveCube(){
 	printCube();
 
 }
-
-
 
 // cube questions //
 	int Cube::array_to_int(int i_1, int j_1, int k_1 )

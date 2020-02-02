@@ -202,19 +202,26 @@ int main (int argc, char* argv[]) {
 	// 	}
 	// }
 
-	Cube solved;
+
+	//Solve Complete Cube -- START ---
+
+
 	Cube scrambled;
 	scrambled.scramble();
 	scrambled.clearMoves();
-	Cube tmp(0);
+	Cube tmp(0); //Cube mit -1 gefüllt
+	Cube tmp2(-1); //Cube mit indizes
 
-	cout << "solved:" << endl;
+	// cout << "solved:" << endl;
+	// solved.printCube();
+	//
+	// scrambled.printCube();
+	// scrambled.solveCube();
+
+	//Solve Complete Cube -- END ---
 	solved.printCube();
-
-	scrambled.printCube();
-	scrambled.solveCube();
-
-
+	solved.globalRotationU();
+	solved.printCube();
 
 	return 0;
 }
