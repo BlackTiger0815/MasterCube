@@ -203,14 +203,15 @@ int main (int argc, char* argv[]) {
 	// }
 
 
-	//Solve Complete Cube -- START ---
 
-
+	Cube solved;
 	Cube scrambled;
-	scrambled.scramble();
+	//scrambled.scramble();
 	scrambled.clearMoves();
 	Cube tmp(0); //Cube mit -1 gefüllt
 	Cube tmp2(-1); //Cube mit indizes
+
+	//Solve Complete Cube -- START ---
 
 	// cout << "solved:" << endl;
 	// solved.printCube();
@@ -219,9 +220,23 @@ int main (int argc, char* argv[]) {
 	// scrambled.solveCube();
 
 	//Solve Complete Cube -- END ---
+	scrambled.r();
+	scrambled.l();
+	scrambled.u();
+	scrambled.printCube();
+	//solved.switchEdges(3,0);//destroys corners!!!!
+
+	int a, b, c;
+	cin >> a >> b >> c;
+	bool x = scrambled.isCorrectEdge(a,b,c);
+	cout << "x = " << x << endl;
 	solved.printCube();
-	solved.globalRotationU();
-	solved.printCube();
+	solved.printMoves();
+	/*
+	while(switchable Edge found){
+		switch Edge
+	}
+	*/
 
 	return 0;
 }

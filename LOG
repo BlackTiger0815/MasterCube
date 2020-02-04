@@ -102,3 +102,9 @@ Isabella Reithner
 Implementierung der Methoden um den Cube im Raum zu drehen (left, rigtht, up, down)
 Hinzufügen einer Option im Konstruktor des Cubs um den Wüfel mit den Indizes anzeigen zu lassen 
 main.cpp, cube.h, cube.cpp
+****************
+04.02.2020
+Isabella Reithner
+Implementierung der Methoden um die Edges zu tauschen (wie getauscht wird fehlt noch)
+main.cpp, cube.h, cube.cpp
+

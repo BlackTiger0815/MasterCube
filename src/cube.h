@@ -122,7 +122,9 @@ public:
 	void globalRotationU(); //global Up
 
 	void solveCube();
-	void switchEdges(int top, int direction);
+	void switchEdges(int top, bool direction);//destroys corners!!!!
+	void findSwitchableEdges();
+	bool isCorrectEdge(int i, int j, int k);
 
 // cube questions //
 	int array_to_int(int, int, int);
