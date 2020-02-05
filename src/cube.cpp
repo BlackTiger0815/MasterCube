@@ -1,6 +1,149 @@
 #include "cube.h"
 
 //-----------------------------------------------//
+//---------------Globale Drehungen---------------//
+//-----------------------------------------------//
+void Cube::globalRotationR(){
+	copyCube(); //copiere den aktuellen Cube in den _old
+	for(int i=1; i<5; i++){
+		for(int j=0; j<3; j++){
+			for(int k=0; k<3; k++){
+				if(i==4){
+					_cube[i-3][j][k]=_old[i][j][k];
+				}
+				else{
+					_cube[i+1][j][k]=_old[i][j][k];
+				}
+			}
+		}
+	}
+
+	//corners der oberseite
+	_cube[0][0][0] = _old[0][2][0];
+	_cube[0][2][0] = _old[0][2][2];
+	_cube[0][2][2] = _old[0][0][2];
+	_cube[0][0][2] = _old[0][0][0];
+	//edges der oberseite
+	_cube[0][0][1] = _old[0][1][0];
+	_cube[0][1][0] = _old[0][2][1];
+	_cube[0][2][1] = _old[0][1][2];
+	_cube[0][1][2] = _old[0][0][1];
+	//corners der unterseite
+	_cube[5][0][0] = _old[5][2][0];
+	_cube[5][2][0] = _old[5][2][2];
+	_cube[5][2][2] = _old[5][0][2];
+	_cube[5][0][2] = _old[5][0][0];
+	//edges der unterseite
+	_cube[5][0][1] = _old[5][1][0];
+	_cube[5][1][0] = _old[5][2][1];
+	_cube[5][2][1] = _old[5][1][2];
+	_cube[5][1][2] = _old[5][0][1];
+
+	moves += "gR ";
+}
+
+void Cube::globalRotationL(){
+	copyCube(); //copiere den aktuellen Cube in den _old
+	for(int i=1; i<5; i++){
+		for(int j=0; j<3; j++){
+			for(int k=0; k<3; k++){
+				if(i==1){
+					_cube[i+3][j][k]=_old[i][j][k];
+				}
+				else{
+					_cube[i-1][j][k]=_old[i][j][k];
+				}
+			}
+		}
+	}
+	//corners der oberseite
+	_cube[0][0][0] = _old[0][0][2];
+	_cube[0][0][2] = _old[0][2][2];
+	_cube[0][2][2] = _old[0][2][0];
+	_cube[0][2][0] = _old[0][0][0];
+	//edges der oberseite
+	_cube[0][0][1] = _old[0][1][2];
+	_cube[0][1][0] = _old[0][0][1];
+	_cube[0][2][1] = _old[0][1][0];
+	_cube[0][1][2] = _old[0][2][1];
+
+	moves += "gL ";
+}
+
+void Cube::globalRotationD(){
+	copyCube(); //copiere den aktuellen Cube in den _old
+	for(int i=0; i<6; i++){
+		for(int j=0; j<3; j++){
+			for(int k=0; k<3; k++){
+				if(i==0) _cube[i+2][j][k] = _old[i][j][k];
+				if(i==2) _cube[i+3][j][k] = _old[i][j][k];
+				if(i==4) _cube[i-4][j][k] = _old[i][j][k];
+				if(i==5) _cube[i-1][j][k] = _old[i][j][k];
+			}
+		}
+	}
+	//corners linken Seite -> drehung nach rechts
+	_cube[1][0][0] = _old[1][2][0];
+	_cube[1][2][0] = _old[1][2][2];
+	_cube[1][2][2] = _old[1][0][2];
+	_cube[1][0][2] = _old[1][0][0];
+	//edges der linken Seite -> drehung nach rechts
+	_cube[1][0][1] = _old[1][1][0];
+	_cube[1][1][0] = _old[1][2][1];
+	_cube[1][2][1] = _old[1][1][2];
+	_cube[1][1][2] = _old[1][0][1];
+	//corners der rechten Seite - > Dreheung nach links
+	_cube[3][0][0] = _old[3][0][2];
+	_cube[3][0][2] = _old[3][2][2];
+	_cube[3][2][2] = _old[3][2][0];
+	_cube[3][2][0] = _old[3][0][0];
+	//edges der rechten Seite - > Dreheung nach links
+	_cube[3][0][1] = _old[3][1][2];
+	_cube[3][1][0] = _old[3][0][1];
+	_cube[3][2][1] = _old[3][1][0];
+	_cube[3][1][2] = _old[3][2][1];
+
+	moves += "gD ";
+}
+
+void Cube::globalRotationU(){
+	copyCube(); //copiere den aktuellen Cube in den _old
+	for(int i=0; i<6; i++){
+		for(int j=0; j<3; j++){
+			for(int k=0; k<3; k++){
+				if(i==0) _cube[i+4][j][k] = _old[i][j][k];
+				if(i==2) _cube[i-2][j][k] = _old[i][j][k];
+				if(i==4) _cube[i+1][j][k] = _old[i][j][k];
+				if(i==5) _cube[i-3][j][k] = _old[i][j][k];
+			}
+		}
+	}
+	//corners der linken Seite - > Dreheung nach links
+	_cube[1][0][0] = _old[1][0][2];
+	_cube[1][0][2] = _old[1][2][2];
+	_cube[1][2][2] = _old[1][2][0];
+	_cube[1][2][0] = _old[1][0][0];
+	//edges der linken Seite - > Dreheung nach links
+	_cube[1][0][1] = _old[1][1][2];
+	_cube[1][1][0] = _old[1][0][1];
+	_cube[1][2][1] = _old[1][1][0];
+	_cube[1][1][2] = _old[1][2][1];
+	//corners rechten Seite -> drehung nach rechts
+	_cube[3][0][0] = _old[3][2][0];
+	_cube[3][2][0] = _old[3][2][2];
+	_cube[3][2][2] = _old[3][0][2];
+	_cube[3][0][2] = _old[3][0][0];
+	//edges der rechten Seite -> drehung nach rechts
+	_cube[3][0][1] = _old[3][1][0];
+	_cube[3][1][0] = _old[3][2][1];
+	_cube[3][2][1] = _old[3][1][2];
+	_cube[3][1][2] = _old[3][0][1];
+
+	moves += "gU ";
+}
+
+
+//-----------------------------------------------//
 //---------------------Moves---------------------//
 //-----------------------------------------------//
 
@@ -2159,35 +2302,37 @@ void Cube::twoEdgeRotate(int face, bool isNextTo)
 	}
 }
 
+//-----------------------------------------------//
+//---------------- Switch Edges -----------------//
+//-----------------------------------------------//
 
+void Cube::switchEdges(int top, bool direction){ //destroys corners!!!!
+	//direction - 0 left; 1 right
 
+	if(top==0) //orientiere Cube mit benötigter Fläche oben
+		; //nothing;
+	else if(top==1){
+		globalRotationR();
+		globalRotationU();
+	}
+	else if(top==2){
+		globalRotationU();
+	}
+	else if(top==3){
+		globalRotationL();
+		globalRotationU();
+	}
+	else if(top==4){
+		globalRotationR();
+		globalRotationR();
+		globalRotationU();
+	}
+	else if(top==5){
+		globalRotationU();
+		globalRotationU();
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void Cube::switchEdges(int top, int direction){
-	//zerstört kanten!!
-	if(direction==1){ //nach links
+	if(direction==0){ // left
 		r();
 		u();
 		ri();
@@ -2198,12 +2343,94 @@ void Cube::switchEdges(int top, int direction){
 		ri();
 		u();
 	}
-	else{
+	else if(direction==1){ //right
+		l();
+		ui();
+		li();
+		ui();
+		l();
+		ui();
+		ui();
+		li();
+		ui();
+	}
 
+	if(top==0) //Bringe Cube in globale Ausgangslage zurück
+		; //nothing;
+	else if(top==1){
+		globalRotationD();
+		globalRotationL();
+	}
+	else if(top==2){
+		globalRotationD();
+	}
+	else if(top==3){
+		globalRotationD();
+		globalRotationR();
+	}
+	else if(top==4){
+		globalRotationD();
+		globalRotationL();
+		globalRotationL();
+	}
+	else if(top==5){
+		globalRotationU();
+		globalRotationU();
+	}
+}
+
+bool Cube::isCorrectEdge(int i, int j, int k){
+	//return 0 wenn edge an richtiger position
+	//return 1 wenn edge an falscher position
+
+	if(_cube[i][j][k] == _cube[i][1][1]){
+		if(j==0){
+			if(_cube[i+4][0][1] == _cube[i+4][1][1])
+				return 0;
+			else
+				return 1;
+		}
+		else if(j==1){
+			if(i==0){
+				if(_cube[i+1][0][1] == _cube[i+1][1][1])
+					return 0;
+				else
+					return 1;
+			}
+			else{ //i==2
+				if(_cube[i+3][0][1] == _cube[i+3][1][1])
+					return 0;
+				else
+					return 1;
+			}
+		}
+		else{ // j==2
+			if(_cube[i+2][0][1] == _cube[i+2][1][1])
+				return 0;
+			else
+				return 1;
+		}
+	}
+	else
+		return 1;
+}
+
+void Cube::findSwitchableEdges(){
+	int cnt = 0; //if needed for IS EDGE
+	for(int i=0; i<6; i++){
+		for(int j=0; j<3; j++){
+			for(int k=0; k<3; k++){
+				cnt ++;
+				//IS EDGE?? if yes - continue (kommt von Mathias)
+				if(_cube[i][j][k]!=-1 && isCorrectEdge(i,j,k)==1){
+					//Edge ist bekannt und nicht am richtigen Platz
+					//FIND PATH....
+				}
+			}
+		}
 	}
 
 }
-
 
 
 //-----------------------------------------------//
@@ -2395,8 +2622,6 @@ void/* MY NAME IS */ Cube::solveCube(){
 	printCube();
 
 }
-
-
 
 // cube questions //
 	int Cube::array_to_int(int i_1, int j_1, int k_1 )
