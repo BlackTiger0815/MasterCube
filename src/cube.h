@@ -134,10 +134,13 @@ public:
 	string feedback;
 	string question = ""; // changed here to i can access it easily in questio_cube
 	string answer = ""; // same as above
-	void splitQuestion(string s, int n); //Frage am Server spalten in Pos und Farbe
-	void generateMastermindAnswer(int *questions, int *reference, int n);
+	string splitQuestion(string s, int n); //Frage am Server spalten in Pos und Farbe
+	string generateMastermindAnswer(int *questions, int *reference, int n);
 	void writeMoves(string newMove){ //Schreibt Moves
 		moves = moves + newMove;
 	}
-
+	int middleIndexOf(int pos);
+int getAdjecentKante(int pos);
+void init_Kanten();
+int getColor(int pos);
 };
