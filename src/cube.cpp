@@ -1,4 +1,11 @@
 #include "cube.h"
+#include<utility>
+#include<map>
+#include<iterator>
+#include<tuple>
+#include<bits/stdc++.h>
+#include <iostream>
+#include<vector>
 
 //-----------------------------------------------//
 //---------------Globale Drehungen---------------//
@@ -2714,12 +2721,169 @@ void/* MY NAME IS */ Cube::solveCube(){
 
 }
 */
-void Cube::splitQuestion(string s, int n) //by Isabella Reithner
+vector< pair<int, pair<int, int> > > _ecken; //wird global als auflistung für alle zusammenhangenden Ecken benotigt
+
+void init_Ecken(){ //einmalige initialisierung aller zusammenhangenden Felder zu Ecken
+	_ecken.push_back(make_pair(0, make_pair(9, 38)));
+	_ecken.push_back(make_pair(2, make_pair(29, 36)));
+	_ecken.push_back(make_pair(6, make_pair(11, 18)));
+	_ecken.push_back(make_pair(8, make_pair(20, 27)));
+	_ecken.push_back(make_pair(45, make_pair(24, 17)));
+	_ecken.push_back(make_pair(47, make_pair(33, 26)));
+	_ecken.push_back(make_pair(51, make_pair(15, 44)));
+	_ecken.push_back(make_pair(53, make_pair(35, 42)));
+}
+
+vector<pair<int, int>> getAdjecentEcken(int pos){ //returniert einen vector mit den angrenzenden 2 Ecken des abgefragten Felds
+	vector<pair<int, int>> vec;
+
+	for (int i=0; i<_ecken.size(); i++){
+		//cout << _ecken[i].first << ", " << _ecken[i].second.first
+    		// << ", " << _ecken[i].second.second << endl;//kontrollausgabe
+		if(_ecken[i].first==pos) //Die anderen 2 Felder herrausfinden und zurückgeben
+		{
+			vec.push_back(make_pair(_ecken[i].second.first,_ecken[i].second.second));
+			//cout<< "\n--" << _ecken[i].second.first << " "<<_ecken[i].second.second<< endl;
+		}
+		else if(_ecken[i].second.first==pos)
+		{
+			vec.push_back(make_pair(_ecken[i].first,_ecken[i].second.second));
+			//cout<< "\n--" << _ecken[i].first << " "<<_ecken[i].second.second<< endl;
+		}
+		else if(_ecken[i].second.second==pos)
+		{
+			vec.push_back(make_pair(_ecken[i].first,_ecken[i].second.first));
+			//cout<< "\n--" << _ecken[i].first << " "<<_ecken[i].second.first<< endl;
+		}
+	}
+	return vec;
+}
+
+int Cube::getColor(int pos){//holt die eingetragene Farbe aus dem cube
+	int it=0;
+	for(int a=0; a<6; a++){
+		for(int b=0; b<3; b++){
+			for(int c=0; c<3; c++){
+				if(it == pos){
+						return this->_cube[a][b][c];
+				}
+				it++;
+			}
+		}
+	}
+}
+bool isEcke(int z){
+  int qPosE[]={0,2,6,8,9,11,15,17,18,20,24,26,27,29,33,35,36,38,42,44,45,47,51,53};
+  int *i = find(std::begin(qPosE), std::end(qPosE), z);
+  if (i != std::end(qPosE)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool isKante(int z){
+  int qPosK[]={1,3,5,7,10,12,14,16,19,21,23,25,28,30,32,34,27,39,41,43,46,48,50,52};
+  int *i = find(std::begin(qPosK), std::end(qPosK), z);
+  if (i != std::end(qPosK)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool isMitte(int z){
+  int qPosM[]={4,13,22,31,40,49};
+  int *i = find(std::begin(qPosM), std::end(qPosM), z);
+  if (i != std::end(qPosM)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+int Cube::middleIndexOf(int pos){ //holt sich die nummer des mittelfelds der Seite auf der die gefragt Position ist
+
+	if(pos>=0&&pos<=8)
+		return 4;
+	if(pos>8&&pos<=17)
+		return 13;
+	if(pos>18&&pos<=26)
+		return 22;
+	if(pos>27&&pos<=35)
+		return 31;
+	if(pos>=36&&pos<=44)
+		return 40;
+	if(pos>=45&&pos<=53)
+		return 49;
+}
+multimap <int,int> _kanten; //globale kanten
+
+void Cube::init_Kanten(){ //multimap aller Kanten und deren Felder anlegen
+	_kanten.insert( pair <int,int> (1,37));
+	_kanten.insert( pair <int,int> (3,10));
+	_kanten.insert( pair <int,int> (5,28));
+	_kanten.insert( pair <int,int> (7,19));
+	_kanten.insert( pair <int,int> (10,3));
+	_kanten.insert( pair <int,int> (12,41));
+	_kanten.insert( pair <int,int> (14,21));
+	_kanten.insert( pair <int,int> (16,48));
+	_kanten.insert( pair <int,int> (19,7));
+	_kanten.insert( pair <int,int> (21,14));
+	_kanten.insert( pair <int,int> (23,30));
+	_kanten.insert( pair <int,int> (25,46));
+	_kanten.insert( pair <int,int> (28,5));
+	_kanten.insert( pair <int,int> (30,23));
+	_kanten.insert( pair <int,int> (32,39));
+	_kanten.insert( pair <int,int> (34,50));
+	_kanten.insert( pair <int,int> (37,1));
+	_kanten.insert( pair <int,int> (39,32));
+	_kanten.insert( pair <int,int> (41,12));
+	_kanten.insert( pair <int,int> (43,52));
+	_kanten.insert( pair <int,int> (46,25));
+	_kanten.insert( pair <int,int> (48,16));
+	_kanten.insert( pair <int,int> (50,34));
+	_kanten.insert( pair <int,int> (52,43));
+}
+
+int Cube::getAdjecentKante(int pos){ //angrenzende Kante aus der Liste finden
+  return _kanten.find(pos)->second;
+}
+
+string randomizeFeedback(string s){ //randomisiert den von der generateMastermindAnswer Methode erstellten Feedbackstring
+	string randFeedback, feedback=s;
+  int num =0;
+  list<int> my_list;
+  list<int>::iterator it;
+
+  for(int i=0;i<feedback.length();i++){
+    randFeedback.append("0");
+  }
+
+  for(int i=0;i<feedback.length();i++){
+
+  while(find(my_list.begin(), my_list.end(), num)!=my_list.end()){
+    num = rand() % feedback.length();
+    //cout<<num;
+  }
+    my_list.push_back(num);
+    randFeedback[i]=feedback[num];
+  }
+  //cout<< "\n fkt: "<<randFeedback;
+
+  return randFeedback;
+}
+
+
+//bis hier Matthias 7.2.20
+
+string Cube::splitQuestion(string s, int n) //by Isabella Reithner
 {
+	cout<< "--Entering splitQ"<<endl;
 	int pos = 0; //Position
 	char color = ' '; //Farbe
 	int question[n]; //Farbe aus der Frage
-	int reference[n]; //Farbe im verdrehten (übergebenen) Würfel
+	int groundTruth[n]; //Farbe im verdrehten (übergebenen) Würfel
 	string tmp; //temporärer Speichererort des gespaltenen Strings
 	int cnt = 0; //counter
 	int it = 0; //Zähler für Iterationen (ebenfalls ein Counter)
@@ -2727,88 +2891,126 @@ void Cube::splitQuestion(string s, int n) //by Isabella Reithner
 	int white=0; //Zähler für Richte Farbe am Falschen Platz
 	int black=0; //Zähler Richtige Farbe richtiger Platz
 	string feedback;
-	int tempReference[n];//für die Farbvergleiche
+	int qPos[n], qCol[n], gtPos[n], gtCol[n];
 
-
+	init_Kanten();//wir jedes mal beim Feedback request neu initialisiert->Performance?
+	init_Ecken();
+	int h=0;//ungut,, listen bzw vektoren wären besser
 
 	for(int j=0; j<n*3; j+=3){ //Spalten der Frage in Position und Farbe
 		it = 0;
 		int pos1=((int)(s[j])-'0');
 		int pos2=(int)(s[j+1])-'0';
 		pos = pos1*10+pos2;
-		//pos = ((int)(s[j])-'0')*10+((int)(s[j+1])-'0');
 
-		//cout << pos << ':'<< pos1 << ':' << pos2<< ':'<< endl;
 		color = s[j+2];
-		question[cnt] = (int)(color)-48; //ASCII-Zahl um 48 verschieben
+		int farbe = (int)(color)-48;//ASCII-Zahl um 48 verschieben
+		qPos[h]=pos;
+		qCol[h]=farbe;
 
 //Durchgehen des übergebenen Würfels
 		for(int a=0; a<6; a++){ //Seite
 			for(int b=0; b<3; b++){ //Zeile
 				for(int c=0; c<3; c++){ //Spalten
 					if(it == pos){ //Wenn die Position befunden wurde, Farbe in reference schreiben
-						reference[cnt] = this->_cube[a][b][c];
-						//cout<<"ref "<< reference[cnt]<< endl;
+						gtPos[h]=pos;
+						gtCol[h]=this->_cube[a][b][c];
+						cout<<"it: " << h << ". gt an Position: "<< gtPos[h]<<" hat Farbe "<< gtCol[h] << ". Zu Farbe in Question: "<<qCol[h] <<endl;
 					}
 					it++;
 				}
 			}
 		}
 		cnt++;
+		h++;
 	}
-	for(int k=0; k<n; k++){
-		cout << reference[k] << " " << question[k] << endl;
-		//this->generateMastermindAnswer(question,reference,n);
-	}
-	this->generateMastermindAnswer(&question[0],&reference[0],n);//reference sollte ground truth heißen
+
+	return	this->generateMastermindAnswer(&qPos[0],&qCol[0],n);
 
 }
 
+string Cube::generateMastermindAnswer(int* qPos, int *qCol, int n ){
+	string randFeedback;
+	int num =0;
+	list<int> my_list;
+	list<int>::iterator it;
+	bool b;
 
-void Cube::generateMastermindAnswer(int *questions, int *reference, int n){
+	for(int i=0;i<n;i++){
+		//cout<<"\nqPos["<<i<<"] "<< qPos[i];
 
-	int white=0; //Zähler für Richte Farbe am Falschen Platz
-	int black=0; //Zähler Richtige Farbe richtiger Platz
-	//string feedback; is part of cube
-	feedback = "";
-	int tempReference[n];
-	int tempCode[n];
-
-for(int i=0;i<n;i++){ //memcpy hat manchmal nicht funktioniert
-	tempReference[i]=reference[i];
-}
-	//memcpy(tempReference,reference,n);//Eventuell ein Laufzeitfehler wegen N!!!!
-	//schwarz ist 1, weiß ist 0 und nix ist 2
-	for(int k=0; k<n; k++){
-		//cout<< "que u ref u tempReference: "<< questions[k]<<" "<<reference[k]<<" "<<tempReference[k]<<endl;
-		if(reference[k]==questions[k]&&tempReference[k]!=9){//Farbe und Position richtig
-			black++;
-			feedback.append("1");
-			tempReference[k]=9;//Diese Position wird 9 gesetzt, damit das Programm weiß, dass hier schon mal überprüft wurde, und keine Farben doppelt zählt
-		}
-	}
-	//cout<<"black "<<black<< std::endl;
-
-	int k=0;
-	for(int j=0;j<n;j++){
-		if(tempReference[j]!=9)
-		{
-			//cout<< "que u ref u tempReference: "<< questions[j]<<" "<<reference[k]<<" "<<tempReference[j]<<endl;
-			if(reference[k]==questions[j]&&tempReference[j]!=9){
-				white++;
-				tempReference[j]=9;
-				feedback.append("0");
+		if(isMitte(qPos[i]))
+		{//cout<<" m ";
+			if(qCol[i]==getColor(middleIndexOf(qCol[i])))//Wenn die Farbe aus der Frage vom aktuellen Mittelfeld gleich der Farbe an der seleben Stelle im scrambeld Cube
+			{
+				//cout<<"b";
+				feedback.append("b");
+			}else{
+				//cout << "w";
+				feedback.append("x");
 			}
 		}
-		k++;
-	}
-	//cout<<"white " << white<< std::endl;
 
-	//nur Richtig , wenn WENN n ANZAHL DER WERTE IST!!!
-	for(int i=white+black;i<n;i++){//Hier wird mit x aufgefüllt (falls es etwas zum auffüllen gibt)
-		feedback.append("2");
-	}
-	// std::cout <<"feedback: "<< feedback << std::endl; //Von Matthias hinzugefügt
+		if(isKante(qPos[i]))
+		{
+			//cout<<qPosK[i] << " " << middleIndexOf(qPosK[i]) << " " <<getColor(middleIndexOf(qPosK[i]))<<endl;
+			if(qCol[i]!=getColor(middleIndexOf(qPos[i]))){
+				//wenn die frabe der Kante nicht gleich der Farbe des mittelfelds der gleichen seite ist
+				//cout<<"x";
+				feedback.append("x");
+			}else{//wenn die farbe der Kante gleich der Farbe des mittlfeldes der gleichen seite ist
+				//wenn farbe des um die Ecke angrenzenden Felds gleich wie die Mitte dieser Seite ist
+				if(getAdjecentKante(qPos[i])==getColor(middleIndexOf(getAdjecentKante(qPos[i])))){
+				//cout<<"b";
+					feedback.append("b");
+				}
+				else
+				{
+					//cout<<"w";
+					feedback.append("w");
+				}
+			}
+		}
 
-	//shuffle?
+		if(isEcke(qPos[i]))
+		{
+			//cout<<" e ";
+			int a,b;
+			vector<pair<int,int>> adjEcken;
+			adjEcken=getAdjecentEcken(qPos[i]);
+			a=adjEcken[0].first;
+			b=adjEcken[0].second;
+			//cout<< "--a: "<< a << " b: "<<b<<endl;
+			bool s1,s2,s3;
+
+			if(qCol[i]==getColor(middleIndexOf(qPos[i]))) s1=true; else s1=false;
+				//cout<<s1;
+			if(getColor(a)==getColor(middleIndexOf(a))) s2=true; else s2=false;
+				//cout<<s2;
+			if(getColor(b)==getColor(middleIndexOf(b))) s3=true; else s3=false;
+				//cout<<s3;
+
+			if(s1==true&&s2==true&&s3==true){
+					//cout<< ".b";
+				feedback.append("b");
+			}
+			else
+
+			/*if((s1==true&&s2==false&&s3==false)||(s1==false&&s2==true&&s3==false)||(s1==false&&s2==false&&s3==true))
+				{cout<< ".w"; feedback.append(".w");}*/
+
+			if(s1==false&&s2==false&&s3==false){
+				//cout<< ".x";
+				feedback.append("x");
+			}else{
+				//cout<< ".w";
+				feedback.append("w");
+			}
+		}
+	}
+	cout <<"\nFeedback: "<< feedback<<endl;
+		//randomize feedbackstring
+	string temp=randomizeFeedback(feedback);
+	cout<<"Randomisiertes Feedback: "<<temp <<endl;
+	return temp;
 }
