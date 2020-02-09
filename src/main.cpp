@@ -206,38 +206,32 @@ int main (int argc, char* argv[]) {
 
 	Cube solved;
 	Cube scrambled;
-	//scrambled.scramble();
+	scrambled.scramble();
 	scrambled.clearMoves();
 	Cube tmp(0); //Cube mit -1 gefüllt
 	Cube tmp2(-1); //Cube mit indizes
 
-	//Solve Complete Cube -- START ---
+	Cube written(0);
+	written.writeCube(0,1);
+	written.printCube();
 
-	// cout << "solved:" << endl;
-	// solved.printCube();
-	//
-	// scrambled.printCube();
-	// scrambled.solveCube();
-
-	//Solve Complete Cube -- END ---
-	scrambled.r();
-	scrambled.l();
-	scrambled.u();
-	scrambled.printCube();
-	//solved.switchEdges(3,0);//destroys corners!!!!
-
-	int a, b, c;
-	cin >> a >> b >> c;
-	bool x = scrambled.isCorrectEdge(a,b,c);
-	cout << "x = " << x << endl;
-	solved.printCube();
-	solved.printMoves();
-	/*
-	while(switchable Edge found){
-		switch Edge
+/*
+	int cnt = 0;
+	for(int i=0; i<6; i++){
+		for(int j=0; j<3; j++){
+			for(int k=0; k<3; k++){
+				if(scrambled.getColor(cnt) != 0){
+					scrambled._cube[i][j][k] = -1;
+				}
+				cnt++;
+			}
+		}
 	}
-	*/
-	scrambled.scramble();
-	scrambled.splitQuestion("011033044136095112", 6);
+	scrambled.printCube();
+	scrambled.findSwitchableEdges();
+	//scrambled.printCube();
+*/
+	//scrambled.scramble();
+	//scrambled.splitQuestion("011033044136095112", 6);
 	return 0;
 }

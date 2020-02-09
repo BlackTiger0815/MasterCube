@@ -1,11 +1,59 @@
-#include "solver.h" 
-
+#include "solver.h"
 
 //------------------------------------------//
 //---------- Mastermind Solver -------------//
 //------------------------------------------//
+// Aufbau:
+//0. number to color
+//1 tracking cube erstellen
+//2. liste für was fragen wir ab
+//3. genereieren einer fragen
+//4. generellere Knut algorithmus
 
-void convert_to_base_6(int);
+//0. number to color
+char numbers_to_color(int number)
+{
+	char color[] = "wgrboy"; //white green red blue orange yellow
+	return color[number];	
+}
+
+//1 tracking cube erstellen
+//Copy cube(-1) to tracking...
+
+void MastermindSolver::generate_positions_to_ask()
+{
+	Cube Beagle(-1); //generates tracking cube
+	//Edges //with push_fornt the last one should be first one inserted
+	for(int i=0; i<6; i++){
+		
+		postions_to_ask.push_front(Beagle._cube[i][0][0]);
+		postions_to_ask.push_front(Beagle._cube[i][2][0]);	
+		postions_to_ask.push_front(Beagle._cube[i][0][2]);	
+		postions_to_ask.push_front(Beagle._cube[i][2][2]);	
+		}
+	//Sides
+	for(int i=0; i<6; i++){
+		postions_to_ask.push_front(Beagle._cube[i][0][1]);
+		postions_to_ask.push_front(Beagle._cube[i][1][0]);	
+		postions_to_ask.push_front(Beagle._cube[i][2][1]);	
+		postions_to_ask.push_front(Beagle._cube[i][1][2]);	
+		}
+	//Middles
+	for(int i=0; i<6; i++){
+		int j = 1;
+		int k = 1;
+		postions_to_ask.push_front(Beagle._cube[i][j][k]);				
+		}
+		
+		
+		/* Beagle.printCube();
+		std::cout << "postions_to_ask contains:";
+  for (std::list<int>::iterator it=postions_to_ask.begin(); it!=postions_to_ask.end(); ++it)
+    std::cout << ' ' << *it; */
+
+		
+}
+
 void MastermindSolver::generate_question()
 {
 	//	cout << n <<endl;
@@ -63,20 +111,16 @@ void MastermindSolver::generate_question()
 //cout <<(*start.begin())[1];
 //cout <<(*start.begin())[2];
 
-for (int i = 0; i < n*3; i++)
+for (int i = 0; i < n%3; i++)
 {
-//from number to color
-char color ='g';
-
+int get_color = rand() % 6;
+//char color = numbers_to_color(get_color);
+char color = 'w';
 question[2+i*3] = color;
 	}
 	cout << question <<endl;
 	}
 }
-
-
-
-
 
 
 void MastermindSolver::testing()
@@ -151,8 +195,6 @@ void MastermindSolver::set_n(int a)
         {
             n = a;
         }
-
-
 
 
 

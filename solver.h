@@ -5,8 +5,6 @@
 #include <string>
 using namespace std;
 
-// general Solver Functions //
-char numbers_to_color(int);
 
 //------------------------------------------//
 //---------- Mastermind Solver -------------//
@@ -17,12 +15,18 @@ class MastermindSolver
 	private:
 	// information to save
 	int n;
-	//list questions;
-	Cube tracking_cube;
-	public:
+  
+  public:
 	// functions to use
+	
+	Cube tracking;	
+	
+	list <int> postions_to_ask; 
 	MastermindSolver(){
 		cout << "solver is starting" << endl;
+		//Cube B(-1);		
+		//tracking.printCube();
+		generate_positions_to_ask();
 	};
 	~MastermindSolver() {};
 
@@ -38,9 +42,11 @@ string what_does_the_answer_mean(); //possible_corret -  answer //eliminate poss
 string generic_evolution_solver();
 string all_possible();
 
+char numbers_to_color(int);
 
-// tracking - cube
-void generate_tracking();
-
+//tracking cube
+void generate_tracking_cube();
+// possition list;
+void generate_positions_to_ask();
 
 };

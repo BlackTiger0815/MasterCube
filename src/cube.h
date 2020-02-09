@@ -9,7 +9,7 @@ using namespace std;
 
 class Cube
 {
-private:
+public:
 	int _old[6][3][3];
 	int _cube[6][3][3]; //white side
 
@@ -124,7 +124,8 @@ public:
 	void solveCube();
 	void switchEdges(int top, bool direction);//destroys corners!!!!
 	void findSwitchableEdges();
-	bool isCorrectEdge(int i, int j, int k);
+	bool isCorrectEdge(int i, int j, int k);;
+	void moveToTop(int position);
 
 // cube questions //
 	int array_to_int(int, int, int);
@@ -136,11 +137,17 @@ public:
 	string answer = ""; // same as above
 	string splitQuestion(string s, int n); //Frage am Server spalten in Pos und Farbe
 	string generateMastermindAnswer(int *questions, int *reference, int n);
+
 	void writeMoves(string newMove){ //Schreibt Moves
 		moves = moves + newMove;
 	}
+	void writeCube(int position, int color);
+
 	int middleIndexOf(int pos);
-int getAdjecentKante(int pos);
-void init_Kanten();
-int getColor(int pos);
+	int getAdjecentKante(int pos);
+	void init_Kanten();
+	int getColor(int pos);
+	string getMoves(){
+		return this->moves;
+	};
 };
