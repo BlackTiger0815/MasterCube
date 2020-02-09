@@ -206,7 +206,7 @@ int main (int argc, char* argv[]) {
 
 	Cube solved;
 	Cube scrambled;
-	//scrambled.scramble();
+	scrambled.scramble();
 	scrambled.clearMoves();
 	Cube tmp(0); //Cube mit -1 gefüllt
 	Cube tmp2(-1); //Cube mit indizes
@@ -226,17 +226,17 @@ int main (int argc, char* argv[]) {
 	scrambled.printCube();
 	//solved.switchEdges(3,0);//destroys corners!!!!
 
-	int a, b, c;
-	cin >> a >> b >> c;
+	/*int a=0, b=1, c=2;
+	//cin >> a >> b >> c;
 	bool x = scrambled.isCorrectEdge(a,b,c);
 	cout << "x = " << x << endl;
 	solved.printCube();
 	solved.printMoves();
-	/*
-	while(switchable Edge found){
-		switch Edge
-	}
 	*/
+	Cube written(0);
+	written.writeCube();
+	written.printCube();
+
 	scrambled.scramble();
 	scrambled.splitQuestion("011033044136095112", 6);
 	return 0;

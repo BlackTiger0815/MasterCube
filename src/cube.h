@@ -136,11 +136,17 @@ public:
 	string answer = ""; // same as above
 	string splitQuestion(string s, int n); //Frage am Server spalten in Pos und Farbe
 	string generateMastermindAnswer(int *questions, int *reference, int n);
+
 	void writeMoves(string newMove){ //Schreibt Moves
 		moves = moves + newMove;
 	}
+	void writeCube();
+	
 	int middleIndexOf(int pos);
-int getAdjecentKante(int pos);
-void init_Kanten();
-int getColor(int pos);
+	int getAdjecentKante(int pos);
+	void init_Kanten();
+	int getColor(int pos);
+	string getMoves(){
+		return this->moves;
+	};
 };

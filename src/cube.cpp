@@ -3014,3 +3014,26 @@ string Cube::generateMastermindAnswer(int* qPos, int *qCol, int n ){
 	cout<<"Randomisiertes Feedback: "<<temp <<endl;
 	return temp;
 }
+
+
+
+//-----------------------------------------------//
+//------------------Sonstiges--------------------//
+//-----------------------------------------------//
+
+void Cube::writeCube(){
+	int color = -1;
+	cin >> color;
+	for(int a=0; a<6; a++){ //Seite
+		for(int b=0; b<3; b++){ //Zeile
+			for(int c=0; c<3; c++){ //Spalten
+				if(color != 9){
+					_cube[a][b][c] = color;
+					cin >> color;
+
+				}
+				else break;
+			}
+		}
+	}
+}
