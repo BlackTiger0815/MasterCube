@@ -237,6 +237,7 @@ int main (int argc, char* argv[]) {
 		switch Edge
 	}
 	*/
-
+	scrambled.scramble();
+	scrambled.splitQuestion("011033044136095112", 6);
 	return 0;
 }
