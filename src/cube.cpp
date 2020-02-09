@@ -2310,137 +2310,6 @@ void Cube::twoEdgeRotate(int face, bool isNextTo)
 }
 
 //-----------------------------------------------//
-//---------------- Switch Edges -----------------//
-//-----------------------------------------------//
-
-void Cube::switchEdges(int top, bool direction){ //destroys corners!!!!
-	//direction - 0 left; 1 right
-
-	if(top==0) //orientiere Cube mit benötigter Fläche oben
-		; //nothing;
-	else if(top==1){
-		globalRotationR();
-		globalRotationU();
-	}
-	else if(top==2){
-		globalRotationU();
-	}
-	else if(top==3){
-		globalRotationL();
-		globalRotationU();
-	}
-	else if(top==4){
-		globalRotationR();
-		globalRotationR();
-		globalRotationU();
-	}
-	else if(top==5){
-		globalRotationU();
-		globalRotationU();
-	}
-
-	if(direction==0){ // left
-		r();
-		u();
-		ri();
-		u();
-		r();
-		u();
-		u();
-		ri();
-		u();
-	}
-	else if(direction==1){ //right
-		l();
-		ui();
-		li();
-		ui();
-		l();
-		ui();
-		ui();
-		li();
-		ui();
-	}
-
-	if(top==0) //Bringe Cube in globale Ausgangslage zurück
-		; //nothing;
-	else if(top==1){
-		globalRotationD();
-		globalRotationL();
-	}
-	else if(top==2){
-		globalRotationD();
-	}
-	else if(top==3){
-		globalRotationD();
-		globalRotationR();
-	}
-	else if(top==4){
-		globalRotationD();
-		globalRotationL();
-		globalRotationL();
-	}
-	else if(top==5){
-		globalRotationU();
-		globalRotationU();
-	}
-}
-
-bool Cube::isCorrectEdge(int i, int j, int k){
-	//return 0 wenn edge an richtiger position
-	//return 1 wenn edge an falscher position
-
-	if(_cube[i][j][k] == _cube[i][1][1]){
-		if(j==0){
-			if(_cube[i+4][0][1] == _cube[i+4][1][1])
-				return 0;
-			else
-				return 1;
-		}
-		else if(j==1){
-			if(i==0){
-				if(_cube[i+1][0][1] == _cube[i+1][1][1])
-					return 0;
-				else
-					return 1;
-			}
-			else{ //i==2
-				if(_cube[i+3][0][1] == _cube[i+3][1][1])
-					return 0;
-				else
-					return 1;
-			}
-		}
-		else{ // j==2
-			if(_cube[i+2][0][1] == _cube[i+2][1][1])
-				return 0;
-			else
-				return 1;
-		}
-	}
-	else
-		return 1;
-}
-
-void Cube::findSwitchableEdges(){
-	int cnt = 0; //if needed for IS EDGE
-	for(int i=0; i<6; i++){
-		for(int j=0; j<3; j++){
-			for(int k=0; k<3; k++){
-				cnt ++;
-				//IS EDGE?? if yes - continue (kommt von Mathias)
-				if(_cube[i][j][k]!=-1 && isCorrectEdge(i,j,k)==1){
-					//Edge ist bekannt und nicht am richtigen Platz
-					//FIND PATH....
-				}
-			}
-		}
-	}
-
-}
-
-
-//-----------------------------------------------//
 //----------------other Functions----------------//
 //-----------------------------------------------//
 
@@ -3013,4 +2882,176 @@ string Cube::generateMastermindAnswer(int* qPos, int *qCol, int n ){
 	string temp=randomizeFeedback(feedback);
 	cout<<"Randomisiertes Feedback: "<<temp <<endl;
 	return temp;
+}
+
+
+//-----------------------------------------------//
+//---------------- Switch Edges -----------------//
+//-----------------------------------------------//
+
+void Cube::switchEdges(int top, bool direction){ //destroys corners!!!!
+	//direction - 0 left; 1 right
+
+	if(top==0) //orientiere Cube mit benötigter Fläche oben
+		; //nothing;
+	else if(top==1){
+		globalRotationR();
+		globalRotationU();
+	}
+	else if(top==2){
+		globalRotationU();
+	}
+	else if(top==3){
+		globalRotationL();
+		globalRotationU();
+	}
+	else if(top==4){
+		globalRotationR();
+		globalRotationR();
+		globalRotationU();
+	}
+	else if(top==5){
+		globalRotationU();
+		globalRotationU();
+	}
+
+	if(direction==0){ // left
+		r();
+		u();
+		ri();
+		u();
+		r();
+		u();
+		u();
+		ri();
+		u();
+	}
+	else if(direction==1){ //right
+		l();
+		ui();
+		li();
+		ui();
+		l();
+		ui();
+		ui();
+		li();
+		ui();
+	}
+
+	if(top==0) //Bringe Cube in globale Ausgangslage zurück
+		; //nothing;
+	else if(top==1){
+		globalRotationD();
+		globalRotationL();
+	}
+	else if(top==2){
+		globalRotationD();
+	}
+	else if(top==3){
+		globalRotationD();
+		globalRotationR();
+	}
+	else if(top==4){
+		globalRotationD();
+		globalRotationL();
+		globalRotationL();
+	}
+	else if(top==5){
+		globalRotationU();
+		globalRotationU();
+	}
+}
+
+bool Cube::isCorrectEdge(int i, int j, int k){
+	//return 0 wenn edge an richtiger position
+	//return 1 wenn edge an falscher position
+
+	if(_cube[i][j][k] == _cube[i][1][1]){
+		if(j==0){
+			if(_cube[i+4][0][1] == _cube[i+4][1][1])
+				return 0;
+			else
+				return 1;
+		}
+		else if(j==1){
+			if(i==0){
+				if(_cube[i+1][0][1] == _cube[i+1][1][1])
+					return 0;
+				else
+					return 1;
+			}
+			else{ //i==2
+				if(_cube[i+3][0][1] == _cube[i+3][1][1])
+					return 0;
+				else
+					return 1;
+			}
+		}
+		else{ // j==2
+			if(_cube[i+2][0][1] == _cube[i+2][1][1])
+				return 0;
+			else
+				return 1;
+		}
+	}
+	else
+		return 1;
+}
+
+void Cube::findSwitchableEdges(){
+	int cnt = 0;
+	int positions[4] = {-1};
+	int pos = 0;
+
+	for(int i=0; i<6; i++){
+		for(int j=0; j<3; j++){
+			for(int k=0; k<3; k++){
+				if(isKante(cnt) == 1 && _cube[i][j][k]!=-1 ){
+					cout << "got it at " << cnt << endl;
+					positions[pos] = cnt;
+					pos++;
+					//Do the moves
+				}
+				cnt ++;
+			}
+		}
+	}
+}
+
+void Cube::moveToTop(int position){
+	if(position == 1 || position == 3 || position == 7)
+		; //is correct
+	else if (position == 10)
+		;//what?
+	else if (position == 12)
+		bi();
+	else if (position == 14)
+		f();
+	else if (position == 16)
+		;//what
+	else if (position == 19)
+		;//what
+	else if (position == 21)
+		li();
+	else if (position == 23)
+		r();
+}
+
+//-----------------------------------------------//
+//------------------Sonstiges--------------------//
+//-----------------------------------------------//
+
+void Cube::writeCube(int position, int color){
+	int cnt = 0;
+	for(int a=0; a<6; a++){ //Seite
+		for(int b=0; b<3; b++){ //Zeile
+			for(int c=0; c<3; c++){ //Spalten
+				if(cnt == position){
+					_cube[a][b][c] = color;
+				}
+				cnt++;
+				//else break;
+			}
+		}
+	}
 }
