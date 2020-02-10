@@ -2998,7 +2998,7 @@ bool Cube::isCorrectEdge(int i, int j, int k){
 		return 1;
 }
 
-void Cube::findSwitchableEdges(){
+void Cube::findSwitchableEdges(){ 
 	int cnt = 0;
 	int positions[4] = {-1};
 	int pos = 0;
@@ -3018,24 +3018,237 @@ void Cube::findSwitchableEdges(){
 	}
 }
 
-void Cube::moveToTop(int position){
-	if(position == 1 || position == 3 || position == 7)
-		; //is correct
-	else if (position == 10)
-		;//what?
-	else if (position == 12)
-		bi();
-	else if (position == 14)
-		f();
-	else if (position == 16)
-		;//what
-	else if (position == 19)
-		;//what
-	else if (position == 21)
-		li();
-	else if (position == 23)
-		r();
+
+int Cube::findTopEdgePos(int side, int pos){
+	int s, p;
+	for (s = 1; s < 6; s++)
+	{
+		if (_cube[s][0][1] == 0)
+		{
+			p = 1;
+			return p;
+			break;
+		}
+		else if (_cube[s][1][2] == 0)
+		{
+			p = 2;
+			return p;
+			break;
+		}
+		else if (_cube[s][2][1] == 0)
+		{
+			p = 3;
+			return p;
+			break;
+		}
+		else if (_cube[s][1][0] == 0)
+		{
+			p = 4;
+			return p;
+			break;
+		}
+	}
 }
+int Cube::findTopEdgeSide(int side, int pos){
+	int s, p;
+	for (s = 1; s < 6; s++)
+	{
+		if (_cube[s][0][1] == 0)
+		{
+			p = 1;
+			return s;
+			break;
+		}
+		else if (_cube[s][1][2] == 0)
+		{
+			p = 2;
+			return s;
+			break;
+		}
+		else if (_cube[s][2][1] == 0)
+		{
+			p = 3;
+			return s;
+			break;
+		}
+		else if (_cube[s][1][0] == 0)
+		{
+			p = 4;
+			return s;
+			break;
+		}
+	}
+}
+
+void Cube::moveToTopCross(){
+	moveTopEdges();
+
+	for (int i = 1; i < 5; i++)
+	{
+		int side = 0; //side that the yellow sticker is on
+		int pos = 0; //position (1-4) of the yellow sticker
+		pos = findTopEdgePos(side, pos);
+		side = findTopEdgeSide(side, pos);
+		cout << side << " " << pos << endl;
+		int numTurns = 0; //keeps track of how many times we turn the cube to put pieces on the bottom layer so we can undo the turns
+		if (side == 1)
+		{
+			while (_cube[5][1][0] == 0)
+			{
+				d();
+			}
+			while (_cube[0][1][0] == 0)
+			{
+				u();
+				numTurns++;
+			}
+			if (pos == 1)
+			{
+				l();
+				l();
+			}
+			else if (pos == 2)
+			{
+				l();
+			}
+			else if (pos == 4)
+			{
+				li();
+			}
+		}
+		else if (side == 2)
+		{
+			while (_cube[5][0][1] == 0)
+			{
+				d();
+			}
+			while (_cube[0][2][1] == 0)
+			{
+				u();
+				numTurns++;
+			}
+			if (pos == 1)
+			{
+				f();
+				f();
+			}
+			else if (pos == 2)
+			{
+				f();
+			}
+			else if (pos == 4)
+			{
+				fi();
+			}
+			di();
+		}
+		else if (side == 3)
+		{
+			while (_cube[5][1][2] == 0)
+			{
+				d();
+			}
+			while (_cube[0][1][2] == 0)
+			{
+				u();
+				numTurns++;
+			}
+			if (pos == 1)
+			{
+				r();
+				r();
+			}
+			else if (pos == 2)
+			{
+				r();
+			}
+			else if (pos == 4)
+			{
+				ri();
+			}
+			d();
+			d();
+		}
+		else if (side == 4)
+		{
+			while (_cube[5][2][1] == 0)
+			{
+				d();
+			}
+			while (_cube[0][0][1] == 0)
+			{
+				u();
+				numTurns++;
+			}
+			if (pos == 1)
+			{
+				b();
+				b();
+			}
+			else if (pos == 2)
+			{
+				b();
+			}
+			else if (pos == 4)
+			{
+				bi();
+			}
+			d();
+		}
+		else if (side == 5)
+		{
+			for (int j = 0; j < 4 - pos; j++)
+			{
+				d();
+			}
+		}
+
+		for (int j = 0; j < numTurns; j++)
+		{
+			ui();
+		}
+
+		if (side == 5) //algorithm for when the sticker is on the bottom
+		{
+			int color = i;
+			for (int a = 1; a < color; a++) //set-up so that the edge goes into the right spot
+			{
+				u();
+			}
+			l();
+			l();
+			for (int a = 1; a < color; a++) //undo set-up
+			{
+				ui();
+			}
+		}
+		else //algorithm for when th esticker is not on the bottom
+		{
+			int color = i;
+			if (color < 4) //set-up so that the sticker goes into the right spot
+			{
+				for (int a = 1; a < color + 1; a++)
+				{
+					u();
+				}
+			}
+			l();
+			bi();
+			li();
+			if (color < 4) //undo set-up
+			{
+				for (int a = 1; a < color + 1; a++)
+				{
+					ui();
+				}
+			}
+		}
+	}
+
+
+
+}
+
 
 //-----------------------------------------------//
 //------------------Sonstiges--------------------//

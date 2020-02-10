@@ -107,4 +107,21 @@ main.cpp, cube.h, cube.cpp
 Isabella Reithner
 Implementierung der Methoden um die Edges zu tauschen (wie getauscht wird fehlt noch)
 main.cpp, cube.h, cube.cpp
+****************
+04.02.2020
+Isabella Reithner
+Implementierung der Methoden um die Edges zu tauschen (wie getauscht wird fehlt noch)
+main.cpp, cube.h, cube.cpp
+****************
+09.02.2020
+Isabella Reithner
+Hinzufügen der Methoden um einen leeren Würfel zu befüllen (writeCube()) und um den string moves auszulesen (getMoves())
+main.cpp, cube.h, cube.cpp
+****************
+10.02.2019
+Isabella Reithner
+Hinzufügen einer Methode um das Top Cross aus einem nicht komplett bekannten Cube zu bekommen
+main.cpp, cube.h, cube.cpp
+
+
 
