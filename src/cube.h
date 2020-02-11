@@ -9,7 +9,7 @@ using namespace std;
 
 class Cube
 {
-public:
+private:
 	int _old[6][3][3];
 	int _cube[6][3][3]; //white side
 
@@ -125,7 +125,9 @@ public:
 	void switchEdges(int top, bool direction);//destroys corners!!!!
 	void findSwitchableEdges();
 	bool isCorrectEdge(int i, int j, int k);;
-	void moveToTop(int position);
+	void moveToTopCross();
+	int findTopEdgePos(int side, int pos);
+	int findTopEdgeSide(int side, int pos);
 
 // cube questions //
 	int array_to_int(int, int, int);
