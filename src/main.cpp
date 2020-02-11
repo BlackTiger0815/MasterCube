@@ -204,11 +204,11 @@ int main (int argc, char* argv[]) {
 
 
 
-	
+
 
 	Cube solved;
 	Cube scrambled;
-	//scrambled.scramble();
+	scrambled.scramble();
 	scrambled.r();
 	scrambled.l();
 	scrambled.f();
@@ -223,34 +223,30 @@ int main (int argc, char* argv[]) {
 	Cube tmp(0); //Cube mit -1 gefüllt
 	Cube tmp2(-1); //Cube mit indizes
 
-	// Cube written(0);
-	// written.writeCube(0,1);
-	// written.printCube();
-
-	 int cnt = 0; //alles außer 0 wird zu -1 -> test der moveToTopCross()
-	 for(int i=0; i<6; i++){
-	 	for(int j=0; j<3; j++){
-	 		for(int k=0; k<3; k++){
-	 			if(scrambled.getColor(cnt) != 0){
-	 				scrambled.writeCube(cnt,-1);
-	 			}
-	 			cnt++;
-	 		}
-	 	}
-	 }
+	 // int cnt = 0; //alles außer 0 wird zu -1 -> test der moveToTopCross()
+	 // for(int i=0; i<6; i++){
+	 // 	for(int j=0; j<3; j++){
+	 // 		for(int k=0; k<3; k++){
+	 // 			if(scrambled.getColor(cnt) != 0){
+	 // 				scrambled.writeCube(cnt,-1);
+	 // 			}
+	 // 			cnt++;
+	 // 		}
+	 // 	}
+	 // }
 
 	//scrambled.writeCube(12,-1);
 	//scrambled.writeCube(19,-1);
 	scrambled.printCube();
 	scrambled.moveToTopCross(); //alle weißen (0) zum Kreuz der Obersten ebene
-
+	cout << "TOP CROSS:" << endl;
+	scrambled.printCube();
+	scrambled.switchEdgesTopCross();
 	scrambled.printCube();
 	scrambled.printMoves();
-	string moves = scrambled.getMoves();
-	cout << moves << endl;
+
 
 	//scrambled.scramble();
 	//scrambled.splitQuestion("011033044136095112", 6);
 	return 0;
 }
-
