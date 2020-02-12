@@ -2998,7 +2998,7 @@ bool Cube::isCorrectEdge(int i, int j, int k){
 		return 1;
 }
 
-void Cube::findSwitchableEdges(){ 
+void Cube::findSwitchableEdges(){
 	int cnt = 0;
 	int positions[4] = {-1};
 	int pos = 0;
@@ -3089,7 +3089,7 @@ void Cube::moveToTopCross(){
 		int pos = 0; //position (1-4) of the yellow sticker
 		pos = findTopEdgePos(side, pos);
 		side = findTopEdgeSide(side, pos);
-		cout << side << " " << pos << endl;
+		//cout << side << " " << pos << endl;
 		int numTurns = 0; //keeps track of how many times we turn the cube to put pieces on the bottom layer so we can undo the turns
 		if (side == 1)
 		{
@@ -3244,9 +3244,145 @@ void Cube::moveToTopCross(){
 			}
 		}
 	}
+}
 
-
-
+void Cube::switchEdgesTopCross(){
+	/*
+		Überall wo "MASTERMIND" steht muss die Bedingung des
+		Masterminds eingesetzt werden
+	*/
+	int cnt = 0;
+	while(cnt < 12){
+		if(getColor(10) == getColor(13)){ // <- MASTERMIND
+			cout << "correct color 1"<< endl;
+			globalRotationL();
+			int i=1;
+			int cnt2=0;
+			bool feedback = getColor(19) != getColor(22) || getColor(28) != getColor(31) || getColor(37) != getColor(40); // <- MASTERMIND
+			//cout << "Feedback = " << feedback << endl;
+			while(feedback != 0){
+				switch(i){
+					case 0:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=1;
+						feedback = getColor(19) != getColor(22) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
+						cnt2++;
+						break;
+					case 1:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=0;
+						feedback = getColor(19) != getColor(22) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
+						cnt2++;
+						break;
+				}
+			}
+			globalRotationR();
+			//printCube();
+			break;
+		}
+		else if(getColor(19) == getColor(22)){ // <- MASTERMIND
+			cout << "correct color 2"<< endl;
+			globalRotationR();
+			globalRotationR();
+			int i=1;
+			int cnt2=0;
+			bool feedback = getColor(10) != getColor(13) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
+			//cout << "Feedback = " << feedback << endl;
+			while(feedback != 0){
+				switch(i){
+					case 0:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=1;
+						feedback = getColor(10) != getColor(13) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
+						cnt2++;
+						break;
+					case 1:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=0;
+						feedback = getColor(10) != getColor(13) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
+						cnt2++;
+						break;
+				}
+			}
+			globalRotationL();
+			globalRotationL();
+			//printCube();
+			break;
+		}
+		else if(getColor(28) == getColor(31)){ // <- MASTERMIND
+			cout << "correct color 3"<< endl;
+			globalRotationR();
+			int i=1;
+			int cnt2=0;
+			bool feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(37) != getColor(40);// <- MASTERMIND
+			//cout << "Feedback = " << feedback << endl;
+			while(feedback != 0){
+				switch(i){
+					case 0:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=1;
+						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(37) != getColor(40);// <- MASTERMIND
+						cnt2++;
+						break;
+					case 1:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=0;
+						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(37) != getColor(40);// <- MASTERMIND
+						cnt2++;
+						break;
+				}
+			}
+			globalRotationL();
+			printCube();
+			break;
+		}
+		else if(getColor(37) == getColor(40)){ // <- MASTERMIND
+			cout << "correct color 4"<< endl;
+			int i=1;
+			int cnt2=0;
+			bool feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(28) != getColor(31);// <- MASTERMIND
+			//cout << "Feedback = " << feedback << endl;
+			while(feedback != 0){
+				switch(i){
+					case 0:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=1;
+						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(28) != getColor(31);// <- MASTERMIND
+						cnt2++;
+						break;
+					case 1:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=0;
+						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(28) != getColor(31);// <- MASTERMIND
+						cnt2++;
+						break;
+				}
+			}
+			printCube();
+			break;
+		}
+		switchEdges(0, 0);
+		u();
+		cnt ++;
+		//cout << "TRY " << cnt << endl;
+		//printCube();
+	}
 }
 
 
