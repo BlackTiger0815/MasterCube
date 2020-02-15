@@ -38,8 +38,6 @@ public:
 
 	string moves = "";
 
-
-public:
 	Cube(int n=1){
 		if(n==0){
 			for(int i=0;i<6;i++)
@@ -136,9 +134,11 @@ public:
 	int findTopEdgePos(int side, int pos);
 	int findTopEdgeSide(int side, int pos);
 	void switchEdgesTopCross();
+	void solveSecondLayer();
+	bool get_bedingung();
 
 	void findSwitchableEdges();
-	bool isCorrectEdge(int i, int j, int k);;
+	bool isCorrectEdge(int position);
 //------------------------------------------//
 
 // cube questions //

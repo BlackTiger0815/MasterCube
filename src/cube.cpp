@@ -8,7 +8,7 @@
 char numbers_to_color(int number)
 {
 	char color[] = "wgrboy"; //white green red blue orange yellow
-	return color[number];	
+	return color[number];
 }
 
 int color_to_number(char color)
@@ -17,22 +17,22 @@ int color_to_number(char color)
 	{
 	case 'w':
 		return 0;
-		
+
 	case 'g':
 		return 1;
-		
+
 	case 'r':
 		return 2;
-		
+
 	case 'b':
 		return 3;
-		
+
 	case 'o':
 		return 4;
-		
+
 	case 'y':
 		return 5;
-		
+
 	default:
 		//cout << "you took a wrong turn" <<endl;
 		return -1;
@@ -106,6 +106,16 @@ void Cube::globalRotationL(){
 	_cube[0][1][0] = _old[0][0][1];
 	_cube[0][2][1] = _old[0][1][0];
 	_cube[0][1][2] = _old[0][2][1];
+	//corners der unterseite
+	_cube[5][0][0] = _old[5][0][2];
+	_cube[5][2][0] = _old[5][0][0];
+	_cube[5][2][2] = _old[5][2][0];
+	_cube[5][0][2] = _old[5][2][2];
+	//edges der unterseite
+	_cube[5][0][1] = _old[5][1][2];
+	_cube[5][1][2] = _old[5][2][1];
+	_cube[5][2][1] = _old[5][1][0];
+	_cube[5][1][0] = _old[5][0][1];
 
 	moves += "gL ";
 }
@@ -2995,40 +3005,133 @@ void Cube::switchEdges(int top, bool direction){ //destroys corners!!!!
 	}
 }
 
-bool Cube::isCorrectEdge(int i, int j, int k){
-	//return 0 wenn edge an richtiger position
-	//return 1 wenn edge an falscher position
-
-	if(_cube[i][j][k] == _cube[i][1][1]){
-		if(j==0){
-			if(_cube[i+4][0][1] == _cube[i+4][1][1])
-				return 0;
-			else
+bool Cube::isCorrectEdge(int position){
+	//return 1 wenn edge an richtiger position
+	//return 0 wenn edge an falscher position
+	switch(position){
+		case 1:
+			if(getColor(1) == getColor(4) && getColor(37) == getColor(40))
 				return 1;
-		}
-		else if(j==1){
-			if(i==0){
-				if(_cube[i+1][0][1] == _cube[i+1][1][1])
-					return 0;
-				else
-					return 1;
-			}
-			else{ //i==2
-				if(_cube[i+3][0][1] == _cube[i+3][1][1])
-					return 0;
-				else
-					return 1;
-			}
-		}
-		else{ // j==2
-			if(_cube[i+2][0][1] == _cube[i+2][1][1])
-				return 0;
-			else
+			else return 0;
+			break;
+		case 3:
+			if(getColor(3) == getColor(4) && getColor(10) == getColor(13))
 				return 1;
-		}
+			else return 0;
+			break;
+		case 5:
+			if(getColor(5) == getColor(4) && getColor(28) == getColor(31))
+				return 1;
+			else return 0;
+			break;
+		case 7:
+			if(getColor(7) == getColor(4) && getColor(19) == getColor(22))
+				return 1;
+			else return 0;
+			break;
+		case 10:
+			if(getColor(10) == getColor(13) && getColor(3) == getColor(4))
+				return 1;
+			else return 0;
+			break;
+		case 12:
+			if(getColor(12) == getColor(13) && getColor(41) == getColor(40))
+				return 1;
+			else return 0;
+			break;
+		case 14:
+			if(getColor(14) == getColor(13) && getColor(21) == getColor(22))
+				return 1;
+			else return 0;
+			break;
+		case 16:
+			if(getColor(16) == getColor(13) && getColor(48) == getColor(49))
+				return 1;
+			else return 0;
+			break;
+		case 19:
+			if(getColor(19) == getColor(22) && getColor(7) == getColor(4))
+				return 1;
+			else return 0;
+			break;
+		case 21:
+			if(getColor(21) == getColor(22) && getColor(14) == getColor(13))
+				return 1;
+			else return 0;
+			break;
+		case 23:
+			if(getColor(23) == getColor(22) && getColor(30) == getColor(31))
+				return 1;
+			else return 0;
+			break;
+		case 25:
+			if(getColor(25) == getColor(22) && getColor(46) == getColor(49))
+				return 1;
+			else return 0;
+			break;
+		case 28:
+			if(getColor(28) == getColor(31) && getColor(5) == getColor(4))
+				return 1;
+			else return 0;
+			break;
+		case 30:
+			if(getColor(30) == getColor(31) && getColor(23) == getColor(22))
+				return 1;
+			else return 0;
+			break;
+		case 32:
+			if(getColor(32) == getColor(31) && getColor(39) == getColor(40))
+				return 1;
+			else return 0;
+			break;
+		case 34:
+			if(getColor(34) == getColor(31) && getColor(50) == getColor(49))
+				return 1;
+			else return 0;
+			break;
+		case 37:
+			if(getColor(37) == getColor(40) && getColor(1) == getColor(4))
+				return 1;
+			else return 0;
+			break;
+		case 39:
+			if(getColor(39) == getColor(40) && getColor(32) == getColor(31))
+				return 1;
+			else return 0;
+			break;
+		case 41:
+			if(getColor(41) == getColor(40) && getColor(12) == getColor(13))
+				return 1;
+			else return 0;
+			break;
+		case 43:
+			if(getColor(43) == getColor(40) && getColor(52) == getColor(49))
+				return 1;
+			else return 0;
+			break;
+		case 46:
+			if(getColor(46) == getColor(49) && getColor(25) == getColor(22))
+				return 1;
+			else return 0;
+			break;
+		case 48:
+			if(getColor(48) == getColor(49) && getColor(16) == getColor(13))
+				return 1;
+			else return 0;
+			break;
+		case 50:
+			if(getColor(50) == getColor(49) && getColor(34) == getColor(31))
+				return 1;
+			else return 0;
+			break;
+		case 52:
+			if(getColor(52) == getColor(49) && getColor(43) == getColor(40))
+				return 1;
+			else return 0;
+			break;
+		default:
+			return -1;
 	}
-	else
-		return 1;
 }
 
 void Cube::findSwitchableEdges(){
@@ -3039,7 +3142,8 @@ void Cube::findSwitchableEdges(){
 	for(int i=0; i<6; i++){
 		for(int j=0; j<3; j++){
 			for(int k=0; k<3; k++){
-				if(isKante(cnt) == 1 && _cube[i][j][k]!=-1 ){
+				cnt ++;
+				if(isKante(cnt) == 1 && _cube[i][j][k]!=-1 && isCorrectEdge(cnt) == 0){
 					cout << "got it at " << cnt << endl;
 					positions[pos] = cnt;
 					pos++;
@@ -3287,7 +3391,7 @@ void Cube::switchEdgesTopCross(){
 	int cnt = 0;
 	while(cnt < 12){
 		if(getColor(10) == getColor(13)){ // <- MASTERMIND
-			cout << "correct color 1"<< endl;
+			//cout << "correct color 1"<< endl;
 			globalRotationL();
 			int i=1;
 			int cnt2=0;
@@ -3318,7 +3422,7 @@ void Cube::switchEdgesTopCross(){
 			break;
 		}
 		else if(getColor(19) == getColor(22)){ // <- MASTERMIND
-			cout << "correct color 2"<< endl;
+			//cout << "correct color 2"<< endl;
 			globalRotationR();
 			globalRotationR();
 			int i=1;
@@ -3329,16 +3433,17 @@ void Cube::switchEdgesTopCross(){
 				switch(i){
 					case 0:
 						switchEdges(0,i);
-						//cout << "cnt2 " << cnt2 << endl;
+						//cout << "cnt2xx " << cnt2 << endl;
 						//printCube();
 						i=1;
 						feedback = getColor(10) != getColor(13) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
+						//cout << feedback << endl;
 						cnt2++;
 						break;
 					case 1:
 						switchEdges(0,i);
 						//cout << "cnt2 " << cnt2 << endl;
-						//printCube();
+						printCube();
 						i=0;
 						feedback = getColor(10) != getColor(13) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
 						cnt2++;
@@ -3347,11 +3452,10 @@ void Cube::switchEdgesTopCross(){
 			}
 			globalRotationL();
 			globalRotationL();
-			//printCube();
 			break;
 		}
 		else if(getColor(28) == getColor(31)){ // <- MASTERMIND
-			cout << "correct color 3"<< endl;
+			//cout << "correct color 3"<< endl;
 			globalRotationR();
 			int i=1;
 			int cnt2=0;
@@ -3378,11 +3482,11 @@ void Cube::switchEdgesTopCross(){
 				}
 			}
 			globalRotationL();
-			printCube();
+			//printCube();
 			break;
 		}
 		else if(getColor(37) == getColor(40)){ // <- MASTERMIND
-			cout << "correct color 4"<< endl;
+			//cout << "correct color 4"<< endl;
 			int i=1;
 			int cnt2=0;
 			bool feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(28) != getColor(31);// <- MASTERMIND
@@ -3400,7 +3504,7 @@ void Cube::switchEdgesTopCross(){
 					case 1:
 						switchEdges(0,i);
 						//cout << "cnt2 " << cnt2 << endl;
-						//printCube();
+						printCube();
 						i=0;
 						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(28) != getColor(31);// <- MASTERMIND
 						cnt2++;
@@ -3418,6 +3522,38 @@ void Cube::switchEdgesTopCross(){
 	}
 }
 
+bool Cube::get_bedingung(){
+	if( (getColor(16)==5 || getColor(48)==5) && (getColor(25)==5 || getColor(46)==5)
+	 && (getColor(34)==5 || getColor(50)==5) && (getColor(43)==5 || getColor(52)==5) )
+		return 1;
+	else return 0;
+}
+
+void Cube::solveSecondLayer(){
+	bool bedingung = get_bedingung();
+	int cnt = 0;
+	while(bedingung == 0){
+		//if(cnt > 10) break;
+		if(getColor(25) != getColor(22)){
+			d();
+			cout << "d" << endl;
+		}
+		else{
+			if(getColor(46) == getColor(13)){
+				cout << "left" << endl;
+				switchEdges(2,0);
+			}
+			if(getColor(46) == getColor(31)){
+				cout << "right" << endl;
+				switchEdges(2,1);
+			}
+		}
+		bedingung = get_bedingung();
+		cnt++;
+		cout << "CNT " << cnt << endl;
+		printCube();
+	}
+}
 
 //-----------------------------------------------//
 //------------------Sonstiges--------------------//

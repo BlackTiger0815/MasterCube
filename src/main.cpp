@@ -208,16 +208,16 @@ int main (int argc, char* argv[]) {
 
 	Cube solved;
 	Cube scrambled;
-	scrambled.scramble();
+	//scrambled.scramble();
 	scrambled.r();
 	scrambled.l();
-	scrambled.f();
 	scrambled.f();
 	scrambled.di();
 	scrambled.r();
 	scrambled.b();
 	scrambled.r();
 	scrambled.fi();
+	cout << "scrambled:" << endl;
 	scrambled.printCube();
 	scrambled.clearMoves();
 	Cube tmp(0); //Cube mit -1 gefüllt
@@ -237,13 +237,20 @@ int main (int argc, char* argv[]) {
 
 	//scrambled.writeCube(12,-1);
 	//scrambled.writeCube(19,-1);
-	scrambled.printCube();
+	//scrambled.printCube();
 	scrambled.moveToTopCross(); //alle weißen (0) zum Kreuz der Obersten ebene
-	cout << "TOP CROSS:" << endl;
-	scrambled.printCube();
+	//cout << "TOP CROSS:" << endl;
+	//scrambled.printCube();
 	scrambled.switchEdgesTopCross();
+	//scrambled.printCube();
+	scrambled.clearMoves();
+	//scrambled.printMoves();
+	//scrambled.findSwitchableEdges();
+	scrambled.solveSecondLayer();
 	scrambled.printCube();
 	scrambled.printMoves();
+	//bool x = scrambled.get_bedingung();
+	//cout << x << endl;
 
 
 	//scrambled.scramble();
