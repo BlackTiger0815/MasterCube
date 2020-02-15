@@ -9,7 +9,7 @@ using namespace std;
 
 class Cube
 {
-private:
+public:
 	int _old[6][3][3];
 	int _cube[6][3][3]; //white side
 
@@ -156,4 +156,5 @@ public:
 	string getMoves(){
 		return this->moves;
 	};
+	bool isMitte(int z);
 };

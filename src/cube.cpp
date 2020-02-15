@@ -2661,7 +2661,7 @@ bool isKante(int z){
   }
 }
 
-bool isMitte(int z){
+bool Cube::isMitte(int z){
   int qPosM[]={4,13,22,31,40,49};
   int *i = find(std::begin(qPosM), std::end(qPosM), z);
   if (i != std::end(qPosM)) {

@@ -1,4 +1,3 @@
-#include "debug.h"
 #include "solver.h" //Solver for Mastermind and Rubiks Cube
 //#include "cubie.h" // Stephanie
 #include "mastermindcube.h" // Stephanie
