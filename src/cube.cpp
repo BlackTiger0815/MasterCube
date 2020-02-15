@@ -2721,7 +2721,7 @@ int Cube::middleIndexOf(int pos){ //holt sich die nummer des mittelfelds der Sei
 }
 multimap <int,int> _kanten; //globale kanten
 
-void Cube::init_Kanten(){ //multimap aller Kanten und deren Felder anlegen
+void init_Kanten(){ //multimap aller Kanten und deren Felder anlegen
 	_kanten.insert( pair <int,int> (1,37));
 	_kanten.insert( pair <int,int> (3,10));
 	_kanten.insert( pair <int,int> (5,28));
@@ -2759,7 +2759,7 @@ string randomizeFeedback(string s){ //randomisiert den von der generateMastermin
   list<int>::iterator it;
 
   for(int i=0;i<feedback.length();i++){
-    randFeedback.append("0");
+    randFeedback.append("2");
   }
 
   for(int i=0;i<feedback.length();i++){
@@ -2771,7 +2771,8 @@ string randomizeFeedback(string s){ //randomisiert den von der generateMastermin
     my_list.push_back(num);
     randFeedback[i]=feedback[num];
   }
-  //cout<< "\n fkt: "<<randFeedback;
+  cout<< "\n fkt: "<<randFeedback;
+  cout << "feedback was" << s <<endl;
 
   return randFeedback;
 }
@@ -2781,7 +2782,7 @@ string randomizeFeedback(string s){ //randomisiert den von der generateMastermin
 
 string Cube::splitQuestion(string s, int n) //by Isabella Reithner
 {
-	cout<< "--Entering splitQ"<<endl;
+	//cout<< "--Entering splitQ"<<endl;
 	int pos = 0; //Position
 	char color = ' '; //Farbe
 	int question[n]; //Farbe aus der Frage
@@ -2792,11 +2793,13 @@ string Cube::splitQuestion(string s, int n) //by Isabella Reithner
 	//von Matthias Anfang
 	int white=0; //Zähler für Richte Farbe am Falschen Platz
 	int black=0; //Zähler Richtige Farbe richtiger Platz
-	string feedback;
+	//feedback wird in diesem abschnitt  nicht gebraucht
 	int qPos[n], qCol[n], gtPos[n], gtCol[n];
 
-	init_Kanten();//wir jedes mal beim Feedback request neu initialisiert->Performance?
+
 	init_Ecken();
+	init_Kanten();//wir jedes mal beim Feedback request neu initialisiert->Performance?
+	
 	int h=0;//ungut,, listen bzw vektoren wären besser
 
 	for(int j=0; j<n*3; j+=3){ //Spalten der Frage in Position und Farbe
@@ -2817,7 +2820,7 @@ string Cube::splitQuestion(string s, int n) //by Isabella Reithner
 					if(it == pos){ //Wenn die Position befunden wurde, Farbe in reference schreiben
 						gtPos[h]=pos;
 						gtCol[h]=this->_cube[a][b][c];
-						cout<<"it: " << h << ". gt an Position: "<< gtPos[h]<<" hat Farbe "<< gtCol[h] << ". Zu Farbe in Question: "<<qCol[h] <<endl;
+						//cout<<"it: " << h << ". gt an Position: "<< gtPos[h]<<" hat Farbe "<< gtCol[h] << ". Zu Farbe in Question: "<<qCol[h] <<endl;
 					}
 					it++;
 				}
@@ -2833,89 +2836,96 @@ string Cube::splitQuestion(string s, int n) //by Isabella Reithner
 
 string Cube::generateMastermindAnswer(int* qPos, int *qCol, int n ){
 	string randFeedback;
+	feedback = {}; //here important sonst wird der feedback string unenedlich lange
 	int num =0;
 	list<int> my_list;
 	list<int>::iterator it;
 	bool b;
 
 	for(int i=0;i<n;i++){
-		//cout<<"\nqPos["<<i<<"] "<< qPos[i];
+		////cout<<"\nqPos["<<i<<"] "<< qPos[i];
 
 		if(isMitte(qPos[i]))
-		{//cout<<" m ";
+		{////cout<<" m ";
 			if(qCol[i]==getColor(middleIndexOf(qCol[i])))//Wenn die Farbe aus der Frage vom aktuellen Mittelfeld gleich der Farbe an der seleben Stelle im scrambeld Cube
 			{
-				//cout<<"b";
-				feedback.append("b");
+				////cout<<"b";
+				feedback.append("1");
 			}else{
-				//cout << "w";
-				feedback.append("x");
+				////cout << "w";
+				feedback.append("0");
 			}
 		}
 
 		if(isKante(qPos[i]))
 		{
-			//cout<<qPosK[i] << " " << middleIndexOf(qPosK[i]) << " " <<getColor(middleIndexOf(qPosK[i]))<<endl;
+			////cout<<qPosK[i] << " " << middleIndexOf(qPosK[i]) << " " <<getColor(middleIndexOf(qPosK[i]))<<endl;
 			if(qCol[i]!=getColor(middleIndexOf(qPos[i]))){
 				//wenn die frabe der Kante nicht gleich der Farbe des mittelfelds der gleichen seite ist
-				//cout<<"x";
-				feedback.append("x");
+				////cout<<"x";
+				feedback.append("2");
 			}else{//wenn die farbe der Kante gleich der Farbe des mittlfeldes der gleichen seite ist
 				//wenn farbe des um die Ecke angrenzenden Felds gleich wie die Mitte dieser Seite ist
 				if(getAdjecentKante(qPos[i])==getColor(middleIndexOf(getAdjecentKante(qPos[i])))){
-				//cout<<"b";
-					feedback.append("b");
+				////cout<<"b";
+					feedback.append("1");
 				}
 				else
 				{
-					//cout<<"w";
-					feedback.append("w");
+					////cout<<"w";
+					feedback.append("0");
 				}
 			}
 		}
 
 		if(isEcke(qPos[i]))
 		{
-			//cout<<" e ";
+			////cout<<" e ";
 			int a,b;
 			vector<pair<int,int>> adjEcken;
 			adjEcken=getAdjecentEcken(qPos[i]);
 			a=adjEcken[0].first;
 			b=adjEcken[0].second;
-			//cout<< "--a: "<< a << " b: "<<b<<endl;
+			////cout<< "--a: "<< a << " b: "<<b<<endl;
 			bool s1,s2,s3;
 
 			if(qCol[i]==getColor(middleIndexOf(qPos[i]))) s1=true; else s1=false;
-				//cout<<s1;
+				////cout<<s1;
 			if(getColor(a)==getColor(middleIndexOf(a))) s2=true; else s2=false;
-				//cout<<s2;
+				////cout<<s2;
 			if(getColor(b)==getColor(middleIndexOf(b))) s3=true; else s3=false;
-				//cout<<s3;
+				////cout<<s3;
 
 			if(s1==true&&s2==true&&s3==true){
-					//cout<< ".b";
-				feedback.append("b");
+					////cout<< ".b";
+				feedback.append("1");
 			}
 			else
 
 			/*if((s1==true&&s2==false&&s3==false)||(s1==false&&s2==true&&s3==false)||(s1==false&&s2==false&&s3==true))
-				{cout<< ".w"; feedback.append(".w");}*/
+				{//cout<< ".w"; feedback.append(".w");}*/
 
 			if(s1==false&&s2==false&&s3==false){
-				//cout<< ".x";
-				feedback.append("x");
+				////cout<< ".x";
+				feedback.append("2");
 			}else{
-				//cout<< ".w";
-				feedback.append("w");
+				////cout<< ".w";
+				feedback.append("0");
 			}
 		}
 	}
 	cout <<"\nFeedback: "<< feedback<<endl;
-		//randomize feedbackstring
+	//randomize feedbackstring
 	string temp=randomizeFeedback(feedback);
-	cout<<"Randomisiertes Feedback: "<<temp <<endl;
+	//cout<<"Randomisiertes Feedback: "<<temp <<endl;
 	return temp;
 }
+
+
+//aus Moodle
+//Black (1) is returned (in an unsorted array) if a color is given at the correct position.
+//White (0) is returned (in an unsorted array) if a color is given at the correct side of the cube. 
+//Nothing (2) 
 
 
 //-----------------------------------------------//

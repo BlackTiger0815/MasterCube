@@ -159,7 +159,6 @@ public:
 
 	int middleIndexOf(int pos);
 	int getAdjecentKante(int pos);
-	void init_Kanten();
 	int getColor(int pos);
 	string getMoves(){
 		return this->moves;
@@ -173,3 +172,6 @@ int color_to_number(char);
 bool isEcke(int ); //sind hier sonst kann ich sie nicht benutzen
 bool isKante(int );
 bool isMitte(int );
+void init_Kanten();
+void init_Ecken();
+
