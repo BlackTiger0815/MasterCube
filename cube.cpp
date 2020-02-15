@@ -3396,21 +3396,21 @@ void Cube::switchEdgesTopCross(){
 			int i=1;
 			int cnt2=0;
 			bool feedback = getColor(19) != getColor(22) || getColor(28) != getColor(31) || getColor(37) != getColor(40); // <- MASTERMIND
-			//cout << "Feedback = " << feedback << endl;
+			cout << "Feedback = " << feedback << endl;
 			while(feedback != 0){
 				switch(i){
 					case 0:
 						switchEdges(0,i);
-						//cout << "cnt2 " << cnt2 << endl;
-						//printCube();
+						cout << "cnt2 " << cnt2 << endl;
+						printCube();
 						i=1;
 						feedback = getColor(19) != getColor(22) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
 						cnt2++;
 						break;
 					case 1:
 						switchEdges(0,i);
-						//cout << "cnt2 " << cnt2 << endl;
-						//printCube();
+						cout << "cnt2 " << cnt2 << endl;
+						printCube();
 						i=0;
 						feedback = getColor(19) != getColor(22) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
 						cnt2++;
@@ -3418,31 +3418,31 @@ void Cube::switchEdgesTopCross(){
 				}
 			}
 			globalRotationR();
-			//printCube();
+			printCube();
 			break;
 		}
 		else if(getColor(19) == getColor(22)){ // <- MASTERMIND
-			//cout << "correct color 2"<< endl;
+			cout << "correct color 2"<< endl;
 			globalRotationR();
 			globalRotationR();
 			int i=1;
 			int cnt2=0;
 			bool feedback = getColor(10) != getColor(13) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
-			//cout << "Feedback = " << feedback << endl;
+			cout << "Feedback = " << feedback << endl;
 			while(feedback != 0){
 				switch(i){
 					case 0:
 						switchEdges(0,i);
-						//cout << "cnt2xx " << cnt2 << endl;
-						//printCube();
+						cout << "cnt2xx " << cnt2 << endl;
+						printCube();
 						i=1;
 						feedback = getColor(10) != getColor(13) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
-						//cout << feedback << endl;
+						cout << feedback << endl;
 						cnt2++;
 						break;
 					case 1:
 						switchEdges(0,i);
-						//cout << "cnt2 " << cnt2 << endl;
+						cout << "cnt2 " << cnt2 << endl;
 						printCube();
 						i=0;
 						feedback = getColor(10) != getColor(13) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
@@ -3450,31 +3450,34 @@ void Cube::switchEdgesTopCross(){
 						break;
 				}
 			}
+			printCube();
 			globalRotationL();
+			printCube();
 			globalRotationL();
+			printCube();
 			break;
 		}
 		else if(getColor(28) == getColor(31)){ // <- MASTERMIND
-			//cout << "correct color 3"<< endl;
+			cout << "correct color 3"<< endl;
 			globalRotationR();
 			int i=1;
 			int cnt2=0;
 			bool feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(37) != getColor(40);// <- MASTERMIND
-			//cout << "Feedback = " << feedback << endl;
+			cout << "Feedback = " << feedback << endl;
 			while(feedback != 0){
 				switch(i){
 					case 0:
 						switchEdges(0,i);
-						//cout << "cnt2 " << cnt2 << endl;
-						//printCube();
+						cout << "cnt2 " << cnt2 << endl;
+						printCube();
 						i=1;
 						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(37) != getColor(40);// <- MASTERMIND
 						cnt2++;
 						break;
 					case 1:
 						switchEdges(0,i);
-						//cout << "cnt2 " << cnt2 << endl;
-						//printCube();
+						cout << "cnt2 " << cnt2 << endl;
+						printCube();
 						i=0;
 						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(37) != getColor(40);// <- MASTERMIND
 						cnt2++;
@@ -3482,28 +3485,28 @@ void Cube::switchEdgesTopCross(){
 				}
 			}
 			globalRotationL();
-			//printCube();
+			printCube();
 			break;
 		}
 		else if(getColor(37) == getColor(40)){ // <- MASTERMIND
-			//cout << "correct color 4"<< endl;
+			cout << "correct color 4"<< endl;
 			int i=1;
 			int cnt2=0;
 			bool feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(28) != getColor(31);// <- MASTERMIND
-			//cout << "Feedback = " << feedback << endl;
+			cout << "Feedback = " << feedback << endl;
 			while(feedback != 0){
 				switch(i){
 					case 0:
 						switchEdges(0,i);
-						//cout << "cnt2 " << cnt2 << endl;
-						//printCube();
+						cout << "cnt2 " << cnt2 << endl;
+						printCube();
 						i=1;
 						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(28) != getColor(31);// <- MASTERMIND
 						cnt2++;
 						break;
 					case 1:
 						switchEdges(0,i);
-						//cout << "cnt2 " << cnt2 << endl;
+						cout << "cnt2 " << cnt2 << endl;
 						printCube();
 						i=0;
 						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(28) != getColor(31);// <- MASTERMIND
@@ -3517,8 +3520,8 @@ void Cube::switchEdgesTopCross(){
 		switchEdges(0, 0);
 		u();
 		cnt ++;
-		//cout << "TRY " << cnt << endl;
-		//printCube();
+		cout << "TRY " << cnt << endl;
+		printCube();
 	}
 }
 
