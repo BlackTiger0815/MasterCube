@@ -122,6 +122,13 @@ main.cpp, cube.h, cube.cpp
 Isabella Reithner
 Hinzufügen einer Methode um das Top Cross aus einem nicht komplett bekannten Cube zu bekommen
 main.cpp, cube.h, cube.cpp
+****************
+15.02.2020
+Thomas
+Erstellen einer question methode, einer liste der ask_this_first, einer abfrage ob eine frage korrekt ist(unvollständig)
+bereitstellen einer main für die Kommunikation.
+main.cpp, cube.h, cube.cpp, solver.h, solver.cpp
+
 
 
 
