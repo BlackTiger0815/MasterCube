@@ -1,11 +1,44 @@
 #include "cube.h"
-#include<utility>
-#include<map>
-#include<iterator>
-#include<tuple>
-#include<bits/stdc++.h>
-#include <iostream>
-#include<vector>
+
+
+//-----------------------------------------------//
+//---------------Allgemeine Funktionen---------------//
+//-----------------------------------------------//
+
+char numbers_to_color(int number)
+{
+	char color[] = "wgrboy"; //white green red blue orange yellow
+	return color[number];	
+}
+
+int color_to_number(char color)
+{
+	switch (color)
+	{
+	case 'w':
+		return 0;
+		
+	case 'g':
+		return 1;
+		
+	case 'r':
+		return 2;
+		
+	case 'b':
+		return 3;
+		
+	case 'o':
+		return 4;
+		
+	case 'y':
+		return 5;
+		
+	default:
+		//cout << "you took a wrong turn" <<endl;
+		return -1;
+	}
+}
+
 
 //-----------------------------------------------//
 //---------------Globale Drehungen---------------//
