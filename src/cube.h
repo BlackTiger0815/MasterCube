@@ -5,11 +5,19 @@
 #include <cmath>
 #include <time.h>
 #include <stdio.h>
+#include<utility>
+#include<map>
+#include<iterator>
+#include<tuple>
+#include<bits/stdc++.h>
+#include <iostream>
+#include<vector>
+
 using namespace std;
 
 class Cube
 {
-private:
+public:
 	int _old[6][3][3];
 	int _cube[6][3][3]; //white side
 
@@ -157,3 +165,11 @@ public:
 		return this->moves;
 	};
 };
+//-----------------------------------------------//
+//---------------Allgemeine Funktionen---------------//
+//-----------------------------------------------//
+char numbers_to_color(int);
+int color_to_number(char);
+bool isEcke(int ); //sind hier sonst kann ich sie nicht benutzen
+bool isKante(int );
+bool isMitte(int );

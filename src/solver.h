@@ -3,7 +3,6 @@
 #include <list>
 #include "cube.h"
 #include <string>
-#include "debug.h"
 using namespace std;
 
 
@@ -42,8 +41,8 @@ string what_does_the_answer_mean(); //possible_corret -  answer //eliminate poss
 string generic_evolution_solver();
 string all_possible();
 
-/* char numbers_to_color(int);
-int color_to_number(char);  in cube.h verschoben*/
+/*char numbers_to_color(int);
+int color_to_number(char); look to the cube.h */
 
 //tracking cube
 void generate_tracking_cube();
