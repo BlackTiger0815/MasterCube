@@ -369,10 +369,8 @@ int MastermindSolver::vereinfachen_feedback(string one_feedback)
 			  {
 					int current_grading = int(*it)-48;
 					////cout<< current_grading<<endl;
-					if (current_grading== 2)
-						wie_gut += current_grading/2;
-					else
-						wie_gut += current_grading;
+					if (current_grading!= 2)
+						wie_gut++;
 			  }
 			  //cout << "we got " << wie_gut <<endl;
 			  return wie_gut;
