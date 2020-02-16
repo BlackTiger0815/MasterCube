@@ -208,7 +208,7 @@ int main (int argc, char* argv[]) {
 
 	Cube solved;
 	Cube scrambled;
-	//scrambled.scramble();
+	scrambled.scramble();
 	scrambled.r();
 	scrambled.l();
 	scrambled.f();
@@ -216,6 +216,11 @@ int main (int argc, char* argv[]) {
 	scrambled.r();
 	scrambled.b();
 	scrambled.r();
+	scrambled.f();
+	scrambled.b();
+	scrambled.r();
+	scrambled.r();
+	scrambled.li();
 	scrambled.fi();
 	cout << "scrambled:" << endl;
 	scrambled.printCube();
@@ -223,35 +228,21 @@ int main (int argc, char* argv[]) {
 	Cube tmp(0); //Cube mit -1 gefüllt
 	Cube tmp2(-1); //Cube mit indizes
 
-	 // int cnt = 0; //alles außer 0 wird zu -1 -> test der moveToTopCross()
-	 // for(int i=0; i<6; i++){
-	 // 	for(int j=0; j<3; j++){
-	 // 		for(int k=0; k<3; k++){
-	 // 			if(scrambled.getColor(cnt) != 0){
-	 // 				scrambled.writeCube(cnt,-1);
-	 // 			}
-	 // 			cnt++;
-	 // 		}
-	 // 	}
-	 // }
-
-	//scrambled.writeCube(12,-1);
-	//scrambled.writeCube(19,-1);
 	//scrambled.printCube();
 	scrambled.moveToTopCross(); //alle weißen (0) zum Kreuz der Obersten ebene
 	//cout << "TOP CROSS:" << endl;
 	//scrambled.printCube();
+	//scrambled.solveCube();
 	scrambled.switchEdgesTopCross();
-	//scrambled.printCube();
-	scrambled.clearMoves();
-	//scrambled.printMoves();
-	//scrambled.findSwitchableEdges();
+	//scrambled.clearMoves();
+
+	cout << "before: " << endl;
+	scrambled.printCube();
 	scrambled.solveSecondLayer();
+
+	cout << "after:" << endl;
 	scrambled.printCube();
 	scrambled.printMoves();
-	//bool x = scrambled.get_bedingung();
-	//cout << x << endl;
-
 
 	//scrambled.scramble();
 	//scrambled.splitQuestion("011033044136095112", 6);

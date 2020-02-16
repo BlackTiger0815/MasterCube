@@ -130,15 +130,22 @@ public:
 	void solveCube();
 
 	void switchEdges(int top, bool direction);//destroys corners!!!!
+	void findSwitchableEdges(); //not used
+	bool isCorrectEdge(int position); //not used?
+
+	//--------------------First Layer----------------------//
 	void moveToTopCross();
 	int findTopEdgePos(int side, int pos);
 	int findTopEdgeSide(int side, int pos);
 	void switchEdgesTopCross();
+	//--------------------Second Layer----------------------//
+	void MoveSecondLayer();
+	//bool get_bedingung();
 	void solveSecondLayer();
-	bool get_bedingung();
-
-	void findSwitchableEdges();
-	bool isCorrectEdge(int position);
+	//--------------------Third Layer----------------------//
+	int findBottomEdgePos(int side, int pos);
+	int findBottomEdgeSide(int side, int pos);
+	void moveToBottomCross();
 //------------------------------------------//
 
 // cube questions //
