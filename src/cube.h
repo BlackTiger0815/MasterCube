@@ -146,7 +146,7 @@ public:
 	//--------------------Third Layer----------------------//
 	void moveToBottomCross();
 	void switchEdgesBottomCross();
-	
+
 	int findBottomEdgePos(int side, int pos);
 	int findBottomEdgeSide(int side, int pos);
 //------------------------------------------//
@@ -174,6 +174,8 @@ public:
 	string getMoves(){
 		return this->moves;
 	};
+	void bayes_guesser(int *farbArray, int n);
+	int amountWandBofPosAndCol(int *pos,int *FarbArray,int n);
 };
 //-----------------------------------------------//
 //---------------Allgemeine Funktionen---------------//
