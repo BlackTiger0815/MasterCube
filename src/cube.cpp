@@ -58,16 +58,16 @@ void Cube::globalRotationR(){
 		}
 	}
 
-	//corners der oberseite
-	_cube[0][0][0] = _old[0][2][0];
-	_cube[0][2][0] = _old[0][2][2];
-	_cube[0][2][2] = _old[0][0][2];
-	_cube[0][0][2] = _old[0][0][0];
-	//edges der oberseite
-	_cube[0][0][1] = _old[0][1][0];
-	_cube[0][1][0] = _old[0][2][1];
-	_cube[0][2][1] = _old[0][1][2];
-	_cube[0][1][2] = _old[0][0][1];
+	// //corners der oberseite
+	_cube[0][0][0] = _old[0][0][2];
+	_cube[0][2][2] = _old[0][2][0];
+	_cube[0][2][0] = _old[0][0][0];
+	_cube[0][0][2] = _old[0][2][2];
+	// //edges der oberseite
+	_cube[0][1][2] = _old[0][2][1];
+	_cube[0][1][0] = _old[0][0][1];
+	_cube[0][0][1] = _old[0][1][2];
+	_cube[0][2][1] = _old[0][1][0];
 	//corners der unterseite
 	_cube[5][0][0] = _old[5][2][0];
 	_cube[5][2][0] = _old[5][2][2];
@@ -78,6 +78,7 @@ void Cube::globalRotationR(){
 	_cube[5][1][0] = _old[5][2][1];
 	_cube[5][2][1] = _old[5][1][2];
 	_cube[5][1][2] = _old[5][0][1];
+
 
 	moves += "gR ";
 }
@@ -97,15 +98,15 @@ void Cube::globalRotationL(){
 		}
 	}
 	//corners der oberseite
-	_cube[0][0][0] = _old[0][0][2];
-	_cube[0][0][2] = _old[0][2][2];
-	_cube[0][2][2] = _old[0][2][0];
-	_cube[0][2][0] = _old[0][0][0];
+	_cube[0][2][2] = _old[0][0][2];
+	_cube[0][2][0] = _old[0][2][2];
+	_cube[0][0][0] = _old[0][2][0];
+	_cube[0][0][2] = _old[0][0][0];
 	//edges der oberseite
-	_cube[0][0][1] = _old[0][1][2];
-	_cube[0][1][0] = _old[0][0][1];
-	_cube[0][2][1] = _old[0][1][0];
-	_cube[0][1][2] = _old[0][2][1];
+	_cube[0][2][1] = _old[0][1][2];
+	_cube[0][1][2] = _old[0][0][1];
+	_cube[0][0][1] = _old[0][1][0];
+	_cube[0][1][0] = _old[0][2][1];
 	//corners der unterseite
 	_cube[5][0][0] = _old[5][0][2];
 	_cube[5][2][0] = _old[5][0][0];
@@ -153,6 +154,28 @@ void Cube::globalRotationD(){
 	_cube[3][2][1] = _old[3][1][0];
 	_cube[3][1][2] = _old[3][2][1];
 
+	copyCube();
+	//corners der Oberseite
+	_cube[0][0][0] = _old[0][2][2];
+	_cube[0][2][2] = _old[0][0][0];
+	_cube[0][0][2] = _old[0][2][0];
+	_cube[0][2][0] = _old[0][0][2];
+	//edges der Oberseite
+	_cube[0][0][1] = _old[0][2][1];
+	_cube[0][2][1] = _old[0][0][1];
+	_cube[0][1][0] = _old[0][1][2];
+	_cube[0][1][2] = _old[0][1][0];
+	//corners der Hinterseite
+	_cube[4][0][0] = _old[4][2][2];
+	_cube[4][2][2] = _old[4][0][0];
+	_cube[4][0][2] = _old[4][2][0];
+	_cube[4][2][0] = _old[4][0][2];
+	//edges der Hinterseite
+	_cube[4][0][1] = _old[4][2][1];
+	_cube[4][2][1] = _old[4][0][1];
+	_cube[4][1][0] = _old[4][1][2];
+	_cube[4][1][2] = _old[4][1][0];
+
 	moves += "gD ";
 }
 
@@ -188,6 +211,28 @@ void Cube::globalRotationU(){
 	_cube[3][1][0] = _old[3][2][1];
 	_cube[3][2][1] = _old[3][1][2];
 	_cube[3][1][2] = _old[3][0][1];
+
+	copyCube();
+	//corners der Unterseite
+	_cube[5][0][0] = _old[5][2][2];
+	_cube[5][2][2] = _old[5][0][0];
+	_cube[5][0][2] = _old[5][2][0];
+	_cube[5][2][0] = _old[5][0][2];
+	//edges der Unterseite
+	_cube[5][0][1] = _old[5][2][1];
+	_cube[5][2][1] = _old[5][0][1];
+	_cube[5][1][0] = _old[5][1][2];
+	_cube[5][1][2] = _old[5][1][0];
+	//corners der neuen hinterseite
+	_cube[4][0][2] = _old[4][2][0];
+	_cube[4][2][0] = _old[4][0][2];
+	_cube[4][0][0] = _old[4][2][2];
+	_cube[4][2][2] = _old[4][0][0];
+	//edges der neuen hinterseite
+	_cube[4][0][1] = _old[4][2][1];
+	_cube[4][2][1] = _old[4][0][1];
+	_cube[4][1][0] = _old[4][1][2];
+	_cube[4][1][2] = _old[4][1][0];
 
 	moves += "gU ";
 }
@@ -3443,7 +3488,7 @@ void Cube::switchEdgesTopCross(){
 					case 1:
 						switchEdges(0,i);
 						//cout << "cnt2 " << cnt2 << endl;
-						printCube();
+						//printCube();
 						i=0;
 						feedback = getColor(10) != getColor(13) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
 						cnt2++;
@@ -3504,14 +3549,14 @@ void Cube::switchEdgesTopCross(){
 					case 1:
 						switchEdges(0,i);
 						//cout << "cnt2 " << cnt2 << endl;
-						printCube();
+						//printCube();
 						i=0;
 						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(28) != getColor(31);// <- MASTERMIND
 						cnt2++;
 						break;
 				}
 			}
-			printCube();
+			//printCube();
 			break;
 		}
 		switchEdges(0, 0);
@@ -3522,39 +3567,333 @@ void Cube::switchEdgesTopCross(){
 	}
 }
 
-bool Cube::get_bedingung(){
-	if( (getColor(16)==5 || getColor(48)==5) && (getColor(25)==5 || getColor(46)==5)
-	 && (getColor(34)==5 || getColor(50)==5) && (getColor(43)==5 || getColor(52)==5) )
-		return 1;
-	else return 0;
-}
-
-void Cube::solveSecondLayer(){
-	bool bedingung = get_bedingung();
-	int cnt = 0;
-	while(bedingung == 0){
-		//if(cnt > 10) break;
-		if(getColor(25) != getColor(22)){
-			d();
-			cout << "d" << endl;
-		}
-		else{
+void Cube::MoveSecondLayer(){
+	int color = getColor(25);
+	//cout << color << endl;;
+	while(color == 5){
+		d();
+		color = getColor(25);
+	}
+	//printCube();
+	switch (color) {
+		case 1:
+			di();
+			if(getColor(48) == getColor(22)){
+				switchEdges(1,1);
+				//cout << "1 right" << endl;
+			}
+			else if(getColor(48)==getColor(40)){
+				switchEdges(1,0);
+				//cout << "1 left" << endl;
+			}
+			else d();
+			break;
+		case 2:
 			if(getColor(46) == getColor(13)){
-				cout << "left" << endl;
 				switchEdges(2,0);
+				//cout << "2 left" << endl;
 			}
-			if(getColor(46) == getColor(31)){
-				cout << "right" << endl;
+			else if(getColor(46)==getColor(31)){
 				switchEdges(2,1);
+				//cout << "2 right" << endl;
+				//printCube();
 			}
-		}
-		bedingung = get_bedingung();
-		cnt++;
-		cout << "CNT " << cnt << endl;
-		printCube();
+			else d();
+			break;
+		case 3:
+			d();
+			if(getColor(50) == getColor(22)){
+				switchEdges(3,0);
+				//cout << "3 left" << endl;
+			}
+			else if(getColor(50)==getColor(40)){
+				switchEdges(3,1);
+				//cout << "3 right" << endl;
+			}
+			else d();
+			break;
+		case 4:
+			d();
+			d();
+			if(getColor(52) == getColor(31)){
+				switchEdges(4,0);
+				//cout << "4 left" << endl;
+			}
+			else if(getColor(52) == getColor(13)){
+				switchEdges(4,1);
+				//cout << "4 right" << endl;
+				//printCube();
+			}
+			else d();
+			break;
+		default:
+			d();
+			//cout << "default" << endl;
+			break;
 	}
 }
 
+void Cube::solveSecondLayer(){
+	for(int i=0; i<10; i++){
+		if(getColor(12) != getColor(13)){
+			if(getColor(12) != getColor(49)){
+				switchEdges(1,0);
+			}
+			else{
+				switchEdges(4,1);
+			}
+			//cout << "got it at 12" << endl;
+			MoveSecondLayer();
+			//printCube();
+		}
+		else if(getColor(14) != getColor(13)){
+			if(getColor(14) != getColor(49)){
+				switchEdges(2,0);
+			}
+			else{
+				switchEdges(1,1);
+			}
+			//cout << "got it at 14" << endl;
+			MoveSecondLayer();
+			//printCube();
+		}
+		else if(getColor(21) != getColor(22)){
+			if(getColor(21) != getColor(49)){
+				switchEdges(2,0);
+			}
+			else{
+				switchEdges(1,1);
+			}
+			//cout << "got it at 21" << endl;
+			MoveSecondLayer();
+			//printCube();
+		}
+		else if(getColor(23) != getColor(22)){
+			if(getColor(23) != getColor(49)){
+				switchEdges(2,1);
+			}
+			else{
+				switchEdges(3,0);
+			}
+			//cout << "got it at 23" << endl;
+			MoveSecondLayer();
+			//printCube();
+		}
+		else if(getColor(30) != getColor(31)){
+			if(getColor(30) != getColor(49)){
+				switchEdges(3,0);
+			}
+			else{
+				switchEdges(2,1);
+			}
+			//cout << "got it at 30" << endl;
+			MoveSecondLayer();
+			//printCube();
+		}
+		else if(getColor(32) != getColor(31)){
+			if(getColor(32) != getColor(49)){
+				switchEdges(3,1);
+			}
+			else{
+				switchEdges(4,0);
+			}
+			//cout << "got it at 32" << endl;
+			MoveSecondLayer();
+			//printCube();
+		}
+		else if(getColor(39) != getColor(40)){
+			if(getColor(39) != getColor(49)){
+				switchEdges(3,1);
+			}
+			else{
+				switchEdges(4,0);
+			}
+			//cout << "got it at 39" << endl;
+			MoveSecondLayer();
+			//printCube();
+		}
+		else if(getColor(41) != getColor(40)){
+			if(getColor(41) != getColor(49)){
+				switchEdges(4,1);
+			}
+			else{
+				switchEdges(1,0);
+			}
+			//cout << "got it at 41" << endl;
+			MoveSecondLayer();
+			//printCube();
+		}
+	}
+}
+
+void Cube::moveToBottomCross(){
+	globalRotationD();
+	globalRotationD();
+
+	for(int i=0; i<8; i++){
+		//cout << getColor(7) << getColor(4) << endl;
+		if(getColor(7) == getColor(4)){
+			u();
+			//cout << "u" << endl;
+		}
+		else{
+			//cout << "else" << endl;
+			f();
+			r();
+			u();
+			ri();
+			ui();
+			fi();
+		}
+	}
+	globalRotationD();
+	globalRotationD();
+}
+
+
+void Cube::switchEdgesBottomCross(){
+	/*
+		Überall wo "MASTERMIND" steht muss die Bedingung des
+		Masterminds eingesetzt werden
+	*/
+	globalRotationD();
+	globalRotationD();
+
+	int cnt = 0;
+	while(cnt < 12){
+		if(getColor(10) == getColor(13)){ // <- MASTERMIND
+			//cout << "correct color 1"<< endl;
+			globalRotationL();
+			int i=1;
+			int cnt2=0;
+			bool feedback = getColor(19) != getColor(22) || getColor(28) != getColor(31) || getColor(37) != getColor(40); // <- MASTERMIND
+			//cout << "Feedback = " << feedback << endl;
+			while(feedback != 0){
+				switch(i){
+					case 0:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=1;
+						feedback = getColor(19) != getColor(22) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
+						cnt2++;
+						break;
+					case 1:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=0;
+						feedback = getColor(19) != getColor(22) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
+						cnt2++;
+						break;
+				}
+			}
+			globalRotationR();
+			//printCube();
+			break;
+		}
+		else if(getColor(19) == getColor(22)){ // <- MASTERMIND
+			//cout << "correct color 2"<< endl;
+			globalRotationR();
+			globalRotationR();
+			int i=1;
+			int cnt2=0;
+			bool feedback = getColor(10) != getColor(13) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
+			//cout << "Feedback = " << feedback << endl;
+			while(feedback != 0){
+				switch(i){
+					case 0:
+						switchEdges(0,i);
+						//cout << "cnt2xx " << cnt2 << endl;
+						//printCube();
+						i=1;
+						feedback = getColor(10) != getColor(13) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
+						//cout << feedback << endl;
+						cnt2++;
+						break;
+					case 1:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=0;
+						feedback = getColor(10) != getColor(13) || getColor(28) != getColor(31) || getColor(37) != getColor(40);// <- MASTERMIND
+						cnt2++;
+						break;
+				}
+			}
+			globalRotationL();
+			globalRotationL();
+			break;
+		}
+		else if(getColor(28) == getColor(31)){ // <- MASTERMIND
+			//cout << "correct color 3"<< endl;
+			globalRotationR();
+			int i=1;
+			int cnt2=0;
+			bool feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(37) != getColor(40);// <- MASTERMIND
+			//cout << "Feedback = " << feedback << endl;
+			while(feedback != 0){
+				switch(i){
+					case 0:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=1;
+						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(37) != getColor(40);// <- MASTERMIND
+						cnt2++;
+						break;
+					case 1:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=0;
+						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(37) != getColor(40);// <- MASTERMIND
+						cnt2++;
+						break;
+				}
+			}
+			globalRotationL();
+			//printCube();
+			break;
+		}
+		else if(getColor(37) == getColor(40)){ // <- MASTERMIND
+			//cout << "correct color 4"<< endl;
+			int i=1;
+			int cnt2=0;
+			bool feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(28) != getColor(31);// <- MASTERMIND
+			//cout << "Feedback = " << feedback << endl;
+			while(feedback != 0){
+				switch(i){
+					case 0:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=1;
+						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(28) != getColor(31);// <- MASTERMIND
+						cnt2++;
+						break;
+					case 1:
+						switchEdges(0,i);
+						//cout << "cnt2 " << cnt2 << endl;
+						//printCube();
+						i=0;
+						feedback = getColor(10) != getColor(13) || getColor(19) != getColor(22) || getColor(28) != getColor(31);// <- MASTERMIND
+						cnt2++;
+						break;
+				}
+			}
+			//printCube();
+			break;
+		}
+		switchEdges(0, 0);
+		u();
+		cnt ++;
+		//cout << "TRY " << cnt << endl;
+		//printCube();
+	}
+	globalRotationD();
+	globalRotationD();
+}
 //-----------------------------------------------//
 //------------------Sonstiges--------------------//
 //-----------------------------------------------//
