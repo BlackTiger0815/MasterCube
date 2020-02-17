@@ -229,20 +229,23 @@ int main (int argc, char* argv[]) {
 	Cube tmp2(-1); //Cube mit indizes
 
 	//scrambled.printCube();
+	cout << "TOP CROSS:" << endl;
 	scrambled.moveToTopCross(); //alle weißen (0) zum Kreuz der Obersten ebene
-	//cout << "TOP CROSS:" << endl;
-	//scrambled.printCube();
-	//scrambled.solveCube();
 	scrambled.switchEdgesTopCross();
-	//scrambled.clearMoves();
-
-	cout << "before: " << endl;
 	scrambled.printCube();
-	scrambled.solveSecondLayer();
 
-	cout << "after:" << endl;
+	cout << "2nd Layer:" << endl;
+	scrambled.solveSecondLayer();
+	scrambled.printCube();
+
+	cout << "3rd Layer:" << endl;
+	scrambled.moveToBottomCross();
+	cout << "3rd Layer: 2" << endl;
+	scrambled.switchEdgesBottomCross();
 	scrambled.printCube();
 	scrambled.printMoves();
+
+	//scrambled.solveCube();
 
 	//scrambled.scramble();
 	//scrambled.splitQuestion("011033044136095112", 6);
