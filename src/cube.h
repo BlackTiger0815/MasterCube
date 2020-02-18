@@ -38,6 +38,8 @@ public:
 
 	string moves = "";
 
+
+
 	Cube(int n=1){
 		if(n==0){
 			for(int i=0;i<6;i++)
@@ -146,7 +148,7 @@ public:
 	//--------------------Third Layer----------------------//
 	void moveToBottomCross();
 	void switchEdgesBottomCross();
-
+	
 	int findBottomEdgePos(int side, int pos);
 	int findBottomEdgeSide(int side, int pos);
 //------------------------------------------//
@@ -168,20 +170,27 @@ public:
 	void writeCube(int position, int color);
 
 	int middleIndexOf(int pos);
-	int getAdjecentKante(int pos);
-	void init_Kanten();
 	int getColor(int pos);
 	string getMoves(){
 		return this->moves;
 	};
-	void bayes_guesser(int *farbArray, int n);
+
+
+
+
+		void bayes_guesser(int *farbArray, int n);
 	int amountWandBofPosAndCol(int *pos,int *FarbArray,int n);
 };
 //-----------------------------------------------//
-//---------------Allgemeine Funktionen---------------//
+//---------------Globale Funktionen---------------//
 //-----------------------------------------------//
+
+
 char numbers_to_color(int);
 int color_to_number(char);
 bool isEcke(int ); //sind hier sonst kann ich sie nicht benutzen
 bool isKante(int );
 bool isMitte(int );
+void init_Kanten();
+void init_Ecken();
+int getAdjecentKante(int pos);
