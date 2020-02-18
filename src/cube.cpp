@@ -2776,7 +2776,7 @@ int Cube::middleIndexOf(int pos){ //holt sich die nummer des mittelfelds der Sei
 }
 multimap <int,int> _kanten; //globale kanten
 
-void Cube::init_Kanten(){ //multimap aller Kanten und deren Felder anlegen
+void init_Kanten(){ //multimap aller Kanten und deren Felder anlegen
 	_kanten.insert( pair <int,int> (1,37));
 	_kanten.insert( pair <int,int> (3,10));
 	_kanten.insert( pair <int,int> (5,28));
@@ -2803,7 +2803,7 @@ void Cube::init_Kanten(){ //multimap aller Kanten und deren Felder anlegen
 	_kanten.insert( pair <int,int> (52,43));
 }
 
-int Cube::getAdjecentKante(int pos){ //angrenzende Kante aus der Liste finden
+int getAdjecentKante(int pos){ //angrenzende Kante aus der Liste finden
   return _kanten.find(pos)->second;
 }
 
