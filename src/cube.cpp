@@ -2740,7 +2740,7 @@ bool isEcke(int z){
 }
 
 bool isKante(int z){
-  int qPosK[]={1,3,5,7,10,12,14,16,19,21,23,25,28,30,32,34,27,39,41,43,46,48,50,52};
+  int qPosK[]={1,3,5,7,10,12,14,16,19,21,23,25,28,30,32,34,37,39,41,43,46,48,50,52};
   int *i = find(std::begin(qPosK), std::end(qPosK), z);
   if (i != std::end(qPosK)) {
     return true;
@@ -2872,7 +2872,7 @@ string Cube::splitQuestion(string s, int n) //by Isabella Reithner
 					if(it == pos){ //Wenn die Position befunden wurde, Farbe in reference schreiben
 						gtPos[h]=pos;
 						gtCol[h]=this->_cube[a][b][c];
-						cout<<"it: " << h << ". gt an Position: "<< gtPos[h]<<" hat Farbe "<< gtCol[h] << ". Zu Farbe in Question: "<<qCol[h] <<endl;
+						//cout<<"it: " << h << ". gt an Position: "<< gtPos[h]<<" hat Farbe "<< gtCol[h] << ". Zu Farbe in Question: "<<qCol[h] <<endl;
 					}
 					it++;
 				}
@@ -2886,52 +2886,49 @@ string Cube::splitQuestion(string s, int n) //by Isabella Reithner
 
 }
 
+//generateMastermindAnswer here
 string Cube::generateMastermindAnswer(int* qPos, int *qCol, int n ){
 	string randFeedback;
 	int num =0;
 	list<int> my_list;
 	list<int>::iterator it;
 	bool b;
+	string feedback;
 
 	for(int i=0;i<n;i++){
 		//cout<<"\nqPos["<<i<<"] "<< qPos[i];
 
 		if(isMitte(qPos[i]))
-		{//cout<<" m ";
-			if(qCol[i]==getColor(middleIndexOf(qCol[i])))//Wenn die Farbe aus der Frage vom aktuellen Mittelfeld gleich der Farbe an der seleben Stelle im scrambeld Cube
+		{cout<<" m ";
+			if(qCol[i]==getColor(middleIndexOf(qPos[i])))//Wenn die Farbe aus der Frage vom aktuellen Mittelfeld gleich der Farbe an der seleben Stelle im scrambeld Cube
 			{
 				//cout<<"b";
-				feedback.append("b");
+				feedback.append("1");
 			}else{
-				//cout << "w";
-				feedback.append("x");
+				feedback.append("2");//x
 			}
 		}
 
 		if(isKante(qPos[i]))
-		{
-			//cout<<qPosK[i] << " " << middleIndexOf(qPosK[i]) << " " <<getColor(middleIndexOf(qPosK[i]))<<endl;
-			if(qCol[i]!=getColor(middleIndexOf(qPos[i]))){
-				//wenn die frabe der Kante nicht gleich der Farbe des mittelfelds der gleichen seite ist
-				//cout<<"x";
-				feedback.append("x");
-			}else{//wenn die farbe der Kante gleich der Farbe des mittlfeldes der gleichen seite ist
-				//wenn farbe des um die Ecke angrenzenden Felds gleich wie die Mitte dieser Seite ist
-				if(getAdjecentKante(qPos[i])==getColor(middleIndexOf(getAdjecentKante(qPos[i])))){
-				//cout<<"b";
-					feedback.append("b");
+		{cout<<"k";
+
+			if(qCol[i]==getColor(qPos[i])){// weiß
+				if(qCol[i]==getColor(middleIndexOf(qPos[i]))&&getColor(getAdjecentKante(qPos[i]))==getColor(middleIndexOf(getAdjecentKante(qPos[i])))){
+					feedback.append("1");//schwarz
+				}else{
+					feedback.append("0");//weiß
 				}
-				else
-				{
-					//cout<<"w";
-					feedback.append("w");
-				}
+			}
+			else
+			{
+					//cout<<"x";
+					feedback.append("2");
 			}
 		}
 
 		if(isEcke(qPos[i]))
 		{
-			//cout<<" e ";
+			cout<<" e ";
 			int a,b;
 			vector<pair<int,int>> adjEcken;
 			adjEcken=getAdjecentEcken(qPos[i]);
@@ -2940,37 +2937,229 @@ string Cube::generateMastermindAnswer(int* qPos, int *qCol, int n ){
 			//cout<< "--a: "<< a << " b: "<<b<<endl;
 			bool s1,s2,s3;
 
-			if(qCol[i]==getColor(middleIndexOf(qPos[i]))) s1=true; else s1=false;
+			if(qCol[i]==getColor(qPos[i])) s1=true; else s1=false;
 				//cout<<s1;
 			if(getColor(a)==getColor(middleIndexOf(a))) s2=true; else s2=false;
 				//cout<<s2;
 			if(getColor(b)==getColor(middleIndexOf(b))) s3=true; else s3=false;
 				//cout<<s3;
 
-			if(s1==true&&s2==true&&s3==true){
-					//cout<< ".b";
-				feedback.append("b");
+
+			if(qCol[i]==getColor(qPos[i]))
+			{
+				if(s1==true&&s2==true&&s3==true){
+					feedback.append("1");//b
+				}else{
+					feedback.append("0");
+				}
 			}
 			else
-
-			/*if((s1==true&&s2==false&&s3==false)||(s1==false&&s2==true&&s3==false)||(s1==false&&s2==false&&s3==true))
-				{cout<< ".w"; feedback.append(".w");}*/
-
-			if(s1==false&&s2==false&&s3==false){
-				//cout<< ".x";
-				feedback.append("x");
-			}else{
-				//cout<< ".w";
-				feedback.append("w");
+			{
+				feedback.append("2");//x
 			}
 		}
 	}
-	cout <<"\nFeedback: "<< feedback<<endl;
+	//cout <<"\nFeedback: "<< feedback<<endl;
 		//randomize feedbackstring
 	string temp=randomizeFeedback(feedback);
-	cout<<"Randomisiertes Feedback: "<<temp <<endl;
+	cout<<"Randomisiertes Feedback: "<<feedback <<endl;
 	return temp;
+
 }
+
+//-------------------------BayesGuesser----------------------//
+//farben fix und positionen raten
+//3 stelligen() mit 9 stelligen(t)(hat 3 mal die farbe 4) array vergleichen. suchen wo diese 3 4er sind
+void showlist2(list <int> g)
+{
+    list <int> :: iterator it;
+    for(it = g.begin(); it != g.end(); ++it){
+        cout << *it;
+    cout << " ";}
+}
+
+void showPositionList(list <vector<int>> g)
+{int z=0;
+list <vector<int>> :: iterator it;
+
+  for(it = g.begin(); it != g.end(); ++it){
+    if(z%2==0)cout<< "\n";
+
+	  vector<int> actual_vector = *it;
+	   for (int i = 0; i < actual_vector.size(); i++) {
+			 if(actual_vector.at(i)<10)
+			 		cout<< "0";
+		   std::cout << actual_vector.at(i) << " ";
+       z++;
+	   }
+	   cout << "  ";
+
+  }
+
+}
+
+int Cube::amountWandBofPosAndCol(int *farb,int *PosArray,int n){
+  int counter=0;
+  string question, feedback;
+
+  for(int k=0;k<n;k++){
+		if(PosArray[k]<10)
+			question.append(to_string(0));
+
+		question.append(to_string(PosArray[k]));
+		//cout<< " posk"<<pos[k];
+    //question.append(to_string(getColor(pos[k]))); die zeile mit der darunter mach keinen sinn!?
+    question.append(to_string(farb[k]));
+		//cout<<"\ngenerate question in process: "<<question<<endl;
+  }
+	cout<<"Question to check: "<<question<<endl;
+  feedback=splitQuestion(question,n);//getfeedback
+
+
+  int b=count(feedback.begin(), feedback.end(), '1');
+  int w=count(feedback.begin(), feedback.end(), '0');
+	cout<<"b "<<b <<" w "<<w<<endl;
+  //return (b*10)+w;
+	return b+w;
+}
+
+
+void Cube::bayes_guesser(int *posArray, int n){
+
+  list<vector<int>> positionen;
+  list<int> wert; //positionen ist pos-array, wert ist der counter
+  vector<int> w;
+  srand(time(NULL));
+
+  //int n=3; //unser normales n FARB==[0,0,1,1] -> BestGuess[5,6,1,0]
+  int M = 10000; //anzahl an Guesses
+  int t[] = {1,1,4,4,4,0,0,1,1,1,0,0,4,4}; //Positionen die wir erraten wollen (1 seite)
+  int t_size = sizeof(t)/sizeof(t[0]);
+  int farb[n];
+  int counter=0;//anzahl w und s
+
+  //float cutoff= n*0.9;
+	//int cutoff=static_cast<int>(n*0.9);
+  int cutoff;
+	cout<<"cutoff eingeben";
+	cin>>cutoff;
+  //z=(int)cutoff;//funktioniert??
+  int check = 0;
+
+  for(int z=0;z<M;z++){//++++++++++++++BEGIN OF FOR
+    counter = 0;
+    vector<int> p;
+
+			cout << "farbi: ";
+	    for(int i=0;i<n;i++)
+	    {	//hier wird der index des arrays t erstellt, anden die abzufragende Farbe 4 ist
+	      //pos[i] = rand() % t_size;
+				farb[i] = rand() % 6;
+	      //cout<<" "<<farb[i];
+				//7 0 13 24 10 mit Farbarray {00000}
+				//7 0 11 20 50
+
+	    }
+			cout<<"\n";
+
+    //Guess = pos[] verschmelzt mit farb[]
+
+    cout<<"\n";
+
+
+    /*for(int i=0;i<n;i++){	//counter steht für Anzahl BLACK und WHITE vom Feedbackstring
+      if(t[pos[i]]==4){
+        counter++;
+      } //wird ersetzt durch:
+
+    }*/
+		cout<<"++Entering-amountWandBofPosAndCol"<<endl;
+    counter = amountWandBofPosAndCol(&farb[0],&posArray[0],n);
+		if(counter>=cutoff)
+			cout << "\033[1;31mCounter\033[0m";
+
+		cout<<"Counter: "<<counter<<endl;
+		cout<<"--Leaving-amountWandBofPosAndCol\n"<<endl;
+    //for (int i = 0; i < p.size(); i++)
+      //  cout << p[i] << " ";
+		for(int i=0;i<n;i++)
+			p.push_back(farb[i]);
+
+		//cout<<"\nCutoff: "<<cutoff<<endl;
+    if(counter>=cutoff){//gute guesses behalten
+      positionen.push_back(p);
+      wert.push_back(counter);
+    }
+  }//+++++++++++++++++++++END OF FOR. bis hier wird gefüllt
+
+  cout<<"B_Gpositionen.size():"<<positionen.size()<<" "<<endl;
+  //cout << "B_Gpositionen: "<<endl;
+  showPositionList(positionen);
+  //cout<< "counter: "<<endl;
+  //showlist2(wert);
+  vector<int> bestGuess;
+  int max=0,haeufigste=0;
+
+  for(int u=0;u<n;u++){//++++++++++++++++++BEGIN OF FOR
+  	max=0;
+    cout<<"\n--u = "<<u;
+    list <vector<int>> :: iterator iterator;
+    vector<int> spalte;
+    for(iterator = positionen.begin(); iterator != positionen.end(); ++iterator){
+    	vector<int> actual_vector = *iterator;
+      //cout<< "\nactual_vector " << actual_vector.at(l);
+      spalte.push_back(actual_vector.at(u));
+    }
+
+    int i,last,temp;
+
+    sort(spalte.begin(),spalte.end());//vector sortieren, damit einfacher evaluiert werden kann
+		/*for(int i=0;i<spalte.size();i++){
+			cout<<spalte[i];
+		}
+		cout<<endl;*/
+
+
+		cout<<"\n--spalte.size(): "<<spalte.size();
+    for(i=0;i<spalte.size();i++){
+      int zahl=spalte.at(i);
+
+      if(last!=zahl) {
+        int count = std::count(spalte.begin(),spalte.end(),spalte.at(i));
+        //cout<<"\nZahl "<<spalte.at(i)<<" kommt " << count << " mal vor";
+          if(count>max){
+            max=count;
+            haeufigste=spalte.at(i);
+          }
+          count=0;//counter für die nächste  zählung zurücksetzten
+      }
+      last=zahl;//sicherung, damit kein wert doppelt gezählt wird
+    }
+    //cout<<"check";
+    spalte.clear();//spaltenvector leeren, da ansonst alle anderen spalten dazugesepcihert werden;
+    cout<< "\nhaeufigste Zahl: "<<haeufigste<< endl;
+    bestGuess.push_back(haeufigste);
+    //cout<<"c"<<endl;
+  }//+++++++++++++++++++++++++++++END OF FOR
+
+
+  cout <<"bestGuess ";
+  for (int i = 0; i < bestGuess.size(); i++)
+  	cout << bestGuess[i] << " ";
+
+	/*cout<<"\nColors of numbers in bestGuess:\n";
+	for (int i = 0; i < bestGuess.size(); i++)
+		cout << getColor(bestGuess[i]) << " ";*/
+
+	cout<<"\nPosArray \n";
+	for (int i = 0; i < bestGuess.size(); i++)
+				cout << posArray[i] << " ";
+
+//cout << "\n\n" << t_size;
+
+}
+
+//-------------------------BayesGuesser----------------------//
 
 
 //-----------------------------------------------//
