@@ -2776,7 +2776,7 @@ int Cube::middleIndexOf(int pos){ //holt sich die nummer des mittelfelds der Sei
 }
 multimap <int,int> _kanten; //globale kanten
 
-void init_Kanten(){ //multimap aller Kanten und deren Felder anlegen
+void Cube::init_Kanten(){ //multimap aller Kanten und deren Felder anlegen
 	_kanten.insert( pair <int,int> (1,37));
 	_kanten.insert( pair <int,int> (3,10));
 	_kanten.insert( pair <int,int> (5,28));
@@ -2803,7 +2803,7 @@ void init_Kanten(){ //multimap aller Kanten und deren Felder anlegen
 	_kanten.insert( pair <int,int> (52,43));
 }
 
-int getAdjecentKante(int pos){ //angrenzende Kante aus der Liste finden
+int Cube::getAdjecentKante(int pos){ //angrenzende Kante aus der Liste finden
   return _kanten.find(pos)->second;
 }
 
@@ -3032,7 +3032,7 @@ void Cube::bayes_guesser(int *posArray, int n){
   srand(time(NULL));
 
   //int n=3; //unser normales n FARB==[0,0,1,1] -> BestGuess[5,6,1,0]
-  int M = 10000; //anzahl an Guesses
+  int M = 1000; //anzahl an Guesses
   int t[] = {1,1,4,4,4,0,0,1,1,1,0,0,4,4}; //Positionen die wir erraten wollen (1 seite)
   int t_size = sizeof(t)/sizeof(t[0]);
   int farb[n];
@@ -3144,8 +3144,13 @@ void Cube::bayes_guesser(int *posArray, int n){
 
 
   cout <<"bestGuess ";
+  guess = "";
   for (int i = 0; i < bestGuess.size(); i++)
-  	cout << bestGuess[i] << " ";
+  {
+  		cout << bestGuess[i] << " ";
+  		guess.append(to_string(bestGuess[i]));
+  }
+  
 
 	/*cout<<"\nColors of numbers in bestGuess:\n";
 	for (int i = 0; i < bestGuess.size(); i++)

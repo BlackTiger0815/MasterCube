@@ -208,13 +208,53 @@ int main (int argc, char* argv[]) {
 
 	Cube solved;
 	Cube scrambled;
+	Cube guesscube(0);
 	scrambled.scramble();
-	int PosArray[]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53};
-	cout<<"BayesGuesser"<<endl;
-
+	int n = 6;
+	int PosArray[]={49,40,31,22,13,4};
+	cout<<"BayesGuesser cutoff 3"<<endl;
 	scrambled.bayes_guesser(&PosArray[0],sizeof(PosArray)/sizeof(PosArray[0]));
 	cout<<"end BayesGuesser"<<endl;
-	scrambled.printCube();
+
+	cout << scrambled.guess << endl;
+
+	for( int i=0; i<n; i++)
+		{
+     	guesscube.writeCube(PosArray[i],(scrambled.guess[i]-48));
+		}
+
+	guesscube.printCube();
+
+	cout<<"BayesGuesser cutoff 6"<<endl;
+	n=24;
+	int PosArrayEdge[]={1,3,5,7,10,12,14,16,19,21,23,25,28,30,32,34,37,39,41,43,46,48,50,52};
+	scrambled.bayes_guesser(&PosArrayEdge[0],sizeof(PosArrayEdge)/sizeof(PosArrayEdge[0]));
+	cout<<"end BayesGuesser"<<endl;
+
+	cout << scrambled.guess << endl;
+
+	for( int i=0; i<n; i++)
+		{
+     	guesscube.writeCube(PosArrayEdge[i],(scrambled.guess[i]-48));
+		}
+
+	guesscube.printCube();
+
+	guesscube.moveToTopCross();
+	guesscube.switchEdgesTopCross();
+	guesscube.printCube();
+	guesscube.solveSecondLayer();
+	guesscube.printCube();
+	guesscube.moveToBottomCross();
+	guesscube.switchEdgesBottomCross();
+	guesscube.printCube();
+
+	cout<<"BayesGuesser cutoff 6"<<endl;
+	int PosArrayCorner[]={0,2,6,8,9,11,15,17,18,20,22,26,27,29,33,35,36,38,42,44,45,47,51,53};
+	scrambled.bayes_guesser(&PosArrayCorner[0],sizeof(PosArrayCorner)/sizeof(PosArrayCorner[0]));
+	cout<<"end BayesGuesser"<<endl;
+
+	//scrambled.SolveCorners
 
 	/*scrambled.scramble();
 	scrambled.r();
