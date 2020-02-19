@@ -1,0 +1,134 @@
+bool Cube::checkSecondLayer(){
+	if(isCorrectEdge(12) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(14) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(21) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(23) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(30) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(32) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(39) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(41) != 1){
+		return 0;
+	}
+	return 1;
+
+}
+
+void Cube::solveSecondLayer(){
+	for(int i=0; i<15; i++){
+		if(getColor(12) != getColor(13)){
+			cout << "got it at 12" << endl;
+			if(getColor(12) != getColor(49)){
+				switchEdges(1,0);
+			}
+			else{
+				switchEdges(4,1);
+			}
+			//d();
+			MoveSecondLayer();
+			printCube();
+		}
+		else if(getColor(14) != getColor(13)){
+			cout << "got it at 14" << endl;
+			if(getColor(14) != getColor(49)){
+				switchEdges(2,0);
+			}
+			else{
+				switchEdges(1,1);
+			}
+			//d();
+			MoveSecondLayer();
+			printCube();
+		}
+		else if(getColor(21) != getColor(22)){
+			cout << "got it at 21" << endl;
+			if(getColor(21) != getColor(49)){
+				switchEdges(2,0);
+			}
+			else{
+				switchEdges(1,1);
+			}
+			//d();
+			MoveSecondLayer();
+			printCube();
+		}
+		else if(getColor(23) != getColor(22)){
+			cout << "got it at 23" << endl;
+			if(getColor(23) != getColor(49)){
+				switchEdges(2,1);
+			}
+			else{
+				switchEdges(3,0);
+			}
+			//d();
+			MoveSecondLayer();
+			printCube();
+		}
+		else if(getColor(30) != getColor(31)){
+			cout << "got it at 30" << endl;
+			if(getColor(30) != getColor(49)){
+				switchEdges(3,0);
+			}
+			else{
+				switchEdges(2,1);
+			}
+			//d();
+			MoveSecondLayer();
+			printCube();
+		}
+		else if(getColor(32) != getColor(31)){
+			cout << "got it at 32" << endl;
+			if(getColor(32) != getColor(49)){
+				switchEdges(3,1);
+			}
+			else{
+				switchEdges(4,0);
+			}
+			//d();
+			MoveSecondLayer();
+			printCube();
+		}
+		else if(getColor(39) != getColor(40)){
+			cout << "got it at 39" << endl;
+			if(getColor(39) != getColor(49)){
+				switchEdges(3,1);
+			}
+			else{
+				switchEdges(4,0);
+			}
+			//d();
+			MoveSecondLayer();
+			printCube();
+		}
+		else if(getColor(41) != getColor(40)){
+			cout << "got it at 41" << endl;
+			if(getColor(41) != getColor(49)){
+				switchEdges(4,1);
+			}
+			else{
+				switchEdges(1,0);
+			}
+			//d();
+			MoveSecondLayer();
+			printCube();
+		}
+	}
+
+	if(checkSecondLayer() == 0){
+		cout << "Second Layer FAILED!" << endl;
+	}
+}
+
