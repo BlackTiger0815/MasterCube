@@ -151,6 +151,20 @@ public:
 	
 	int findBottomEdgePos(int side, int pos);
 	int findBottomEdgeSide(int side, int pos);
+
+//------------------------------------------//
+	//Corners
+	void switchTwoCorners(int direction);
+	void switchThreeCorners(int top, int direction);
+	void orientCorners(int top, int direction);
+	void orientCornersNextCorner(int top);
+	bool isCorrectCornerSide(int position);
+	bool isCorrectCornerPosition(int position);
+	bool isCorrectCornerOrientation(int position);
+	void moveToTopCorners();
+	void solvePositionCorners();
+	void solveOrientationCorners();
+	void solveCorners();
 //------------------------------------------//
 
 // cube questions //
