@@ -17,7 +17,8 @@ class MastermindSolver
 	int n;
 	
 	public:
-	// functions to us
+	// functions to use
+	Cube tracking;
 	list <int> postions_to_ask;
 	
 	MastermindSolver(){
@@ -27,7 +28,7 @@ class MastermindSolver
 	~MastermindSolver() {};
 
 
-void generate_question1();
+
 void generate_question();
 void set_n(int); 
 void testing();
@@ -49,10 +50,6 @@ void generate_tracking_cube();
 void generate_positions_to_ask();
 
 
-int* question_numbers;
-int* question_colors;
-
-
 // questions asked list
 list <string> CHAOS_questions_asked; //unsortiert
 list <string> ORDER_questions_asked; // sortiert
@@ -63,56 +60,7 @@ void addFeedback(string);
 bool correct_question(string);
 bool compare_questions(string);
 
-void update_list();
-
-
-
-
-};
 int vereinfachen_feedback(string);
-
-
-
-
-//--------------------------------------------//
-//---------- Question Class -----------------//
-//------------------------------------------//
-
-
-
-
-class Question_container
-{
-	public:
-		string contained_question;
-		string current_feedback;
-		int* colorfull_array;
-		int* positional_array;
-		float probability;
-
-
-Question_container(string contained_question, string current_feedback){
-
-	// from question get color and number
-		int length = contained_question.size();
-		int size_of_question = length/3;
-		int positional_array[size_of_question];
-		int colorfull_array[size_of_question];
-
-		for(int i = 0; i < size_of_question; i++)
-		{
-				positional_array[i] = 10 * ((contained_question[i*3]-48));
-				positional_array[i] += 1 * ((contained_question[i*3+1])-48) ;
-				colorfull_array[i] = (contained_question[i*3+2])-48;
-				
-		}
-		probability = double(vereinfachen_feedback(current_feedback))/size_of_question;
-	};
-	~Question_container() {};
-
-
-
-
 
 
 };

@@ -2740,7 +2740,7 @@ bool isEcke(int z){
 }
 
 bool isKante(int z){
-  int qPosK[]={1,3,5,7,10,12,14,16,19,21,23,25,28,30,32,34,37,39,41,43,46,48,50,52};
+  int qPosK[]={1,3,5,7,10,12,14,16,19,21,23,25,28,30,32,34,27,39,41,43,46,48,50,52};
   int *i = find(std::begin(qPosK), std::end(qPosK), z);
   if (i != std::end(qPosK)) {
     return true;
@@ -2776,7 +2776,7 @@ int Cube::middleIndexOf(int pos){ //holt sich die nummer des mittelfelds der Sei
 }
 multimap <int,int> _kanten; //globale kanten
 
-void init_Kanten(){ //multimap aller Kanten und deren Felder anlegen
+void Cube::init_Kanten(){ //multimap aller Kanten und deren Felder anlegen
 	_kanten.insert( pair <int,int> (1,37));
 	_kanten.insert( pair <int,int> (3,10));
 	_kanten.insert( pair <int,int> (5,28));
@@ -2803,7 +2803,7 @@ void init_Kanten(){ //multimap aller Kanten und deren Felder anlegen
 	_kanten.insert( pair <int,int> (52,43));
 }
 
-int getAdjecentKante(int pos){ //angrenzende Kante aus der Liste finden
+int Cube::getAdjecentKante(int pos){ //angrenzende Kante aus der Liste finden
   return _kanten.find(pos)->second;
 }
 
@@ -2872,7 +2872,7 @@ string Cube::splitQuestion(string s, int n) //by Isabella Reithner
 					if(it == pos){ //Wenn die Position befunden wurde, Farbe in reference schreiben
 						gtPos[h]=pos;
 						gtCol[h]=this->_cube[a][b][c];
-						//cout<<"it: " << h << ". gt an Position: "<< gtPos[h]<<" hat Farbe "<< gtCol[h] << ". Zu Farbe in Question: "<<qCol[h] <<endl;
+						cout<<"it: " << h << ". gt an Position: "<< gtPos[h]<<" hat Farbe "<< gtCol[h] << ". Zu Farbe in Question: "<<qCol[h] <<endl;
 					}
 					it++;
 				}
@@ -2886,49 +2886,52 @@ string Cube::splitQuestion(string s, int n) //by Isabella Reithner
 
 }
 
-//generateMastermindAnswer here
 string Cube::generateMastermindAnswer(int* qPos, int *qCol, int n ){
 	string randFeedback;
 	int num =0;
 	list<int> my_list;
 	list<int>::iterator it;
 	bool b;
-	string feedback;
 
 	for(int i=0;i<n;i++){
 		//cout<<"\nqPos["<<i<<"] "<< qPos[i];
 
 		if(isMitte(qPos[i]))
-		{cout<<" m ";
-			if(qCol[i]==getColor(middleIndexOf(qPos[i])))//Wenn die Farbe aus der Frage vom aktuellen Mittelfeld gleich der Farbe an der seleben Stelle im scrambeld Cube
+		{//cout<<" m ";
+			if(qCol[i]==getColor(middleIndexOf(qCol[i])))//Wenn die Farbe aus der Frage vom aktuellen Mittelfeld gleich der Farbe an der seleben Stelle im scrambeld Cube
 			{
 				//cout<<"b";
-				feedback.append("1");
+				feedback.append("b");
 			}else{
-				feedback.append("2");//x
+				//cout << "w";
+				feedback.append("x");
 			}
 		}
 
 		if(isKante(qPos[i]))
-		{cout<<"k";
-
-			if(qCol[i]==getColor(qPos[i])){// weiß
-				if(qCol[i]==getColor(middleIndexOf(qPos[i]))&&getColor(getAdjecentKante(qPos[i]))==getColor(middleIndexOf(getAdjecentKante(qPos[i])))){
-					feedback.append("1");//schwarz
-				}else{
-					feedback.append("0");//weiß
+		{
+			//cout<<qPosK[i] << " " << middleIndexOf(qPosK[i]) << " " <<getColor(middleIndexOf(qPosK[i]))<<endl;
+			if(qCol[i]!=getColor(middleIndexOf(qPos[i]))){
+				//wenn die frabe der Kante nicht gleich der Farbe des mittelfelds der gleichen seite ist
+				//cout<<"x";
+				feedback.append("x");
+			}else{//wenn die farbe der Kante gleich der Farbe des mittlfeldes der gleichen seite ist
+				//wenn farbe des um die Ecke angrenzenden Felds gleich wie die Mitte dieser Seite ist
+				if(getAdjecentKante(qPos[i])==getColor(middleIndexOf(getAdjecentKante(qPos[i])))){
+				//cout<<"b";
+					feedback.append("b");
 				}
-			}
-			else
-			{
-					//cout<<"x";
-					feedback.append("2");
+				else
+				{
+					//cout<<"w";
+					feedback.append("w");
+				}
 			}
 		}
 
 		if(isEcke(qPos[i]))
 		{
-			cout<<" e ";
+			//cout<<" e ";
 			int a,b;
 			vector<pair<int,int>> adjEcken;
 			adjEcken=getAdjecentEcken(qPos[i]);
@@ -2937,229 +2940,37 @@ string Cube::generateMastermindAnswer(int* qPos, int *qCol, int n ){
 			//cout<< "--a: "<< a << " b: "<<b<<endl;
 			bool s1,s2,s3;
 
-			if(qCol[i]==getColor(qPos[i])) s1=true; else s1=false;
+			if(qCol[i]==getColor(middleIndexOf(qPos[i]))) s1=true; else s1=false;
 				//cout<<s1;
 			if(getColor(a)==getColor(middleIndexOf(a))) s2=true; else s2=false;
 				//cout<<s2;
 			if(getColor(b)==getColor(middleIndexOf(b))) s3=true; else s3=false;
 				//cout<<s3;
 
-
-			if(qCol[i]==getColor(qPos[i]))
-			{
-				if(s1==true&&s2==true&&s3==true){
-					feedback.append("1");//b
-				}else{
-					feedback.append("0");
-				}
+			if(s1==true&&s2==true&&s3==true){
+					//cout<< ".b";
+				feedback.append("b");
 			}
 			else
-			{
-				feedback.append("2");//x
+
+			/*if((s1==true&&s2==false&&s3==false)||(s1==false&&s2==true&&s3==false)||(s1==false&&s2==false&&s3==true))
+				{cout<< ".w"; feedback.append(".w");}*/
+
+			if(s1==false&&s2==false&&s3==false){
+				//cout<< ".x";
+				feedback.append("x");
+			}else{
+				//cout<< ".w";
+				feedback.append("w");
 			}
 		}
 	}
-	//cout <<"\nFeedback: "<< feedback<<endl;
+	cout <<"\nFeedback: "<< feedback<<endl;
 		//randomize feedbackstring
 	string temp=randomizeFeedback(feedback);
-	cout<<"Randomisiertes Feedback: "<<feedback <<endl;
+	cout<<"Randomisiertes Feedback: "<<temp <<endl;
 	return temp;
-
 }
-
-//-------------------------BayesGuesser----------------------//
-//farben fix und positionen raten
-//3 stelligen() mit 9 stelligen(t)(hat 3 mal die farbe 4) array vergleichen. suchen wo diese 3 4er sind
-void showlist2(list <int> g)
-{
-    list <int> :: iterator it;
-    for(it = g.begin(); it != g.end(); ++it){
-        cout << *it;
-    cout << " ";}
-}
-
-void showPositionList(list <vector<int>> g)
-{int z=0;
-list <vector<int>> :: iterator it;
-
-  for(it = g.begin(); it != g.end(); ++it){
-    if(z%2==0)cout<< "\n";
-
-	  vector<int> actual_vector = *it;
-	   for (int i = 0; i < actual_vector.size(); i++) {
-			 if(actual_vector.at(i)<10)
-			 		cout<< "0";
-		   std::cout << actual_vector.at(i) << " ";
-       z++;
-	   }
-	   cout << "  ";
-
-  }
-
-}
-
-int Cube::amountWandBofPosAndCol(int *farb,int *PosArray,int n){
-  int counter=0;
-  string question, feedback;
-
-  for(int k=0;k<n;k++){
-		if(PosArray[k]<10)
-			question.append(to_string(0));
-
-		question.append(to_string(PosArray[k]));
-		//cout<< " posk"<<pos[k];
-    //question.append(to_string(getColor(pos[k]))); die zeile mit der darunter mach keinen sinn!?
-    question.append(to_string(farb[k]));
-		//cout<<"\ngenerate question in process: "<<question<<endl;
-  }
-	cout<<"Question to check: "<<question<<endl;
-  feedback=splitQuestion(question,n);//getfeedback
-
-
-  int b=count(feedback.begin(), feedback.end(), '1');
-  int w=count(feedback.begin(), feedback.end(), '0');
-	cout<<"b "<<b <<" w "<<w<<endl;
-  //return (b*10)+w;
-	return b+w;
-}
-
-
-void Cube::bayes_guesser(int *posArray, int n){
-
-  list<vector<int>> positionen;
-  list<int> wert; //positionen ist pos-array, wert ist der counter
-  vector<int> w;
-  srand(time(NULL));
-
-  //int n=3; //unser normales n FARB==[0,0,1,1] -> BestGuess[5,6,1,0]
-  int M = 10000; //anzahl an Guesses
-  int t[] = {1,1,4,4,4,0,0,1,1,1,0,0,4,4}; //Positionen die wir erraten wollen (1 seite)
-  int t_size = sizeof(t)/sizeof(t[0]);
-  int farb[n];
-  int counter=0;//anzahl w und s
-
-  //float cutoff= n*0.9;
-	//int cutoff=static_cast<int>(n*0.9);
-  int cutoff;
-	cout<<"cutoff eingeben";
-	cin>>cutoff;
-  //z=(int)cutoff;//funktioniert??
-  int check = 0;
-
-  for(int z=0;z<M;z++){//++++++++++++++BEGIN OF FOR
-    counter = 0;
-    vector<int> p;
-
-			cout << "farbi: ";
-	    for(int i=0;i<n;i++)
-	    {	//hier wird der index des arrays t erstellt, anden die abzufragende Farbe 4 ist
-	      //pos[i] = rand() % t_size;
-				farb[i] = rand() % 6;
-	      //cout<<" "<<farb[i];
-				//7 0 13 24 10 mit Farbarray {00000}
-				//7 0 11 20 50
-
-	    }
-			cout<<"\n";
-
-    //Guess = pos[] verschmelzt mit farb[]
-
-    cout<<"\n";
-
-
-    /*for(int i=0;i<n;i++){	//counter steht für Anzahl BLACK und WHITE vom Feedbackstring
-      if(t[pos[i]]==4){
-        counter++;
-      } //wird ersetzt durch:
-
-    }*/
-		cout<<"++Entering-amountWandBofPosAndCol"<<endl;
-    counter = amountWandBofPosAndCol(&farb[0],&posArray[0],n);
-		if(counter>=cutoff)
-			cout << "\033[1;31mCounter\033[0m";
-
-		cout<<"Counter: "<<counter<<endl;
-		cout<<"--Leaving-amountWandBofPosAndCol\n"<<endl;
-    //for (int i = 0; i < p.size(); i++)
-      //  cout << p[i] << " ";
-		for(int i=0;i<n;i++)
-			p.push_back(farb[i]);
-
-		//cout<<"\nCutoff: "<<cutoff<<endl;
-    if(counter>=cutoff){//gute guesses behalten
-      positionen.push_back(p);
-      wert.push_back(counter);
-    }
-  }//+++++++++++++++++++++END OF FOR. bis hier wird gefüllt
-
-  cout<<"B_Gpositionen.size():"<<positionen.size()<<" "<<endl;
-  //cout << "B_Gpositionen: "<<endl;
-  showPositionList(positionen);
-  //cout<< "counter: "<<endl;
-  //showlist2(wert);
-  vector<int> bestGuess;
-  int max=0,haeufigste=0;
-
-  for(int u=0;u<n;u++){//++++++++++++++++++BEGIN OF FOR
-  	max=0;
-    cout<<"\n--u = "<<u;
-    list <vector<int>> :: iterator iterator;
-    vector<int> spalte;
-    for(iterator = positionen.begin(); iterator != positionen.end(); ++iterator){
-    	vector<int> actual_vector = *iterator;
-      //cout<< "\nactual_vector " << actual_vector.at(l);
-      spalte.push_back(actual_vector.at(u));
-    }
-
-    int i,last,temp;
-
-    sort(spalte.begin(),spalte.end());//vector sortieren, damit einfacher evaluiert werden kann
-		/*for(int i=0;i<spalte.size();i++){
-			cout<<spalte[i];
-		}
-		cout<<endl;*/
-
-
-		cout<<"\n--spalte.size(): "<<spalte.size();
-    for(i=0;i<spalte.size();i++){
-      int zahl=spalte.at(i);
-
-      if(last!=zahl) {
-        int count = std::count(spalte.begin(),spalte.end(),spalte.at(i));
-        //cout<<"\nZahl "<<spalte.at(i)<<" kommt " << count << " mal vor";
-          if(count>max){
-            max=count;
-            haeufigste=spalte.at(i);
-          }
-          count=0;//counter für die nächste  zählung zurücksetzten
-      }
-      last=zahl;//sicherung, damit kein wert doppelt gezählt wird
-    }
-    //cout<<"check";
-    spalte.clear();//spaltenvector leeren, da ansonst alle anderen spalten dazugesepcihert werden;
-    cout<< "\nhaeufigste Zahl: "<<haeufigste<< endl;
-    bestGuess.push_back(haeufigste);
-    //cout<<"c"<<endl;
-  }//+++++++++++++++++++++++++++++END OF FOR
-
-
-  cout <<"bestGuess ";
-  for (int i = 0; i < bestGuess.size(); i++)
-  	cout << bestGuess[i] << " ";
-
-	/*cout<<"\nColors of numbers in bestGuess:\n";
-	for (int i = 0; i < bestGuess.size(); i++)
-		cout << getColor(bestGuess[i]) << " ";*/
-
-	cout<<"\nPosArray \n";
-	for (int i = 0; i < bestGuess.size(); i++)
-				cout << posArray[i] << " ";
-
-//cout << "\n\n" << t_size;
-
-}
-
-//-------------------------BayesGuesser----------------------//
 
 
 //-----------------------------------------------//
@@ -4083,6 +3894,729 @@ void Cube::switchEdgesBottomCross(){
 	globalRotationD();
 	globalRotationD();
 }
+
+//-----------------------------------------------//
+//--------------- Switch Corners ----------------//
+//-----------------------------------------------//
+
+//erster Teil: bringe die Corner-Steine auf die richtige Seite, es gibt 8 Corner-Steine, 4 befinden sich oben am Cube (die Steine der 0er Seite) und vier unten am Cube (die Steine der 5er Seite), damit die Algorithmen für Positionierung und Orientierung funktioniern müssen sich die Steine auf der richtigen Seite befinden
+//übereinanderliegende Corner-Steine austauschen um sie auf die richtige Seite zu bringen (Achtung: es werden in Folge dessen auch immer Corner-Steine innerhalb ihrer Seite ausgetauscht, befinden sich zwei Corners die ausgetauscht werden müssen deshalb nicht übereinander müssen die Corners der oberen Seite zwischendurch mit "switchThreeCorners" gedreht werden)
+void Cube::switchTwoCorners(int direction){
+
+	if(direction==0){	/*	+ *  ->  + *
+							# -      # a	*/
+		ri();
+		di();
+		r();
+		d();
+
+		ri();
+		di();
+		r();
+		d();
+
+		ri();
+		di();
+		r();
+		d();
+
+	}
+	else if(direction==1){	/*	+ *  ->  + b
+								# -      # -	*/
+		bi();
+		di();
+		b();
+		d();
+
+		bi();
+		di();
+		b();
+		d();
+
+		bi();
+		di();
+		b();
+		d();
+	
+	}
+	else if(direction==2){	/*	+ *  ->  c *
+								# -      # -	*/
+		li();
+		di();
+		l();
+		d();
+
+		li();
+		di();
+		l();
+		d();
+
+		li();
+		di();
+		l();
+		d();
+
+	}
+	else if(direction==3){	/*	+ *  ->  + *
+								# -      d -	*/
+		fi();
+		di();
+		f();
+		d();
+
+		fi();
+		di();
+		f();
+		d();
+
+		fi();
+		di();
+		f();
+		d();
+
+	}
+
+}
+
+
+//zweiter Teil: bringe Corner Steine an die richtige Position (Achtung: die Farben sind nicht richtig)
+void Cube::switchThreeCorners(int top, int direction){
+	
+	if(top==0){ //orientiere Cube mit benötigter Fläche oben
+		; //nothing;
+	}else if(top==5){
+		globalRotationU();
+		globalRotationU();
+	}
+
+
+	if(direction==0){ 		/*	+ *  ->  * #
+								# -      + -	*/
+		u();
+		r();
+		ui();
+		li();
+		u();
+		ri();
+		ui();
+		l();
+
+
+	}
+	else if(direction==1){ 	/*	+ *  ->  - *
+								# -      + #	*/
+		u();
+		b();
+		ui();
+		fi();
+		u();
+		bi();
+		ui();
+		f();
+	
+	}
+	else if(direction==2){ 	/*	+ *  ->  + -
+								# -      * #	*/
+		u();
+		l();
+		ui();
+		ri();
+		u();
+		li();
+		ui();
+		r();
+
+	}
+	else if(direction==3){ 	/*	+ *  ->  * -
+								# -      # +	*/
+		u();
+		f();
+		ui();
+		bi();
+		u();
+		fi();
+		ui();
+		b();
+
+	}
+
+
+	if(top==0){ //Bringe Cube in globale Ausgangslage zurück
+		; //nothing;
+	}else if(top==5){
+		globalRotationU();
+		globalRotationU();
+	}
+
+}
+
+//dritter Teil: Orientiere die vorher an die richtige Position gebrachten Corner Steine so, dass die Farben stimmen, Achtung: diese Funktion muss nacheinander für alle vier Corners ausgeführt werden sonst wird der Cube zerstört! Ist ein Corner an der richtigen Position wird mit der Funktion "orientCornersNextCorner" der nächste Corner ausgewählt (sie führt leiglich eine "u" Drehung aus)
+void Cube::orientCorners(int top, int direction){
+
+	if(top==0){ //orientiere Cube mit benötigter Fläche oben
+		; //nothing;
+	}else if(top==5){
+		globalRotationU();
+		globalRotationU();
+	}
+
+	if(direction==0){	/*	+ *  ->  + *
+							# -      # a	*/
+		ri();
+		di();
+		r();
+		d();
+
+		ri();
+		di();
+		r();
+		d();
+
+	}
+	else if(direction==1){	/*	+ *  ->  + b
+								# -      # -	*/
+		bi();
+		di();
+		b();
+		d();
+
+		bi();
+		di();
+		b();
+		d();
+
+
+	}
+	else if(direction==2){	/*	+ *  ->  c *
+								# -      # -	*/
+		li();
+		di();
+		l();
+		d();
+
+		li();
+		di();
+		l();
+		d();
+
+
+	}
+	else if(direction==3){	/*	+ *  ->  + *
+								# -      d -	*/
+		fi();
+		di();
+		f();
+		d();
+
+		fi();
+		di();
+		f();
+		d();
+
+	}
+
+	if(top==0){ //Bringe Cube in globale Ausgangslage zurück
+		; //nothing;
+	}else if(top==5){
+		globalRotationU();
+		globalRotationU();
+	}
+
+}
+
+void Cube::orientCornersNextCorner(int top){
+
+	if(top==0){ //orientiere Cube mit benötigter Fläche oben
+		; //nothing;
+	}else if(top==5){
+		globalRotationU();
+		globalRotationU();
+	}
+
+	u();
+
+	if(top==0){ //Bringe Cube in globale Ausgangslage zurück
+		; //nothing;
+	}else if(top==5){
+		globalRotationU();
+		globalRotationU();
+	}
+
+}
+
+bool Cube::isCorrectCornerSide(int position){
+	//return 1 wenn Corner-Stein auf richtiger Seite
+	//return 0 wenn Corner-Stein an falscher Seite
+	switch(position){
+		case 0:
+			if(getColor(0) == getColor(4) || getColor(9) == getColor(4) ||  getColor(38) == getColor(4)){
+				return 1;
+			}
+			else return 0;
+			break;
+		case 2:
+			if(getColor(2) == getColor(4) ||  getColor(29) == getColor(4) || getColor(36) == getColor(4))
+				return 1;
+			else return 0;
+			break;
+		case 6:
+			if(getColor(6) == getColor(4) ||  getColor(11) == getColor(4) || getColor(18) == getColor(4))
+				return 1;
+			else return 0;
+			break;
+		case 8:
+			if(getColor(8) == getColor(4) || getColor(20) == getColor(4) ||  getColor(27) == getColor(4))
+				return 1;
+			else return 0;
+			break;
+		case 45:
+			if(getColor(45) == getColor(49) || getColor(17) == getColor(49) || getColor(24) == getColor(49))
+				return 1;
+			else return 0;
+			break;
+		case 47:
+			if(getColor(47) == getColor(49) || getColor(26) == getColor(49) || getColor(33) == getColor(49))
+				return 1;
+			else return 0;
+			break;
+		case 51:
+			if(getColor(51) == getColor(49) || getColor(15) == getColor(49) || getColor(44) == getColor(49))
+				return 1;
+			else return 0;
+			break;
+		case 53:
+			if(getColor(53) == getColor(49) || getColor(35) == getColor(49) || getColor(42) == getColor(49))
+				return 1;
+			else return 0;
+			break;
+		default:
+			return 0;
+	}
+}
+
+bool Cube::isCorrectCornerPosition(int position){
+	//return 1 wenn Corner-Stein an richtiger Position
+	//return 0 wenn Corner-Stein an falscher Position
+	switch(position){
+		case 0:
+			if((getColor(0) == getColor(4) || getColor(0) == getColor(13) || getColor(0) == getColor(40)) && (getColor(9) == getColor(4) || getColor(9) == getColor(13) || getColor(9) == getColor(40)) && (getColor(38) == getColor(4) || getColor(38) == getColor(13) || getColor(38) == getColor(40)))
+				return 1;
+			else return 0;
+			break;
+		case 2:
+			if((getColor(2) == getColor(4) || getColor(2) == getColor(31) || getColor(2) == getColor(40)) && (getColor(29) == getColor(4) || getColor(29) == getColor(31) || getColor(29) == getColor(40)) && (getColor(36) == getColor(4) || getColor(36) == getColor(31) || getColor(36) == getColor(40)))
+				return 1;
+			else return 0;
+			break;
+		case 6:
+			if((getColor(6) == getColor(4) || getColor(6) == getColor(13) || getColor(6) == getColor(22)) && (getColor(11) == getColor(4) || getColor(11) == getColor(13) || getColor(11) == getColor(22)) && (getColor(18) == getColor(4) || getColor(18) == getColor(13) || getColor(18) == getColor(22)))
+				return 1;
+			else return 0;
+			break;
+		case 8:
+			if((getColor(8) == getColor(4) || getColor(8) == getColor(22) || getColor(8) == getColor(31)) && (getColor(20) == getColor(4) || getColor(20) == getColor(22) || getColor(20) == getColor(31)) && (getColor(27) == getColor(4) || getColor(27) == getColor(22) || getColor(27) == getColor(31)))
+				return 1;
+			else return 0;
+			break;
+		case 45:
+			if((getColor(45) == getColor(49) || getColor(45) == getColor(13) || getColor(45) == getColor(22)) && (getColor(17) == getColor(49) || getColor(17) == getColor(13) || getColor(17) == getColor(22)) && (getColor(24) == getColor(49) || getColor(24) == getColor(13) || getColor(24) == getColor(22)))
+				return 1;
+			else return 0;
+			break;
+		case 47:
+			if((getColor(47) == getColor(49) || getColor(47) == getColor(22) || getColor(47) == getColor(31)) && (getColor(26) == getColor(49) || getColor(26) == getColor(22) || getColor(26) == getColor(31)) && (getColor(33) == getColor(49) || getColor(33) == getColor(22) || getColor(33) == getColor(31)))
+				return 1;
+			else return 0;
+			break;
+		case 51:
+			if((getColor(51) == getColor(49) || getColor(51) == getColor(13) || getColor(51) == getColor(40)) && (getColor(15) == getColor(49) || getColor(15) == getColor(13) || getColor(15) == getColor(40)) && (getColor(44) == getColor(49) || getColor(44) == getColor(13) || getColor(44) == getColor(40)))
+				return 1;
+			else return 0;
+			break;
+		case 53:
+			if((getColor(53) == getColor(49) || getColor(53) == getColor(31) || getColor(53) == getColor(40)) && (getColor(35) == getColor(49) || getColor(35) == getColor(31) || getColor(35) == getColor(40)) && (getColor(42) == getColor(49) || getColor(42) == getColor(31) || getColor(42) == getColor(40)))
+				return 1;
+			else return 0;
+			break;
+		default:
+			return 0;
+	}
+}
+
+bool Cube::isCorrectCornerOrientation(int position){
+	//return 1 wenn Corner richtige Orientierung hat
+	//return 0 wenn Corner falsche Orientierung hat
+	switch(position){
+		case 0:
+			if(getColor(0) == getColor(4) && getColor(9) == getColor(13) && getColor(38) == getColor(40))
+				return 1;
+			else return 0;
+			break;
+		case 2:
+			if(getColor(2) == getColor(4) && getColor(29) == getColor(31) && getColor(36) == getColor(40))
+				return 1;
+			else return 0;
+			break;
+		case 6:
+			if(getColor(6) == getColor(4) && getColor(11) == getColor(13) && getColor(18) == getColor(22))
+				return 1;
+			else return 0;
+			break;
+		case 8:
+			if(getColor(8) == getColor(4) && getColor(20) == getColor(22) && getColor(27) == getColor(31))
+				return 1;
+			else return 0;
+			break;
+		case 45:
+			if(getColor(45) == getColor(49) && getColor(17) == getColor(13) && getColor(24) == getColor(22))
+				return 1;
+			else return 0;
+			break;
+		case 47:
+			if(getColor(47) == getColor(49) && getColor(26) == getColor(22) && getColor(33) == getColor(31))
+				return 1;
+			else return 0;
+			break;
+		case 51:
+			if(getColor(51) == getColor(49) && getColor(15) == getColor(13) && getColor(44) == getColor(40))
+				return 1;
+			else return 0;
+			break;
+		case 53:
+			if(getColor(53) == getColor(49) && getColor(35) == getColor(31) && getColor(42) == getColor(40))
+				return 1;
+			else return 0;
+			break;
+		default:
+			return 0;
+	}
+
+}
+
+void Cube::moveToTopCorners()
+{
+
+	while(isCorrectCornerSide(0) != 1 || isCorrectCornerSide(2) != 1 || isCorrectCornerSide(6) != 1 || isCorrectCornerSide(8) != 1){ //Solange nichr alle Corner-Steine auf der richtigen Seite
+
+		while(isCorrectCornerSide(0) != 1)	//solange Corner-Stein 0 nicht auf richtiger Seite
+		{
+			cout << "isCorrectCornerSide(0)" << endl;
+			if(isCorrectCornerSide(51) != 1)	//ist darunterliegender Corner-Stein 51 nicht auf richtiger Seite?
+			{
+			//Ja -> Austauschen; switchTwoCorners(direction)
+				cout << "switchTwoCorners(2)" << endl;
+				switchTwoCorners(2);
+			} else
+			{
+			//Nein -> rotiere oberen Corner-Stein im Uhrzeigersinn einen Platz weiter; switchThreeCorners(int top, int direction), //Achtung! wenn ich die Corner-Steine rotiere ist am 6er das was vorher am 0er war und ja schon richtig ist -> ändern! while Schleife über alles bis alle richtig sind
+				cout << "switchThreeCorners(0,0)" << endl;
+				switchThreeCorners(0, 0);
+			}			
+		}
+
+		while(isCorrectCornerSide(2) != 1)
+		{	
+			cout << "isCorrectCornerSide(2)" << endl;
+			if(isCorrectCornerSide(53) != 1)
+			{
+				cout << "switchTwoCorners(1)" << endl;
+				switchTwoCorners(1);
+			} else
+			{
+				cout << "switchThreeCorners(0,3)" << endl;
+				switchThreeCorners(0, 3);
+			}				
+		}
+
+		while(isCorrectCornerSide(6) != 1) 
+		{	
+			cout << "isCorrectCornerSide(6)" << endl;
+			if(isCorrectCornerSide(45) != 1)
+			{
+				cout << "switchTwoCorners(3)" << endl;
+				switchTwoCorners(3);
+			} else
+			{
+				cout << "switchThreeCorners(0,1)" << endl;
+				switchThreeCorners(0, 1);
+			}				
+		}		
+
+		while(isCorrectCornerSide(8) != 1)
+		{	
+			cout << "isCorrectCornerSide(8)" << endl;
+			if(isCorrectCornerSide(47) != 1)
+			{
+				cout << "switchTwoCorners(0)" << endl;
+				switchTwoCorners(0);
+			} else
+			{
+				cout << "switchThreeCorners(0,2)" << endl;
+				switchThreeCorners(0, 2);
+			}				
+		}
+	}
+}
+
+void Cube::solvePositionCorners(){
+
+	cout<< "in solvePositionCorners" << endl;
+
+	while(isCorrectCornerPosition(0) != 1 || isCorrectCornerPosition(2) != 1 || isCorrectCornerPosition(6) != 1 || isCorrectCornerPosition(8) != 1)	//solange alle Corner-Steine nicht auf richtiger Position
+	{
+		cout<< "in while 1" << endl;
+		//ist einer der Corner-Stein auf richtiger Position?
+		if(isCorrectCornerPosition(0) == 1)	//Ja -> um diesen Stein rotieren (direction) bis die anderen auch an richtiger Position sind
+		{
+			cout<< "in 0" << endl;
+			switchThreeCorners(0,2);
+			
+		}else if(isCorrectCornerPosition(2) == 1)
+		{
+			cout<< "in 2" << endl;
+			switchThreeCorners(0,1);
+
+		}else if(isCorrectCornerPosition(6) == 1)
+		{
+			cout<< "in 6" << endl;
+			switchThreeCorners(0,3);
+	
+		}else if(isCorrectCornerPosition(8) == 1)
+		{
+			cout<< "in 8" << endl;
+			switchThreeCorners(0,0);
+			
+		}else{ //Nein -> einmal mit direction 0 rotieren, dann sollte einer in richtiger Postion sein
+			cout<< "in else" << endl;
+			switchThreeCorners(0,0);
+		}
+	}
+
+while(isCorrectCornerPosition(45) != 1 || isCorrectCornerPosition(47) != 1 || isCorrectCornerPosition(51) != 1 || isCorrectCornerPosition(53) != 1)
+	{
+		cout<< "in while 2" << endl;
+		//ist einer der Corner-Stein auf richtiger Position?
+		if(isCorrectCornerPosition(45) == 1)	//Ja -> um diesen Stein rotieren (direction) bis die anderen auch an richtiger Position sind
+		{
+			cout<< "in 45" << endl;
+			switchThreeCorners(5,2);
+			
+		}else if(isCorrectCornerPosition(47) == 1)
+		{
+			cout<< "in 47" << endl;
+			switchThreeCorners(5,1);
+
+		}else if(isCorrectCornerPosition(51) == 1)
+		{
+			cout<< "in 51" << endl;
+			switchThreeCorners(5,3);
+	
+		}else if(isCorrectCornerPosition(53) == 1)
+		{
+			cout<< "in 53" << endl;
+			switchThreeCorners(5,0);
+			
+		}else{ //Nein -> einmal mit direction 0 rotieren, dann sollte einer in richtiger Postion sein
+			cout<< "in else 2" << endl;
+			switchThreeCorners(5,0);
+		}
+	}
+
+}
+
+
+/*void Cube::solveOrientationCorners(){
+
+
+Zu Beginn hältst du eine verdrehte Ecke in der markierten Position. 
+Wiederhole jetzt den „R' D' R D“ Algorithmus bis die gelbe Farbe nach oben zeigt.
+
+
+
+Drehe nun die obere Ebene, bis eine weitere ungelöste Ecke in dem makierten Bereich ist und wiederhole erneut den „R' D' R D“ Algorithmus, bis die Ecke gelöst ist.
+
+Führe dieses Verfahren mit allen weiteren Ecken durch, bis alle Ecken gelöst sind.
+
+    501
+    502
+    101
+
+335 222 030 444 
+115 122 134 340 
+442 340 351 530 
+
+    552
+    152
+    304
+
+
+
+
+} */
+
+
+void Cube::solveOrientationCorners(){
+
+	int direction = 0;
+	int field = 0;
+	int test;
+
+	if(isCorrectCornerOrientation(0) != 1){
+
+		direction = 2;
+		field = 0;
+	}else if(isCorrectCornerOrientation(2) != 1){
+
+		direction = 1;
+		field = 2;
+	}else if(isCorrectCornerOrientation(6) != 1){
+
+		direction = 3;
+		field = 6;
+	}else if(isCorrectCornerOrientation(8) != 1){
+
+		direction = 0;
+		field = 8;
+	}
+
+	cout << "solveOrientationCorners" << endl;
+	while(isCorrectCornerOrientation(0) != 1 || isCorrectCornerOrientation(2) != 1 || isCorrectCornerOrientation(6) != 1 || isCorrectCornerOrientation(8) != 1)	//solange nicht alle Corner-Steine die richtige Orientierung haben
+	{
+		cout << "while 1" << endl;
+		while(getColor(field) != getColor(4)){ //Corner richtig orientieren
+			cout << "orientCorners(0, " << direction << ")" << endl;
+			orientCorners(0, direction);
+			printCube();
+			cout << "Test:" << endl;
+			cin >> test;
+		}
+
+		if(isCorrectCornerOrientation(0) != 1 || isCorrectCornerOrientation(2) != 1 || isCorrectCornerOrientation(6) != 1 || isCorrectCornerOrientation(8) != 1)
+		{
+			cout << "orientCornersNextCorner(0)" << endl;
+			orientCornersNextCorner(0);	//nächsten Corner nehmen
+			printCube();
+			cout << "Test:" << endl;
+			cin >> test;
+		}
+	}
+
+
+	if(isCorrectCornerOrientation(45) != 1){
+
+		direction = 2;
+		field = 45;
+	}else if(isCorrectCornerOrientation(47) != 1){
+
+		direction = 1;
+		field = 47;
+	}else if(isCorrectCornerOrientation(51) != 1){
+
+		direction = 3;
+		field = 51;
+	}else if(isCorrectCornerOrientation(53) != 1){
+
+		direction = 0;
+		field = 53;
+	}
+
+	while(isCorrectCornerOrientation(45) != 1 || isCorrectCornerOrientation(47) != 1 || isCorrectCornerOrientation(51) != 1 || isCorrectCornerOrientation(53) != 1)	//solange nicht alle Corner-Steine die richtige Orientierung haben
+	{
+		cout << "while 2" << endl;
+		while(getColor(field) != getColor(49)){ //Corner richtig orientieren
+			cout << "orientCorners(5)" << endl;
+			orientCorners(5, direction);
+		}
+		if(isCorrectCornerOrientation(45) != 1 || isCorrectCornerOrientation(47) != 1 || isCorrectCornerOrientation(51) != 1 || isCorrectCornerOrientation(53) != 1)
+		{
+			cout << "orientCornersNextCorner(5)" << endl;
+			orientCornersNextCorner(5);	//nächsten Corner nehmen
+		}
+	}
+}
+
+void  Cube::solveCorners(){
+
+	moveToTopCorners();
+	solvePositionCorners();
+	solveOrientationCorners();
+
+}
+
+/*
+int Cube::findNextTopCornerPos(int side, int pos) //locates the next corner that is not in its correct spot (guaranteed to be one of the bottom four corners)
+//updates pos and side in solveTopCorners() to hold the side and position of the yellow sticker
+{
+	int s, p;
+	for (s = 1; s < 5; s++)
+	{
+		if (_cube[s][2][0] == 0)
+		{
+			p = 1;
+			return p;
+		}
+		else if (_cube[s][2][2] == 0)
+		{
+			p = 2;
+			return p;
+		}
+	}
+	if (_cube[5][0][0] == 0)
+	{
+		p = 2;
+	}
+	else if (_cube[5][0][2] == 0)
+	{
+		p = 3;
+	}
+	else if (_cube[5][2][2] == 0)
+	{
+		p = 0;
+	}
+	else
+	{
+		p = 1;
+	}
+	return p;
+}
+
+int Cube::findNextTopCornerSide(int side, int pos)
+{
+	int s, p;
+	for (s = 1; s < 5; s++)
+	{
+		if (_cube[s][2][0] == 0)
+		{
+			p = 1;
+			return s;
+		}
+		else if (_cube[s][2][2] == 0)
+		{
+			p = 2;
+			return s;
+		}
+	}
+	if (_cube[5][0][0] == 0)
+	{
+		p = 2;
+	}
+	else if (_cube[5][0][2] == 0)
+	{
+		p = 3;
+	}
+	else if (_cube[5][2][2] == 0)
+	{
+		p = 0;
+	}
+	else
+	{
+		p = 1;
+	}
+	return s;
+}
+*/
+
+
 //-----------------------------------------------//
 //------------------Sonstiges--------------------//
 //-----------------------------------------------//

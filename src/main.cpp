@@ -209,15 +209,7 @@ int main (int argc, char* argv[]) {
 	Cube solved;
 	Cube scrambled;
 	scrambled.scramble();
-	int PosArray[]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53};
-	cout<<"BayesGuesser"<<endl;
-
-	scrambled.bayes_guesser(&PosArray[0],sizeof(PosArray)/sizeof(PosArray[0]));
-	cout<<"end BayesGuesser"<<endl;
-	scrambled.printCube();
-
-	/*scrambled.scramble();
-	scrambled.r();
+	/*scrambled.r();
 	scrambled.l();
 	scrambled.f();
 	scrambled.di();
@@ -229,7 +221,17 @@ int main (int argc, char* argv[]) {
 	scrambled.r();
 	scrambled.r();
 	scrambled.li();
-	scrambled.fi();
+	scrambled.fi();*/
+
+	/*scrambled.r();
+	scrambled.l();
+	scrambled.f();
+	scrambled.di();
+	scrambled.r();
+	scrambled.b();
+	scrambled.r();
+	scrambled.fi();*/
+
 	cout << "scrambled:" << endl;
 	scrambled.printCube();
 	scrambled.clearMoves();
@@ -251,9 +253,81 @@ int main (int argc, char* argv[]) {
 	cout << "3rd Layer: 2" << endl;
 	scrambled.switchEdgesBottomCross();
 	scrambled.printCube();
-	scrambled.printMoves();*/
+	scrambled.printMoves();
 
-	//scrambled.solveCube();
+	cout << "isCorrectCornerSide(x):" << endl;
+	int x = 0;
+	bool ergebnis = 0;
+	while(x!=-1){
+		cin >> x;
+		ergebnis = 3;
+		ergebnis = scrambled.isCorrectCornerSide(x);
+		cout << ergebnis << endl;
+	}
+
+	scrambled.moveToTopCorners();
+	cout << "moveToTopCorners:" << endl;
+	scrambled.printCube();
+	scrambled.printMoves();
+
+	x= 0;
+	cout << "isCorrectCornerSide(x):" << endl;
+	while(x!=-1){
+		cin >> x;
+		ergebnis = 3;
+		ergebnis = scrambled.isCorrectCornerSide(x);
+		cout << ergebnis << endl;
+	}
+
+	scrambled.printCube();
+
+	x= 0;
+	cout << "isCorrectCornerPosition(x):" << endl;
+	while(x!=-1){
+		cin >> x;
+		ergebnis = scrambled.isCorrectCornerPosition(x);
+		cout << ergebnis << endl;
+	}
+
+	scrambled.solvePositionCorners();
+	cout << "solvePositionCorners:" << endl;
+	scrambled.printCube();
+	scrambled.printMoves();
+
+	x= 0;
+	cout << "isCorrectCornerPosition(x):" << endl;
+	while(x!=-1){
+		cin >> x;
+		ergebnis = scrambled.isCorrectCornerPosition(x);
+		cout << ergebnis << endl;
+	}
+
+	x=0;
+	cout << "isCorrectCornerOrientation(x):" << endl;
+	while(x!=-1){
+		cin >> x;
+		ergebnis = scrambled.isCorrectCornerOrientation(x);
+		cout << ergebnis << endl;
+	}
+
+	cout << "solveOrientationCorners start:" << endl;
+	scrambled.solveOrientationCorners();
+	cout << "solveOrientationCorners end:" << endl;
+	scrambled.printCube();
+	scrambled.printMoves();
+
+	x=0;
+	cout << "isCorrectCornerOrientation(x):" << endl;
+	while(x!=-1){
+		cin >> x;
+		ergebnis = scrambled.isCorrectCornerOrientation(x);
+		cout << ergebnis << endl;
+	}
+
+	scrambled.solveCube();
+
+	scrambled.printCube();
+	scrambled.printMoves();
 
 	//scrambled.scramble();
 	//scrambled.splitQuestion("011033044136095112", 6);
