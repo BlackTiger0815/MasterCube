@@ -205,75 +205,95 @@ int main (int argc, char* argv[]) {
 
 
 
-
 	Cube solved;
 	Cube scrambled;
+	Cube guesscube(0);
+	Cube Katze;
 	scrambled.scramble();
-	int PosArray[]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53};
-	cout<<"BayesGuesser"<<endl;
+	int n=2;
+	// cout << "Bitte geben Sie ein n ein: " ;
+	// cin >> n;
 
+	//Katze.alot_like_alotlot(n); // generiert Farben
+	//list <vector<int>> :: iterator katzenjagd = Katze.positionen.begin();
+
+	MastermindSolver Dackel;
+	Dackel.set_n(n);
+
+	n = 6;
+	int PosArray[]={49,40,31,22,13,4};
+
+	cout<<"BayesGuesser cutoff 3"<<endl;
 	scrambled.bayes_guesser(&PosArray[0],sizeof(PosArray)/sizeof(PosArray[0]));
 	cout<<"end BayesGuesser"<<endl;
-	scrambled.printCube();
+	//cout << scrambled.guess << endl;
+	for( int i=0; i<n; i++)
+	{
+    	guesscube.writeCube(PosArray[i],(scrambled.guess[i])-48);
+	}
+	cout << endl << "Mittelfelder: " << endl;
+	guesscube.printCube();
+	cout<<"BayesGuesser cutoff 6"<<endl;
 
-	scrambled.scramble();
-	/*scrambled.r();
-	scrambled.l();
-	scrambled.f();
-	scrambled.di();
-	scrambled.r();
-	scrambled.b();
-	scrambled.r();
-	scrambled.f();
-	scrambled.b();
-	scrambled.r();
-	scrambled.r();
-	scrambled.li();
-	scrambled.fi();*/
-	cout << "scrambled:" << endl;
-	scrambled.printCube();
-	scrambled.clearMoves();
-	Cube tmp(0); //Cube mit -1 gefüllt
-	Cube tmp2(-1); //Cube mit indizes
+	n=24;
+	int PosArrayEdge[]={1,3,5,7,10,12,14,16,19,21,23,25,28,30,32,34,37,39,41,43,46,48,50,52};
+	scrambled.bayes_guesser(&PosArrayEdge[0],sizeof(PosArrayEdge)/sizeof(PosArrayEdge[0]));
+	cout<<"end BayesGuesser"<<endl;
+	//cout << scrambled.guess << endl;
 
-	//scrambled.printCube();
-	cout << "TOP CROSS:" << endl;
-	scrambled.moveToTopCross(); //alle weißen (0) zum Kreuz der Obersten ebene
-	scrambled.switchEdgesTopCross();
-	scrambled.printCube();
+	for( int i=0; i<n; i++)
+	{
+			guesscube.writeCube(PosArrayEdge[i],(scrambled.guess[i])-48);
+	}
 
-	cout << "2nd Layer:" << endl;
-	scrambled.solveSecondLayer();
-	scrambled.printCube();
+	cout << endl << "Kantenfelder: " << endl;
+	guesscube.printCube();
+	guesscube.moveToTopCross();
+	guesscube.switchEdgesTopCross();
+	cout << endl << "Topcross:" << endl;
+	guesscube.printCube();
+	guesscube.solveSecondLayer();
+	cout << endl << "Second Layer:" << endl;
+	guesscube.printCube();
+	guesscube.moveToBottomCross();
+	guesscube.switchEdgesBottomCross();
+	cout << endl << "Bottom Cross:" << endl;
+	guesscube.printCube();
 
-	cout << "3rd Layer:" << endl;
-	scrambled.moveToBottomCross();
-	cout << "3rd Layer: 2" << endl;
-	scrambled.switchEdgesBottomCross();
-	scrambled.printCube();
-	scrambled.printMoves();
+	cout<<"BayesGuesser cutoff 6"<<endl;
 
-	scrambled.moveToTopCorners();
-	cout << "moveToTopCorners:" << endl;
-	scrambled.printCube();
-	scrambled.printMoves();
+	int PosArrayCorner[]={0,2,6,8,9,11,15,17,18,20,24,26,27,29,33,35,36,38,42,44,45,47,51,53};
+	scrambled.bayes_guesser(&PosArrayCorner[0],sizeof(PosArrayCorner)/sizeof(PosArrayCorner[0]));
+	cout<<"end BayesGuesser"<<endl;
 
-	scrambled.solvePositionCorners();
-	cout << "solvePositionCorners:" << endl;
-	scrambled.printCube();
-	scrambled.printMoves();
+	for( int i=0; i<n; i++)
+	{
+			guesscube.writeCube(PosArrayCorner[i],(scrambled.guess[i])-48);
+	}
 
-	cout << "solveOrientationCorners" << endl;
-	scrambled.solveOrientationCorners();
-	scrambled.printCube();
-	scrambled.printMoves();
+	cout << endl << "Eckfelder: " << endl;
+	guesscube.printCube();
 
-	scrambled.solveCube();
+	guesscube.moveToTopCorners();
+	cout << "Top Corners:" << endl;
+	guesscube.printCube();
+	guesscube.solvePositionCorners();
+	cout << "Position Corners:" << endl;
+	guesscube.printCube();
+	guesscube.solveOrientationCorners();
+	cout << "Orientierung Corners:" << endl;
+	guesscube.printCube();
 
-	scrambled.printCube();
-	scrambled.printMoves();
+	bool CubeCorrect;
+	CubeCorrect = guesscube.isCubeSolved();
+	if(CubeCorrect){
+		guesscube.solveCube();
+		cout << "SOLVED CUBE (Algorithm): " << endl;
+		guesscube.printCube();
+	}
 
-	//scrambled.scramble();
-	//scrambled.splitQuestion("011033044136095112", 6);
+	cout << "SOLVED CUBE: " << endl;
+	guesscube.printCube();
+
 	return 0;
 }

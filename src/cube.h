@@ -37,7 +37,7 @@ public:
 		{ { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } } }; //white side */
 
 	string moves = "";
-
+	string guess = "";
 
 
 	Cube(int n=1){
@@ -134,7 +134,11 @@ public:
 	void switchEdges(int top, bool direction);//destroys corners!!!!
 
 	void findSwitchableEdges(); //not used
-	bool isCorrectEdge(int position); //not used?
+	bool isCubeSolved();
+	bool isCorrectEdge(int position);
+	int AnzahlMoves(){
+		return moves.size()/3;
+	}
 
 	//--------------------First Layer----------------------//
 	void moveToTopCross();
@@ -144,11 +148,13 @@ public:
 	int findTopEdgeSide(int side, int pos);
 	//--------------------Second Layer----------------------//
 	void solveSecondLayer();
+
+	bool checkSecondLayer();
 	void MoveSecondLayer();
 	//--------------------Third Layer----------------------//
 	void moveToBottomCross();
 	void switchEdgesBottomCross();
-	
+
 	int findBottomEdgePos(int side, int pos);
 	int findBottomEdgeSide(int side, int pos);
 
@@ -188,11 +194,10 @@ public:
 	string getMoves(){
 		return this->moves;
 	};
-
-
-
-
-		void bayes_guesser(int *farbArray, int n);
+	string getGuess(){
+		return this->guess;
+	};
+	void bayes_guesser(int *farbArray, int n);
 	int amountWandBofPosAndCol(int *pos,int *FarbArray,int n);
 };
 //-----------------------------------------------//
