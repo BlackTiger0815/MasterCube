@@ -216,8 +216,8 @@ int main (int argc, char* argv[]) {
 	cout<<"end BayesGuesser"<<endl;
 	scrambled.printCube();
 
-	/*scrambled.scramble();
-	scrambled.r();
+	scrambled.scramble();
+	/*scrambled.r();
 	scrambled.l();
 	scrambled.f();
 	scrambled.di();
@@ -229,7 +229,7 @@ int main (int argc, char* argv[]) {
 	scrambled.r();
 	scrambled.r();
 	scrambled.li();
-	scrambled.fi();
+	scrambled.fi();*/
 	cout << "scrambled:" << endl;
 	scrambled.printCube();
 	scrambled.clearMoves();
@@ -251,9 +251,27 @@ int main (int argc, char* argv[]) {
 	cout << "3rd Layer: 2" << endl;
 	scrambled.switchEdgesBottomCross();
 	scrambled.printCube();
-	scrambled.printMoves();*/
+	scrambled.printMoves();
 
-	//scrambled.solveCube();
+	scrambled.moveToTopCorners();
+	cout << "moveToTopCorners:" << endl;
+	scrambled.printCube();
+	scrambled.printMoves();
+
+	scrambled.solvePositionCorners();
+	cout << "solvePositionCorners:" << endl;
+	scrambled.printCube();
+	scrambled.printMoves();
+
+	cout << "solveOrientationCorners" << endl;
+	scrambled.solveOrientationCorners();
+	scrambled.printCube();
+	scrambled.printMoves();
+
+	scrambled.solveCube();
+
+	scrambled.printCube();
+	scrambled.printMoves();
 
 	//scrambled.scramble();
 	//scrambled.splitQuestion("011033044136095112", 6);
