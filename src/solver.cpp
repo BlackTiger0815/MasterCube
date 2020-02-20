@@ -42,12 +42,7 @@ void MastermindSolver::generate_positions_to_ask()
 		postions_to_ask.push_front(Beagle._cube[i][j][k]);				
 		}
 		
-		/* 
-		Beagle.printCube();
-		std::////////////cout<< "postions_to_ask contains:";
-  for (std::list<int>::iterator it=postions_to_ask.begin(); it!=postions_to_ask.end(); ++it)
-    std::////////////cout<< ' ' << *it; 
- */
+	
 		
 }
 
