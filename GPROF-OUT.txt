@@ -1,0 +1,377 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  us/call  us/call  name    
+ 58.83      0.10     0.10      936   106.85   170.96  getAdjecentEcken(int)
+ 17.65      0.13     0.03   745848     0.04     0.04  void std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >::emplace_back<std::pair<int, int> >(std::pair<int, int>&&)
+ 17.65      0.16     0.03    10314     2.91     2.91  void std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >::_M_realloc_insert<std::pair<int, int> >(__gnu_cxx::__normal_iterator<std::pair<int, int>*, std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > > >, std::pair<int, int>&&)
+  5.88      0.17     0.01                             std::_Rb_tree<int, std::pair<int const, int>, std::_Select1st<std::pair<int const, int> >, std::less<int>, std::allocator<std::pair<int const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, int> >*)
+  0.00      0.17     0.00    41064     0.00     0.00  std::_Rb_tree_iterator<std::pair<int const, int> > std::_Rb_tree<int, std::pair<int const, int>, std::_Select1st<std::pair<int const, int> >, std::less<int>, std::allocator<std::pair<int const, int> > >::_M_emplace_equal<std::pair<int, int> >(std::pair<int, int>&&)
+  0.00      0.17     0.00    13688     0.00     0.00  void std::vector<std::pair<int, std::pair<int, int> >, std::allocator<std::pair<int, std::pair<int, int> > > >::emplace_back<std::pair<int, std::pair<int, int> > >(std::pair<int, std::pair<int, int> >&&)
+  0.00      0.17     0.00    10266     0.00     0.00  int* std::__find_if<int*, __gnu_cxx::__ops::_Iter_equals_val<int const> >(int*, int*, __gnu_cxx::__ops::_Iter_equals_val<int const>, std::random_access_iterator_tag)
+  0.00      0.17     0.00     3422     0.00     0.00  isEcke(int)
+  0.00      0.17     0.00     3422     0.00     0.00  isKante(int)
+  0.00      0.17     0.00     3422     0.00     0.00  isMitte(int)
+  0.00      0.17     0.00     3422     0.00     0.00  void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag)
+  0.00      0.17     0.00     1955     0.00     0.00  void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag)
+  0.00      0.17     0.00     1897     0.00     0.00  Cube::last[abi:cxx11]()
+  0.00      0.17     0.00     1711     0.00     0.00  init_Ecken()
+  0.00      0.17     0.00     1711     0.00     0.00  init_Kanten()
+  0.00      0.17     0.00     1711     0.00     0.00  randomizeFeedback(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+  0.00      0.17     0.00     1711     0.00    93.52  Cube::generateMastermindAnswer[abi:cxx11](int*, int*, int)
+  0.00      0.17     0.00       54     0.00     0.00  Cube::removeLast()
+  0.00      0.17     0.00       48     0.00     0.00  Cube::isCorrectEdge(int)
+  0.00      0.17     0.00       15     0.00     0.00  void std::vector<std::pair<int, std::pair<int, int> >, std::allocator<std::pair<int, std::pair<int, int> > > >::_M_realloc_insert<std::pair<int, std::pair<int, int> > >(__gnu_cxx::__normal_iterator<std::pair<int, std::pair<int, int> >*, std::vector<std::pair<int, std::pair<int, int> >, std::allocator<std::pair<int, std::pair<int, int> > > > >, std::pair<int, std::pair<int, int> >&&)
+  0.00      0.17     0.00        9     0.00     0.00  Cube::isCorrectCornerOrientation(int)
+  0.00      0.17     0.00        5     0.00     0.00  Cube::u()
+  0.00      0.17     0.00        4     0.00     0.00  Cube::fi()
+  0.00      0.17     0.00        4     0.00     0.00  Cube::ri()
+  0.00      0.17     0.00        3     0.00     0.00  Cube::li()
+  0.00      0.17     0.00        2     0.00     0.00  Cube::b()
+  0.00      0.17     0.00        2     0.00     0.00  Cube::f()
+  0.00      0.17     0.00        2     0.00     0.00  Cube::l()
+  0.00      0.17     0.00        2     0.00     0.00  Cube::r()
+  0.00      0.17     0.00        2     0.00     0.00  Cube::bi()
+  0.00      0.17     0.00        2     0.00     0.00  Cube::ui()
+  0.00      0.17     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z12CreateClientPct
+  0.00      0.17     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z12CreateServert
+  0.00      0.17     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z16numbers_to_colori
+  0.00      0.17     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN14MastermindCubeD2Ev
+  0.00      0.17     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN16MastermindSolver25generate_positions_to_askEv
+  0.00      0.17     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN5Cubie8setColorEi
+  0.00      0.17     0.00        1     0.00     0.00  _GLOBAL__sub_I_main
+  0.00      0.17     0.00        1     0.00     0.00  Cube::d()
+  0.00      0.17     0.00        1     0.00     0.00  Cube::di()
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 5.88% of 0.17 seconds
+
+index % time    self  children    called     name
+                0.00    0.16    1711/1711        Cube::splitQuestion(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int) [3]
+[1]     94.1    0.00    0.16    1711         Cube::generateMastermindAnswer[abi:cxx11](int*, int*, int) [1]
+                0.10    0.06     936/936         getAdjecentEcken(int) [2]
+                0.00    0.00    3422/3422        isKante(int) [18]
+                0.00    0.00    3422/3422        isEcke(int) [17]
+                0.00    0.00    3422/3422        isMitte(int) [19]
+                0.00    0.00    1711/3422        void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [20]
+                0.00    0.00    1711/1711        randomizeFeedback(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [25]
+-----------------------------------------------
+                0.10    0.06     936/936         Cube::generateMastermindAnswer[abi:cxx11](int*, int*, int) [1]
+[2]     94.1    0.10    0.06     936         getAdjecentEcken(int) [2]
+                0.03    0.00  745848/745848      void std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >::emplace_back<std::pair<int, int> >(std::pair<int, int>&&) [4]
+                0.03    0.00   10314/10314       void std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >::_M_realloc_insert<std::pair<int, int> >(__gnu_cxx::__normal_iterator<std::pair<int, int>*, std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > > >, std::pair<int, int>&&) [5]
+-----------------------------------------------
+                                                 <spontaneous>
+[3]     94.1    0.00    0.16                 Cube::splitQuestion(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int) [3]
+                0.00    0.16    1711/1711        Cube::generateMastermindAnswer[abi:cxx11](int*, int*, int) [1]
+                0.00    0.00    1711/1711        init_Ecken() [23]
+                0.00    0.00    1711/1711        init_Kanten() [24]
+-----------------------------------------------
+                0.03    0.00  745848/745848      getAdjecentEcken(int) [2]
+[4]     17.6    0.03    0.00  745848         void std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >::emplace_back<std::pair<int, int> >(std::pair<int, int>&&) [4]
+-----------------------------------------------
+                0.03    0.00   10314/10314       getAdjecentEcken(int) [2]
+[5]     17.6    0.03    0.00   10314         void std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >::_M_realloc_insert<std::pair<int, int> >(__gnu_cxx::__normal_iterator<std::pair<int, int>*, std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > > >, std::pair<int, int>&&) [5]
+-----------------------------------------------
+                               41064             std::_Rb_tree<int, std::pair<int const, int>, std::_Select1st<std::pair<int const, int> >, std::less<int>, std::allocator<std::pair<int const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, int> >*) [6]
+[6]      5.9    0.01    0.00       0+41064   std::_Rb_tree<int, std::pair<int const, int>, std::_Select1st<std::pair<int const, int> >, std::less<int>, std::allocator<std::pair<int const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, int> >*) [6]
+                               41064             std::_Rb_tree<int, std::pair<int const, int>, std::_Select1st<std::pair<int const, int> >, std::less<int>, std::allocator<std::pair<int const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, int> >*) [6]
+-----------------------------------------------
+                0.00    0.00   41064/41064       init_Kanten() [24]
+[14]     0.0    0.00    0.00   41064         std::_Rb_tree_iterator<std::pair<int const, int> > std::_Rb_tree<int, std::pair<int const, int>, std::_Select1st<std::pair<int const, int> >, std::less<int>, std::allocator<std::pair<int const, int> > >::_M_emplace_equal<std::pair<int, int> >(std::pair<int, int>&&) [14]
+-----------------------------------------------
+                0.00    0.00   13688/13688       init_Ecken() [23]
+[15]     0.0    0.00    0.00   13688         void std::vector<std::pair<int, std::pair<int, int> >, std::allocator<std::pair<int, std::pair<int, int> > > >::emplace_back<std::pair<int, std::pair<int, int> > >(std::pair<int, std::pair<int, int> >&&) [15]
+-----------------------------------------------
+                0.00    0.00    3422/10266       isEcke(int) [17]
+                0.00    0.00    3422/10266       isKante(int) [18]
+                0.00    0.00    3422/10266       isMitte(int) [19]
+[16]     0.0    0.00    0.00   10266         int* std::__find_if<int*, __gnu_cxx::__ops::_Iter_equals_val<int const> >(int*, int*, __gnu_cxx::__ops::_Iter_equals_val<int const>, std::random_access_iterator_tag) [16]
+-----------------------------------------------
+                0.00    0.00    3422/3422        Cube::generateMastermindAnswer[abi:cxx11](int*, int*, int) [1]
+[17]     0.0    0.00    0.00    3422         isEcke(int) [17]
+                0.00    0.00    3422/10266       int* std::__find_if<int*, __gnu_cxx::__ops::_Iter_equals_val<int const> >(int*, int*, __gnu_cxx::__ops::_Iter_equals_val<int const>, std::random_access_iterator_tag) [16]
+-----------------------------------------------
+                0.00    0.00    3422/3422        Cube::generateMastermindAnswer[abi:cxx11](int*, int*, int) [1]
+[18]     0.0    0.00    0.00    3422         isKante(int) [18]
+                0.00    0.00    3422/10266       int* std::__find_if<int*, __gnu_cxx::__ops::_Iter_equals_val<int const> >(int*, int*, __gnu_cxx::__ops::_Iter_equals_val<int const>, std::random_access_iterator_tag) [16]
+-----------------------------------------------
+                0.00    0.00    3422/3422        Cube::generateMastermindAnswer[abi:cxx11](int*, int*, int) [1]
+[19]     0.0    0.00    0.00    3422         isMitte(int) [19]
+                0.00    0.00    3422/10266       int* std::__find_if<int*, __gnu_cxx::__ops::_Iter_equals_val<int const> >(int*, int*, __gnu_cxx::__ops::_Iter_equals_val<int const>, std::random_access_iterator_tag) [16]
+-----------------------------------------------
+                0.00    0.00    1711/3422        randomizeFeedback(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [25]
+                0.00    0.00    1711/3422        Cube::generateMastermindAnswer[abi:cxx11](int*, int*, int) [1]
+[20]     0.0    0.00    0.00    3422         void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [20]
+-----------------------------------------------
+                0.00    0.00       4/1955        Cube::Cube(int) [140]
+                0.00    0.00      54/1955        Cube::removeLast() [26]
+                0.00    0.00    1897/1955        Cube::last[abi:cxx11]() [22]
+[21]     0.0    0.00    0.00    1955         void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) [21]
+-----------------------------------------------
+                0.00    0.00      75/1897        Cube::di() [48]
+                0.00    0.00      81/1897        Cube::fi() [31]
+                0.00    0.00      86/1897        Cube::b() [34]
+                0.00    0.00      87/1897        Cube::bi() [38]
+                0.00    0.00     110/1897        Cube::f() [35]
+                0.00    0.00     111/1897        Cube::d() [47]
+                0.00    0.00     126/1897        Cube::li() [33]
+                0.00    0.00     139/1897        Cube::l() [36]
+                0.00    0.00     160/1897        Cube::r() [37]
+                0.00    0.00     162/1897        Cube::ri() [32]
+                0.00    0.00     312/1897        Cube::ui() [39]
+                0.00    0.00     448/1897        Cube::u() [30]
+[22]     0.0    0.00    0.00    1897         Cube::last[abi:cxx11]() [22]
+                0.00    0.00    1897/1955        void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) [21]
+-----------------------------------------------
+                0.00    0.00    1711/1711        Cube::splitQuestion(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int) [3]
+[23]     0.0    0.00    0.00    1711         init_Ecken() [23]
+                0.00    0.00   13688/13688       void std::vector<std::pair<int, std::pair<int, int> >, std::allocator<std::pair<int, std::pair<int, int> > > >::emplace_back<std::pair<int, std::pair<int, int> > >(std::pair<int, std::pair<int, int> >&&) [15]
+                0.00    0.00      15/15          void std::vector<std::pair<int, std::pair<int, int> >, std::allocator<std::pair<int, std::pair<int, int> > > >::_M_realloc_insert<std::pair<int, std::pair<int, int> > >(__gnu_cxx::__normal_iterator<std::pair<int, std::pair<int, int> >*, std::vector<std::pair<int, std::pair<int, int> >, std::allocator<std::pair<int, std::pair<int, int> > > > >, std::pair<int, std::pair<int, int> >&&) [28]
+-----------------------------------------------
+                0.00    0.00    1711/1711        Cube::splitQuestion(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int) [3]
+[24]     0.0    0.00    0.00    1711         init_Kanten() [24]
+                0.00    0.00   41064/41064       std::_Rb_tree_iterator<std::pair<int const, int> > std::_Rb_tree<int, std::pair<int const, int>, std::_Select1st<std::pair<int const, int> >, std::less<int>, std::allocator<std::pair<int const, int> > >::_M_emplace_equal<std::pair<int, int> >(std::pair<int, int>&&) [14]
+-----------------------------------------------
+                0.00    0.00    1711/1711        Cube::generateMastermindAnswer[abi:cxx11](int*, int*, int) [1]
+[25]     0.0    0.00    0.00    1711         randomizeFeedback(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [25]
+                0.00    0.00    1711/3422        void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [20]
+-----------------------------------------------
+                0.00    0.00       1/54          Cube::r() [37]
+                0.00    0.00       1/54          Cube::li() [33]
+                0.00    0.00       1/54          Cube::bi() [38]
+                0.00    0.00       2/54          Cube::b() [34]
+                0.00    0.00       5/54          Cube::l() [36]
+                0.00    0.00       8/54          Cube::f() [35]
+                0.00    0.00       9/54          Cube::d() [47]
+                0.00    0.00      27/54          Cube::u() [30]
+[26]     0.0    0.00    0.00      54         Cube::removeLast() [26]
+                0.00    0.00      54/1955        void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) [21]
+-----------------------------------------------
+                0.00    0.00      48/48          Cube::isCubeSolved() [83]
+[27]     0.0    0.00    0.00      48         Cube::isCorrectEdge(int) [27]
+-----------------------------------------------
+                0.00    0.00      15/15          init_Ecken() [23]
+[28]     0.0    0.00    0.00      15         void std::vector<std::pair<int, std::pair<int, int> >, std::allocator<std::pair<int, std::pair<int, int> > > >::_M_realloc_insert<std::pair<int, std::pair<int, int> > >(__gnu_cxx::__normal_iterator<std::pair<int, std::pair<int, int> >*, std::vector<std::pair<int, std::pair<int, int> >, std::allocator<std::pair<int, std::pair<int, int> > > > >, std::pair<int, std::pair<int, int> >&&) [28]
+-----------------------------------------------
+                0.00    0.00       9/9           Cube::isCubeSolved() [83]
+[29]     0.0    0.00    0.00       9         Cube::isCorrectCornerOrientation(int) [29]
+-----------------------------------------------
+                0.00    0.00       5/5           Cube::scramble() [135]
+[30]     0.0    0.00    0.00       5         Cube::u() [30]
+                0.00    0.00     448/1897        Cube::last[abi:cxx11]() [22]
+                0.00    0.00      27/54          Cube::removeLast() [26]
+-----------------------------------------------
+                0.00    0.00       4/4           Cube::scramble() [135]
+[31]     0.0    0.00    0.00       4         Cube::fi() [31]
+                0.00    0.00      81/1897        Cube::last[abi:cxx11]() [22]
+-----------------------------------------------
+                0.00    0.00       4/4           Cube::scramble() [135]
+[32]     0.0    0.00    0.00       4         Cube::ri() [32]
+                0.00    0.00     162/1897        Cube::last[abi:cxx11]() [22]
+-----------------------------------------------
+                0.00    0.00       3/3           Cube::scramble() [135]
+[33]     0.0    0.00    0.00       3         Cube::li() [33]
+                0.00    0.00     126/1897        Cube::last[abi:cxx11]() [22]
+                0.00    0.00       1/54          Cube::removeLast() [26]
+-----------------------------------------------
+                0.00    0.00       2/2           Cube::scramble() [135]
+[34]     0.0    0.00    0.00       2         Cube::b() [34]
+                0.00    0.00      86/1897        Cube::last[abi:cxx11]() [22]
+                0.00    0.00       2/54          Cube::removeLast() [26]
+-----------------------------------------------
+                0.00    0.00       2/2           Cube::scramble() [135]
+[35]     0.0    0.00    0.00       2         Cube::f() [35]
+                0.00    0.00     110/1897        Cube::last[abi:cxx11]() [22]
+                0.00    0.00       8/54          Cube::removeLast() [26]
+-----------------------------------------------
+                0.00    0.00       2/2           Cube::scramble() [135]
+[36]     0.0    0.00    0.00       2         Cube::l() [36]
+                0.00    0.00     139/1897        Cube::last[abi:cxx11]() [22]
+                0.00    0.00       5/54          Cube::removeLast() [26]
+-----------------------------------------------
+                0.00    0.00       2/2           Cube::scramble() [135]
+[37]     0.0    0.00    0.00       2         Cube::r() [37]
+                0.00    0.00     160/1897        Cube::last[abi:cxx11]() [22]
+                0.00    0.00       1/54          Cube::removeLast() [26]
+-----------------------------------------------
+                0.00    0.00       2/2           Cube::scramble() [135]
+[38]     0.0    0.00    0.00       2         Cube::bi() [38]
+                0.00    0.00      87/1897        Cube::last[abi:cxx11]() [22]
+                0.00    0.00       1/54          Cube::removeLast() [26]
+-----------------------------------------------
+                0.00    0.00       2/2           Cube::scramble() [135]
+[39]     0.0    0.00    0.00       2         Cube::ui() [39]
+                0.00    0.00     312/1897        Cube::last[abi:cxx11]() [22]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [164]
+[40]     0.0    0.00    0.00       1         _GLOBAL__sub_I__Z12CreateClientPct [40]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [164]
+[41]     0.0    0.00    0.00       1         _GLOBAL__sub_I__Z12CreateServert [41]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [164]
+[42]     0.0    0.00    0.00       1         _GLOBAL__sub_I__Z16numbers_to_colori [42]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [164]
+[43]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN14MastermindCubeD2Ev [43]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [164]
+[44]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN16MastermindSolver25generate_positions_to_askEv [44]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [164]
+[45]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN5Cubie8setColorEi [45]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [164]
+[46]     0.0    0.00    0.00       1         _GLOBAL__sub_I_main [46]
+-----------------------------------------------
+                0.00    0.00       1/1           Cube::scramble() [135]
+[47]     0.0    0.00    0.00       1         Cube::d() [47]
+                0.00    0.00     111/1897        Cube::last[abi:cxx11]() [22]
+                0.00    0.00       9/54          Cube::removeLast() [26]
+-----------------------------------------------
+                0.00    0.00       1/1           Cube::scramble() [135]
+[48]     0.0    0.00    0.00       1         Cube::di() [48]
+                0.00    0.00      75/1897        Cube::last[abi:cxx11]() [22]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+  [40] _GLOBAL__sub_I__Z12CreateClientPct (CreateClient.cpp) [26] Cube::removeLast() [32] Cube::ri()
+  [41] _GLOBAL__sub_I__Z12CreateServert (CreateServer.cpp) [27] Cube::isCorrectEdge(int) [39] Cube::ui()
+  [42] _GLOBAL__sub_I__Z16numbers_to_colori (cube.cpp) [34] Cube::b() [22] Cube::last[abi:cxx11]()
+  [43] _GLOBAL__sub_I__ZN14MastermindCubeD2Ev (mastermindcube.cpp) [47] Cube::d() [15] void std::vector<std::pair<int, std::pair<int, int> >, std::allocator<std::pair<int, std::pair<int, int> > > >::emplace_back<std::pair<int, std::pair<int, int> > >(std::pair<int, std::pair<int, int> >&&)
+  [44] _GLOBAL__sub_I__ZN16MastermindSolver25generate_positions_to_askEv (solver.cpp) [35] Cube::f() [28] void std::vector<std::pair<int, std::pair<int, int> >, std::allocator<std::pair<int, std::pair<int, int> > > >::_M_realloc_insert<std::pair<int, std::pair<int, int> > >(__gnu_cxx::__normal_iterator<std::pair<int, std::pair<int, int> >*, std::vector<std::pair<int, std::pair<int, int> >, std::allocator<std::pair<int, std::pair<int, int> > > > >, std::pair<int, std::pair<int, int> >&&)
+  [45] _GLOBAL__sub_I__ZN5Cubie8setColorEi (cubie.cpp) [36] Cube::l() [4] void std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >::emplace_back<std::pair<int, int> >(std::pair<int, int>&&)
+  [46] _GLOBAL__sub_I_main (main.cpp) [37] Cube::r()       [5] void std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > >::_M_realloc_insert<std::pair<int, int> >(__gnu_cxx::__normal_iterator<std::pair<int, int>*, std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > > >, std::pair<int, int>&&)
+  [23] init_Ecken()           [30] Cube::u()              [21] void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag)
+  [24] init_Kanten()           [1] Cube::generateMastermindAnswer[abi:cxx11](int*, int*, int) [20] void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag)
+   [2] getAdjecentEcken(int)  [29] Cube::isCorrectCornerOrientation(int) [14] std::_Rb_tree_iterator<std::pair<int const, int> > std::_Rb_tree<int, std::pair<int const, int>, std::_Select1st<std::pair<int const, int> >, std::less<int>, std::allocator<std::pair<int const, int> > >::_M_emplace_equal<std::pair<int, int> >(std::pair<int, int>&&)
+  [25] randomizeFeedback(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [38] Cube::bi() [6] std::_Rb_tree<int, std::pair<int const, int>, std::_Select1st<std::pair<int const, int> >, std::less<int>, std::allocator<std::pair<int const, int> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, int> >*)
+  [17] isEcke(int)            [48] Cube::di()             [16] int* std::__find_if<int*, __gnu_cxx::__ops::_Iter_equals_val<int const> >(int*, int*, __gnu_cxx::__ops::_Iter_equals_val<int const>, std::random_access_iterator_tag)
+  [18] isKante(int)           [31] Cube::fi()
+  [19] isMitte(int)           [33] Cube::li()
