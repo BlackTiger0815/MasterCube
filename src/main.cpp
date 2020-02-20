@@ -1,9 +1,7 @@
-#include "debug.h"
 #include "solver.h" //Solver for Mastermind and Rubiks Cube
 //#include "cubie.h" // Stephanie
 #include "mastermindcube.h" // Stephanie
 #include <list>
-
 //21.01.2020 for communication by Elisabeth
 #include <iostream>		/* for std::cout */
 #include <sys/socket.h> /* for socket(), bind(), connect(), send(), and recv() */
@@ -20,260 +18,431 @@ int CreateClient(char *serverIP, unsigned short serverPort); /*function for crea
 
 int main (int argc, char* argv[]) {
 
-	//new 13.12.2019 adding debug by Thomas
-	debug Debugger;
-	Debugger.setdebug(0);
-	Debugger.setdebug(1);
-	Debugger.printf("MasterCube is starting");
-	// Debug inilasition over
-
-
-	// here server
-	// wait for answer
-	// send answer
+	srand(time(0));
+	
+	int counter_questions = 0;
 
 
 
+	/// Test ////
+	//Cube Testcube;
+	//string question_test = "494400313221135042504524480462412435393375322345300282230255212195142163124101054075033011534475512455444";
+	//Testcube.splitQuestion(question_test, question_test.length()/3);
+	//cout << question_test << "the question is " << question_test.length()/3 << "long" << endl;
+	//cout <<"the feedback :" << Testcube.feedback << "is " << Testcube.feedback.length() << "long" << endl;
+	// can entfernt werden
 
-	//here client
-	//get n
-	// generate solver
-	//Mastermind solver
-	//MastermindSolver clever;
-	//clever.set_n(3);
-	//clever.generate_question();
+	
+	// 15.12.2019 handling of calling parameters by Isabella
+	// 21.01.2020 handling og calling parameters modified by Elisabeth
+	// 21.01.2020 adding Server Client Communication (TCP) by Elisabeth
+	//  Port and IP-adress needs to be calculated from String for using it in communication
 
-	// generate question
-	// send question
-	// calculate answer
-	// answer to IDA*
-	// rotate?
+	  int sock;                        /* Socket descriptor */
+	  char *serverIP;					/* Server IP address (dotted quad) */
+	  unsigned short serverPort;		/* Echo server port */
+	  std::string modus;
+	 
+	  if(argc == 1)
+	  {
+	  	std::cout << "Not enough parameters" << endl;
+	  }else
+	  {
+	 
+	  	 for(int i=0; i<argc; i++){
+	  	 	cout << i<< ":  " << argv[i] << endl;
+	  	 }
+	 
+	  	modus = argv[1];
+	 
+	/* 	 Client--------------------------------------------------------------------------------------*/
+	  	if(modus.compare ("client") == 0){
+	  		serverIP = "127.0.0.1 4000";  		/* Second arg:  Server IP Address */
+	  		serverPort = 4000;	/* Third arg:  Server port */
+	 
+	  		sock = CreateClient(serverIP,serverPort); // create the client/the socket
+	 
+	  	   	std::string clientMessage;          /* String to send to server */
+	  		std::string serverMessage;			/* String that is recieved from the server */
+      		char echoBuffer[RCVBUFSIZE];		/* Buffer for serverMessage */
+      		unsigned int echoStringLen;      	/* Length of string*/
+      		int bytesRcvd;   					/* Bytes read in single recv()*/
+	  		bool solvingComplete;				/* determine if the cube is solved */
+	 
+	  		 //This is my loop for the client, it includes ending the communication if the cube is solved
+	  		 //there is a do-while so the client can send the ending communication message to the server before the communication is quit
 
-	//repeat
 
-
-
-	//15.12.2019 handling of calling parameters by Isabella
-	//21.01.2020 handling og calling parameters modified by Elisabeth
-	//21.01.2020 adding Server Client Communication (TCP) by Elisabeth
-	// Port and IP-adress needs to be calculated from String for using it in communication
-
-	// int sock;                        /* Socket descriptor */
-	// char *serverIP;					/* Server IP address (dotted quad) */
-	// unsigned short serverPort;		/* Echo server port */
-	// std::string modus;
-	//
-	// if(argc == 1)
-	// {
-	// 	std::cout << "Not enough parameters" << endl;
-	// }else
-	// {
-	//
-	// 	//for(int i=0; i<argc; i++){
-	// 	//	cout << i<< ":  " << argv[i] << endl;
-	// 	//}
-	//
-	// 	modus = argv[1];
-	//
-	// 	//Client--------------------------------------------------------------------------------------
-	// 	if(modus.compare ("client") == 0){
-	// 		serverIP = argv[2];  		/* Second arg:  Server IP Address */
-	// 		serverPort = atoi(argv[3]);	/* Third arg:  Server port */
-	//
-	// 		sock = CreateClient(serverIP,serverPort); //create the client/the socket
-	//
-	// 	   	std::string clientMessage;          /* String to send to server */
-	// 		std::string serverMessage;			/* String that is recieved from the server */
-    // 		char echoBuffer[RCVBUFSIZE];		/* Buffer for serverMessage */
-    // 		unsigned int echoStringLen;      	/* Length of string*/
-    // 		int bytesRcvd;   					/* Bytes read in single recv()*/
-	// 		bool solvingComplete;				//determine if the cube is solved
-	//
-	// 		//This is my loop for the client, it includes ending the communication if the cube is solved
-	// 		do //there is a do-while so the client can send the ending communication message to the server before the communication is quit
-	// 		{
-	// 			/* Get solvedComplete message from terminal */
-	// 			std::cout << "Please insert if solving is comleted (yes: 1; no: 0): ";
-	// 			std::cin >> solvingComplete;
-	//
-	// 			//the following part can be used for both the Mastermind Questions to the server as well as the instructions for the server on how to scramble the cube, the "do" loop goes from start to finish of one entire communication circle so the section will be needed twice in the loop, once for Mastermind and once for cube solver
-	// 			if(solvingComplete == 0)
-	// 			{
-	// 				//Get the message that should be send to the server
-	// 				std::cout << "Please insert client message: ";
-	// 				std::cin >> clientMessage;
-	// 				//std::cout << "Your message is: " << clientMessage << std::endl;
-	// 			}else
-	// 			{
-	// 				clientMessage = "fin"; //this message tells the server that the communicaton can be quit
-	// 			}
-	//
-	// 			//for debug (see if "fin" was chosen correctly)
-	// 			//std::cout << "The clientMessage is: " << clientMessage << std::endl;
-	//
-	// 			//Determine length of the message to be send
-    // 			echoStringLen = strlen(clientMessage.c_str());
-	// 			//std::cout << "echoStringLen: " << echoStringLen << std::endl;
-	//
-    // 			/* Send the string to the server */
-    // 			if (send(sock, clientMessage.c_str(), echoStringLen, 0) != echoStringLen)
-    //     			DieWithError("send() sent a different number of bytes than expected");
-	//
-    // 			/* Receive string from the server */
-	// 			if ((bytesRcvd = recv(sock, echoBuffer, RCVBUFSIZE, 0)) <= 0)
-    //         		DieWithError("recv() failed or connection closed prematurely");
-	//
-	// 			serverMessage = echoBuffer; //write the string from the buffer in serverMessage
-	// 			serverMessage = serverMessage.substr(0,bytesRcvd); /* Cut so only the chars that were sent in this loop are in serverMessage*/
-	//
-	// 			//for debug
-	// 			//std::cout << "bytesRcvd: " << bytesRcvd << "." << std::endl; //Anzahl der Zeichen die empfangen wurden
-    // 			//std::cout << "echoBuffer: " << echoBuffer << "." << std::endl;
-	//
-	// 			//do something with the message recieved from the server
-	// 			std::cout << "serverMessage: " << serverMessage << "." << std::endl;
-	//
-	// 		}while(solvingComplete == 0); //while the cube is not solved
-	//
-    // 		close(sock); //this closes the Socket and ends the communication, it needs to be performed by both client and server => fin message to server
-	// 	}
-	// 	//Server--------------------------------------------------------------------------------------
-	// 	else if(modus.compare ("server") == 0){
-	// 		serverPort = atoi(argv[2]);  /* Second arg:  Server port */
-	//
-	// 		sock = CreateServer(serverPort); //create the server/the socket
-	//
-	// 		std::string serverMessage;			/* Message that is sent to the client */
-	// 		std::string clientMessage;			/* Message that is recieved from the client */
-	// 		char clientMessageBuffer[RCVBUFSIZE];        /* Buffer for message string from client*/
-    // 		int recvMsgSize;                    /* Size of received message */
-	// 		unsigned int stringLen;      /* Length of string to echo */
-	// 		//int n;
-	//
-	// 		//This is my loop for the server, it includes ending the communication if the cube is solved
-	// 		do
-	// 		{
-	//
-    // 			/* Receive message from client */
-    // 			if ((recvMsgSize = recv(sock, clientMessageBuffer, RCVBUFSIZE, 0)) < 0)
-    //     			DieWithError("recv() failed");
-	//
-	// 			//debug
-	// 			//std::cout << "recvMsgSize: " << recvMsgSize << "." << std::endl;
-	// 			//n = recvMsgSize/3; //n aus der Anzahl der erhaltenen Characters berechnen
-	//
-	// 			clientMessage = clientMessageBuffer;
-	// 			clientMessage = clientMessage.substr(0,recvMsgSize); /* Cut so only the chars that were sent in this loop are in clientMessage*/
-	//
-	// 			//debug
-	// 			//std::cout << "clientMessageBuffer: " << clientMessageBuffer << "." << std::endl;
-	//
-	// 			//do something with the message recieved from the client
-	// 			std::cout << "clientMessage: " << clientMessage << "." << std::endl;
-	//
-	// 			//see if the client has sent the message to end the communication
-	// 			if(clientMessage.compare("fin") != 0)
-	// 			{
-	// 				//Get the message that should be send to the client
-	// 				std::cout << "Please insert server message: ";
-	// 				std::cin >> serverMessage;
-	// 			}else
-	// 			{
-	// 				serverMessage = "fin";
-	// 			}
-	//
-	// 			//debug
-	// 			//std::cout << "The serverMessage is: " << serverMessage << std::endl;
-	//
-	// 			stringLen = strlen(serverMessage.c_str()); /* get lenght of the message to be send */
-	// 			//std::cout << "stringLen: " << stringLen << std::endl;
-	//
-	// 			/* Send serverMessage to client */
-	// 			if (send(sock, serverMessage.c_str(), stringLen, 0) != stringLen)
-	// 				DieWithError("send() failed");
-	//
-	// 		}while(clientMessage.compare("fin") != 0);
-	//
-    // 		close(sock); //this closes the Socket and ends the communication, it needs to be performed by both client and server => fin message to server
-	//
-	// 	}
-	// 	else{
-	// 		std::cout << "Wrong init-parameters";
-	// 	}
-	// }
+	  		// here Client setup
+	  		MastermindSolver clever;
+	  		int length_of_question = rand() % 51 + 2;
+	  		length_of_question = 53;
+			clever.set_n((length_of_question));
+			Cube solved_cluber(0);
+			Cube tracker(-1);
 
 
 
 
 
-	Cube solved;
-	Cube scrambled;
-	scrambled.scramble();
-	int PosArray[]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53};
-	cout<<"BayesGuesser"<<endl;
 
-	scrambled.bayes_guesser(&PosArray[0],sizeof(PosArray)/sizeof(PosArray[0]));
-	cout<<"end BayesGuesser"<<endl;
-	scrambled.printCube();
 
-	scrambled.scramble();
-	/*scrambled.r();
-	scrambled.l();
-	scrambled.f();
-	scrambled.di();
-	scrambled.r();
-	scrambled.b();
-	scrambled.r();
-	scrambled.f();
-	scrambled.b();
-	scrambled.r();
-	scrambled.r();
-	scrambled.li();
-	scrambled.fi();*/
-	cout << "scrambled:" << endl;
-	scrambled.printCube();
-	scrambled.clearMoves();
-	Cube tmp(0); //Cube mit -1 gefüllt
-	Cube tmp2(-1); //Cube mit indizes
 
-	//scrambled.printCube();
-	cout << "TOP CROSS:" << endl;
-	scrambled.moveToTopCross(); //alle weißen (0) zum Kreuz der Obersten ebene
-	scrambled.switchEdgesTopCross();
-	scrambled.printCube();
 
-	cout << "2nd Layer:" << endl;
-	scrambled.solveSecondLayer();
-	scrambled.printCube();
 
-	cout << "3rd Layer:" << endl;
-	scrambled.moveToBottomCross();
-	cout << "3rd Layer: 2" << endl;
-	scrambled.switchEdgesBottomCross();
-	scrambled.printCube();
-	scrambled.printMoves();
 
-	scrambled.moveToTopCorners();
-	cout << "moveToTopCorners:" << endl;
-	scrambled.printCube();
-	scrambled.printMoves();
 
-	scrambled.solvePositionCorners();
-	cout << "solvePositionCorners:" << endl;
-	scrambled.printCube();
-	scrambled.printMoves();
+	  		do{
+	  			/* Get solvedComplete message from terminal */
+	  			//std::cout << "Please insert if solving is comleted (yes: 1; no: 0): ";
+	  			//std::cin >> solvingComplete;
+	  			solvingComplete = 0;
+	  			// the following part can be used for both the Mastermind Questions to the server as well as the instructions for the server on how to scramble the cube, the "do" loop goes from start to finish of one entire communication circle so the section will be needed twice in the loop, once for Mastermind and once for cube solver
+	  			if(solvingComplete == 0)
+	  			{
+	  				// Get the message that should be send to the server
+	  				std::cout << "Please insert client message: ";
 
-	cout << "solveOrientationCorners" << endl;
-	scrambled.solveOrientationCorners();
-	scrambled.printCube();
-	scrambled.printMoves();
+	  				// HIER SERVER FRAGEN ERSTELLEN
+	  				// Das sind Drehungen und Fragen.
+	  				clever.generate_question(); //COPY
+	  				//clever.generate_question(); // ORIGINALS
+	  				string ask_this_server = *clever.CHAOS_questions_asked.begin();
 
-	scrambled.solveCube();
+	  				
 
-	scrambled.printCube();
-	scrambled.printMoves();
 
-	//scrambled.scramble();
-	//scrambled.splitQuestion("011033044136095112", 6);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  				clientMessage = ask_this_server;
+	  				//std::cin >> clientMessage;
+	  				std::cout << "Your message is: " << clientMessage << std::endl;
+	  			}else
+	  			{
+	  				clientMessage = "fin";  //this message tells the server that the communicaton can be quit
+	  			}
+	 
+	  			//for debug (see if "fin" was chosen correctly)
+	 			// std::cout << "The clientMessage is: " << clientMessage << std::endl;
+	 
+	  			// Determine length of the message to be send
+      			echoStringLen = strlen(clientMessage.c_str());
+	  			// std::cout << "echoStringLen: " << echoStringLen << std::endl;
+	 
+      			/* Send the string to the server */
+      			if (send(sock, clientMessage.c_str(), echoStringLen, 0) != echoStringLen)
+          			DieWithError("send() sent a different number of bytes than expected");
+	 
+      			/* Receive string from the server */
+	  			if ((bytesRcvd = recv(sock, echoBuffer, RCVBUFSIZE, 0)) <= 0)
+              		DieWithError("recv() failed or connection closed prematurely");
+	 
+	  			serverMessage = echoBuffer; // write the string from the buffer in serverMessage
+	  			serverMessage = serverMessage.substr(0,bytesRcvd); /* Cut so only the chars that were sent in this loop are in serverMessage*/
+	 
+	  			// for debug
+	  			// std::cout << "bytesRcvd: " << bytesRcvd << "." << std::endl;  Anzahl der Zeichen die empfangen wurden
+      			// std::cout << "echoBuffer: " << echoBuffer << "." << std::endl;
+	  			// do something with the message recieved from the server
+	  			//std::cout << "serverMessage: " << serverMessage << "." << std::endl;
+	  			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  			clever.addFeedback(serverMessage);
+	  			clever.update_list();
+	  			int checker  = vereinfachen_feedback(serverMessage);
+
+	  			cout << checker <<"richtig" <<endl;
+	  			cout << length_of_question <<"so viele damits ganz richtig ist" <<endl;
+
+
+	  			if (checker == length_of_question) //wenn richtig erraten 
+	  			{
+	  				cout << "Soviele wurden richtig geraten" << checker <<endl;
+	  				cout << "Die fragelänge(n) war "<<length_of_question<<endl;
+	  				cout << "Die server nachrricht war" << serverMessage <<endl;
+	  				cout <<"We did it ";
+	  				solvingComplete = 0;
+
+	  				// in Cube eintragen
+	  				//solved_cluber
+	  					cout << "die Richtige nachrricht" << clientMessage <<endl;
+	  					int length = clientMessage.size();
+						int size_of_question = length/3;
+						int number[size_of_question];
+						int guess_color[size_of_question];
+
+						for(int i = 0; i < size_of_question; i++)
+							{
+										number[i] = 10 * ((clientMessage[i*3]-48));
+										number[i] += 1 * ((clientMessage[i*3+1])-48) ;
+										guess_color[i] = (clientMessage[i*3+2])-48;
+										
+							}
+
+
+
+					// beschreibung des Würfels so falsch - am besten checken mit cube(-1 oder so)
+	  				for(int b = 0; b < length_of_question; b++)
+	  				{
+	  					cout << "an cube postion" << number[b] << "soll die Farbe" << guess_color[b] << endl;
+						for (int i = 0; i < 6 ;i++)
+						{
+							for (int j = 0; j < 3; j++)
+							{
+								for (int k = 0; k < 3; k++)
+								{
+											//tracker._cube[i][j][k] this is the tracking cube
+											if( tracker._cube[i][j][k] == number[b])
+											{
+												solved_cluber._cube[i][j][k] = guess_color[b];
+												solved_cluber.printCube();
+												//tracker.printCube();
+												//counter = 99; // so it doesnt get triggered again
+
+
+											}
+								}
+							}
+
+						}
+
+
+	  				}
+	  				//solved_cluber.printCube();
+	  			}
+ 
+
+	  			// HIER FEEDBACK AUSWERTEN //
+
+
+
+
+
+	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  		}while(solvingComplete == 0);  //while the cube is not solved
+	 
+      		close(sock); // this closes the Socket and ends the communication, it needs to be performed by both client and server => fin message to server
+	  	}
+	  	// Server--------------------------------------------------------------------------------------
+	  	else if(modus.compare ("server") == 0){
+	  		serverPort = 4000;  /* Second arg:  Server port */
+	 
+	 		sock = CreateServer(serverPort);  //create the server/the socket
+	 
+	  		std::string serverMessage;			/* Message that is sent to the client */
+	  		std::string clientMessage;			/* Message that is recieved from the client */
+	  		char clientMessageBuffer[RCVBUFSIZE];        /* Buffer for message string from client*/
+      		int recvMsgSize;                    /* Size of received message */
+	  		unsigned int stringLen;      /* Length of string to echo */
+	  		 int our_generated_n;
+	 
+
+
+	  		 /// Here Server setup
+	  		Cube scrambled(3);
+	  		scrambled.scramble();
+
+			// checking split question before the start //
+			//cout << "before Start" <<endl;
+			//cout << scrambled.splitQuestion("490400",2);
+			//cout << "before Start" <<endl;
+			// wenn feedback 2 -> nicht richtig, genau was wir wollten
+			// noch testen für kanten und ecken?
+
+
+
+	  		/* This is my loop for the server, it includes ending the communication if the cube is solved */
+	  		
+	  		do{
+	 
+      			/* Receive message from client */
+      			if ((recvMsgSize = recv(sock, clientMessageBuffer, RCVBUFSIZE, 0)) < 0)
+          			DieWithError("recv() failed");
+	 
+	  			// debug
+	  			// std::cout << "recvMsgSize: " << recvMsgSize << "." << std::endl;
+	  			our_generated_n = recvMsgSize/3; // n aus der Anzahl der erhaltenen Characters berechnen
+	 
+	  			clientMessage = clientMessageBuffer;
+	  			clientMessage = clientMessage.substr(0,recvMsgSize); /* Cut so only the chars that were sent in this loop are in clientMessage*/
+	 
+	  			// debug
+	  			// std::cout << "clientMessageBuffer: " << clientMessageBuffer << "." << std::endl;
+	 
+	  			// do something with the message recieved from the client
+	  			//7std::cout << "clientMessage: " << clientMessage << "." << std::endl;
+	 
+	  			// see if the client has sent the message to end the communication
+	  			if(clientMessage.compare("fin") != 0)
+	  			{
+	  				 //Get the message that should be send to the client
+	  				//std::cout << "Please insert server message: ";
+	  				//std::cin >> serverMessage;
+
+	  				// generate Feedback OR Drehungen des Würfels
+	  				if (isalpha((int)clientMessage[0])) // dann brauchen wir drehungen
+	  					{
+	  						//Cube drehen
+
+	  					// cube gelöst?
+	  					// if Drehungen =-> Würfel solved then, hurray
+
+	  					}
+	  				
+	  				else
+	  				{
+	  					cout << clientMessage <<endl;
+	  					//scrambled.printCube();
+	  					serverMessage =  scrambled.splitQuestion(clientMessage, our_generated_n);
+	  					cout <<" the answer to the client is " << serverMessage.length()<< "long" <<endl;
+	  					cout << "this works?" << serverMessage <<endl;
+
+	  					//cout << "40 ist" <<  << "und 49 ist "  << <<< endl;
+
+	  					
+	  				}
+	  				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  				
+
+	  			}else
+	  			{
+	  				serverMessage = "fin";
+	  			}
+	 
+	  			//debug
+	  			std::cout << "The serverMessage is: " << serverMessage << std::endl;
+	  			stringLen = strlen(serverMessage.c_str()); /* get lenght of the message to be send */
+	  			std::cout << "stringLen: " << stringLen << std::endl;
+
+
+
+
+
+	 
+	  			/* Send serverMessage to client */
+	  			if (send(sock, serverMessage.c_str(), stringLen, 0) != stringLen)
+	  				DieWithError("send() failed");
+
+	  			
+	 		if( stringLen == 0) // wenn wir keine Antwort bekommen
+	 			return 0;
+	  		}while(clientMessage.compare("fin") != 0);
+	 
+      		close(sock); // this closes the Socket and ends the communication, it needs to be performed by both client and server => fin message to server
+	 
+	  	}
+	  	else{
+	  		std::cout << "Wrong init-parameters";
+	  	}
+	  }
+
+
+
+	
 	return 0;
-}
+} 
