@@ -1,0 +1,14 @@
+README
+
+
+chmod +x FirstCompile.sh
+./FirstCompile.sh
+
+Start server with
+./MasterCube server
+
+Start client with 
+./MasterCube client
+
+
+Server has to be started bevor Client

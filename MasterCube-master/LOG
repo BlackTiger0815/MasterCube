@@ -1,0 +1,134 @@
+-----------------------------------------------
+--------Logfile / Protokoll des Projekts--------
+------------------------------------------------
+
+Beispieleintrag:
+****************
+Datum
+Name
+Veränderte/Hinzugefügte Files: 
+Tätigkeit 1; Tätigkeit 2; ...
+****************
+01.12.2019
+Isabella Reithner:
+Files: alles
+Erstellen der Automakeumgebung; Erstellen der Class Cube; Implementierung der notwendigen Drehungsfunktionen
+****************
+05.12.2019
+Isabella Reithner:
+Files: main.cpp, Cube.h, Cube.cpp
+Scramble Methode 
+****************
+07.12.2019
+Isabella Reithner:
+Files: main.cpp, Cube.h, Cube.cpp
+SplitQuestion Methode 
+****************
+13.12.2019
+Thomas Studnicka
+Files: src/debug.h src/main.cpp
+Debug Klasse
+****************
+15.12.2019
+Isabella Reithner:
+Files: main.cpp, solver.h, solver.cpp
+Erstellen von Files für die beiden Solver; Parameter-Handling für Aufruf von ./src/MasterCube
+****************
+16.12.2019
+Cajetan Koschat
+Files: cube.cpp
+Umschreiben der printCube() Funktion um die Ausgabe in ausgeschnittenem Format wiederzugeben;
+****************
+20.12.2019
+Isabella Reithner:
+Files: main.cpp, Cube.h, Cube.cpp
+Erneutes Hinzufügen von GenerareMastermindAnswer();
+****************
+30.12.2019
+Elisabeth Gittenberger
+Files: DieWithError.cpp, HandleTCPClient.cpp, TCPEchoServer.cpp, TCPEchoClient.cpp, (client, server, Terminal Anweisungen)
+Files für das Erstellen von Server und Client und die Kommunikation zwischen den beiden mittels Sockets
+****************
+03.01.2020
+Thomas Studnicka:
+Files: Cube.cpp, Cube.h main.cpp
+Ändern von abkürzung auf black/white
+hinzufügen von array to int und int to array für fragen von mastermind
+****************
+05.01.2020
+Isabella Reithner
+Files:
+main.cpp, Cube.h, solver.h, solver.cpp
+Hinzufügen des ersten Entwurfs der Manhatten Distanz für den IDA*
+****************
+07.01.2020
+Isabella Reithner
+Files:
+main.cpp, Cube.h, solver.h, solver.cpp
+Verbesserung Manhatten Dist, Number of unsolves Cubie - Heuristic, Klasse für Temp_Cube als Schnittstelle zwischen Mastermind und Rubiks Cube
+****************
+10.01.2020
+Cajetan Koschat (Christoph Auer DANKE!)
+main.cpp, cube.h, cube.cpp
+es gibt jetzt einen "black-box-cube". Einfach ein Cube Objekt instanzieren mit 0 in der Instanzierung e.g. Cube tmp(0)
+Files:
+main.cpp, Cube.h, solver.h, solver.cpp
+Verbesserung Manhatten Dist, Number of unsolves Cubie - Heuristic, Klasse für Temp_Cube als Schnittstelle zwischen Mastermind und Rubiks Cube
+****************
+16.01.2020
+Isabella Reithner
+Erster Entwurf des IDA*; Num of unsolved Cubies -Heuristik
+Files:
+main.cpp, cube.h, solver.h, solver.cpp
+****************
+19.01.2020
+Thomas Studnicka
+Zweiter Patch für kleine n, änderungen zum besseren lesen in cube.cpp
+Files:
+main.cpp, cube.h, cube.cpp, solver.h, solver.cpp 
+****************
+23.01.2020Stephanie Kump
+Hinzufügen von cubie.h, cubie.cpp, mastermindcube.h und mastermindcube.cpp. Keine Änderung an übrigen Files
+Datenstruktur für die MastermindCube-Klasse, Cubie-Klassenobjekte. Wird von Mastermindsolver mit Informationen zu Farben, Probabilities und übrig gebliebenen MÖglichkeiten für Farben befüllt und vom Cube-Solver gedreht.
+Es gibt Getter- und Settermethoden, Konstruktor mit Default-Werten und print-Funktionen.
+****************
+29.01.2020
+Isabella Reithner
+Entfernen des IDA* und implementierung der Methode SolveCube um einen kompletten würfel zu lösen
+main.cpp, cube.h, solver.h, solver.cpp, cube.cpp
+****************
+02.02.2020
+Isabella Reithner
+Implementierung der Methoden um den Cube im Raum zu drehen (left, rigtht, up, down)
+Hinzufügen einer Option im Konstruktor des Cubs um den Wüfel mit den Indizes anzeigen zu lassen 
+main.cpp, cube.h, cube.cpp
+****************
+04.02.2020
+Isabella Reithner
+Implementierung der Methoden um die Edges zu tauschen (wie getauscht wird fehlt noch)
+main.cpp, cube.h, cube.cpp
+****************
+04.02.2020
+Isabella Reithner
+Implementierung der Methoden um die Edges zu tauschen (wie getauscht wird fehlt noch)
+main.cpp, cube.h, cube.cpp
+****************
+09.02.2020
+Isabella Reithner
+Hinzufügen der Methoden um einen leeren Würfel zu befüllen (writeCube()) und um den string moves auszulesen (getMoves())
+main.cpp, cube.h, cube.cpp
+****************
+10.02.2019
+Isabella Reithner
+Hinzufügen einer Methode um das Top Cross aus einem nicht komplett bekannten Cube zu bekommen
+main.cpp, cube.h, cube.cpp
+****************
+15.02.2020
+Thomas
+Erstellen einer question methode, einer liste der ask_this_first, einer abfrage ob eine frage korrekt ist(unvollständig)
+bereitstellen einer main für die Kommunikation.
+main.cpp, cube.h, cube.cpp, solver.h, solver.cpp
+
+
+
+
