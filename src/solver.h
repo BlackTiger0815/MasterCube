@@ -65,9 +65,6 @@ bool compare_questions(string);
 
 void update_list();
 
-
-
-
 };
 int vereinfachen_feedback(string);
 

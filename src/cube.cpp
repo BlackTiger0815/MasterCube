@@ -80,7 +80,7 @@ void Cube::globalRotationR(){
 	_cube[5][1][2] = _old[5][0][1];
 
 
-	moves += "gR ";
+	moves += "gR_";
 }
 
 void Cube::globalRotationL(){
@@ -118,7 +118,7 @@ void Cube::globalRotationL(){
 	_cube[5][2][1] = _old[5][1][0];
 	_cube[5][1][0] = _old[5][0][1];
 
-	moves += "gL ";
+	moves += "gL_";
 }
 
 void Cube::globalRotationD(){
@@ -176,7 +176,7 @@ void Cube::globalRotationD(){
 	_cube[4][1][0] = _old[4][1][2];
 	_cube[4][1][2] = _old[4][1][0];
 
-	moves += "gD ";
+	moves += "gD_";
 }
 
 void Cube::globalRotationU(){
@@ -234,7 +234,7 @@ void Cube::globalRotationU(){
 	_cube[4][1][0] = _old[4][1][2];
 	_cube[4][1][2] = _old[4][1][0];
 
-	moves += "gU ";
+	moves += "gU_";
 }
 
 
@@ -244,23 +244,23 @@ void Cube::globalRotationU(){
 
 void Cube::r()
 {
-	if (last() == "r  ")
+	if (last() == "r__")
 	{
 		removeLast();
-		moves += "r2 ";
+		moves += "r2_";
 	}
-	else if (last() == "r2 ")
+	else if (last() == "r2_")
 	{
 		removeLast();
-		moves += "ri ";
+		moves += "ri_";
 	}
-	else if (last() == "ri ")
+	else if (last() == "ri_")
 	{
 		removeLast();
 	}
 	else
 	{
-		moves += "r  ";
+		moves += "r__";
 	}
 
 	copyCube();
@@ -284,23 +284,23 @@ void Cube::r()
 
 void Cube::ri()
 {
-	if (last() == "ri ")
+	if (last() == "ri_")
 	{
 		removeLast();
-		moves += "r2 ";
+		moves += "r2_";
 	}
-	else if (last() == "r2 ")
+	else if (last() == "r2_")
 	{
 		removeLast();
-		moves += "r  ";
+		moves += "r__";
 	}
-	else if (last() == "r  ")
+	else if (last() == "r__")
 	{
 		removeLast();
 	}
 	else
 	{
-		moves += "ri ";
+		moves += "ri_";
 	}
 	copyCube();
 	for (int i = 0; i < 3; i++)
@@ -323,23 +323,23 @@ void Cube::ri()
 
 void Cube::l()
 {
-	if (last() == "l  ")
+	if (last() == "l__")
 	{
 		removeLast();
-		moves += "l2 ";
+		moves += "l2_";
 	}
-	else if (last() == "l2 ")
+	else if (last() == "l2_")
 	{
 		removeLast();
-		moves += "li ";
+		moves += "li_";
 	}
-	else if (last() == "li ")
+	else if (last() == "li_")
 	{
 		removeLast();
 	}
 	else
 	{
-		moves += "l  ";
+		moves += "l__";
 	}
 	copyCube();
 	for (int i = 0; i < 3; i++)
@@ -362,23 +362,23 @@ void Cube::l()
 
 void Cube::li()
 {
-	if (last() == "li ")
+	if (last() == "li_")
 	{
 		removeLast();
-		moves += "l2 ";
+		moves += "l2_";
 	}
-	else if (last() == "l2 ")
+	else if (last() == "l2_")
 	{
 		removeLast();
-		moves += "l  ";
+		moves += "l__";
 	}
-	else if (last() == "l  ")
+	else if (last() == "l__")
 	{
 		removeLast();
 	}
 	else
 	{
-		moves += "li ";
+		moves += "li_";
 	}
 	copyCube();
 	for (int i = 0; i < 3; i++)
@@ -401,23 +401,23 @@ void Cube::li()
 
 void Cube::u()
 {
-	if (last() == "u  ")
+	if (last() == "u__")
 	{
 		removeLast();
-		moves += "u2 ";
+		moves += "u2_";
 	}
-	else if (last() == "u2 ")
+	else if (last() == "u2_")
 	{
 		removeLast();
-		moves += "ui ";
+		moves += "ui_";
 	}
-	else if (last() == "ui ")
+	else if (last() == "ui_")
 	{
 		removeLast();
 	}
 	else
 	{
-		moves += "u  ";
+		moves += "u__";
 	}
 
 	copyCube();
@@ -441,23 +441,23 @@ void Cube::u()
 
 void Cube::ui()
 {
-	if (last() == "ui ")
+	if (last() == "ui_")
 	{
 		removeLast();
-		moves += "u2 ";
+		moves += "u2_";
 	}
-	else if (last() == "u2 ")
+	else if (last() == "u2_")
 	{
 		removeLast();
-		moves += "u  ";
+		moves += "u__";
 	}
-	else if (last() == "u  ")
+	else if (last() == "u__")
 	{
 		removeLast();
 	}
 	else
 	{
-		moves += "ui ";
+		moves += "ui_";
 	}
 	copyCube();
 	for (int i = 0; i < 3; i++)
@@ -480,23 +480,23 @@ void Cube::ui()
 
 void Cube::d()
 {
-	if (last() == "d  ")
+	if (last() == "d__")
 	{
 		removeLast();
-		moves += "d2 ";
+		moves += "d2_";
 	}
-	else if (last() == "d2 ")
+	else if (last() == "d2_")
 	{
 		removeLast();
-		moves += "di ";
+		moves += "di_";
 	}
-	else if (last() == "di ")
+	else if (last() == "di_")
 	{
 		removeLast();
 	}
 	else
 	{
-		moves += "d  ";
+		moves += "d__";
 	}
 	copyCube();
 	for (int i = 0; i < 3; i++)
@@ -519,23 +519,23 @@ void Cube::d()
 
 void Cube::di()
 {
-	if (last() == "di ")
+	if (last() == "di_")
 	{
 		removeLast();
-		moves += "d2 ";
+		moves += "d2_";
 	}
-	else if (last() == "d2 ")
+	else if (last() == "d2_")
 	{
 		removeLast();
-		moves += "d  ";
+		moves += "d__";
 	}
-	else if (last() == "d  ")
+	else if (last() == "d__")
 	{
 		removeLast();
 	}
 	else
 	{
-		moves += "di ";
+		moves += "di_";
 	}
 	copyCube();
 	for (int i = 0; i < 3; i++)
@@ -558,23 +558,23 @@ void Cube::di()
 
 void Cube::f()
 {
-	if (last() == "f  ")
+	if (last() == "f__")
 	{
 		removeLast();
-		moves += "f2 ";
+		moves += "f2_";
 	}
-	else if (last() == "f2 ")
+	else if (last() == "f2_")
 	{
 		removeLast();
-		moves += "fi ";
+		moves += "fi_";
 	}
-	else if (last() == "fi ")
+	else if (last() == "fi_")
 	{
 		removeLast();
 	}
 	else
 	{
-		moves += "f  ";
+		moves += "f__";
 	}
 	copyCube();
 	for (int i = 0; i < 3; i++)
@@ -597,23 +597,23 @@ void Cube::f()
 
 void Cube::fi()
 {
-	if (last() == "fi ")
+	if (last() == "fi_")
 	{
 		removeLast();
-		moves += "f2 ";
+		moves += "f2_";
 	}
-	else if (last() == "f2 ")
+	else if (last() == "f2_")
 	{
 		removeLast();
-		moves += "f  ";
+		moves += "f__";
 	}
-	else if (last() == "f  ")
+	else if (last() == "f__")
 	{
 		removeLast();
 	}
 	else
 	{
-		moves += "fi ";
+		moves += "fi_";
 	}
 	copyCube();
 	for (int i = 0; i < 3; i++)
@@ -636,23 +636,23 @@ void Cube::fi()
 
 void Cube::b()
 {
-	if (last() == "b  ")
+	if (last() == "b__")
 	{
 		removeLast();
-		moves += "b2 ";
+		moves += "b2_";
 	}
-	else if (last() == "b2 ")
+	else if (last() == "b2_")
 	{
 		removeLast();
-		moves += "bi ";
+		moves += "bi_";
 	}
-	else if (last() == "bi ")
+	else if (last() == "bi_")
 	{
 		removeLast();
 	}
 	else
 	{
-		moves += "b  ";
+		moves += "b__";
 	}
 	copyCube();
 	for (int i = 0; i < 3; i++)
@@ -675,23 +675,23 @@ void Cube::b()
 
 void Cube::bi()
 {
-	if (last() == "bi ")
+	if (last() == "bi_")
 	{
 		removeLast();
-		moves += "b2 ";
+		moves += "b2_";
 	}
-	else if (last() == "b2 ")
+	else if (last() == "b2_")
 	{
 		removeLast();
-		moves += "b  ";
+		moves += "b__";
 	}
-	else if (last() == "b  ")
+	else if (last() == "b__")
 	{
 		removeLast();
 	}
 	else
 	{
-		moves += "bi ";
+		moves += "bi_";
 	}
 	copyCube();
 	for (int i = 0; i < 3; i++)
@@ -1309,7 +1309,7 @@ void Cube::solveBottomLayer()
 	correctBottomCorners();
 	//print();
 	correctBottomEdges();
-    //	print();
+	//	print();
 }
 
 void Cube::positionBottomCorners()
@@ -1483,7 +1483,7 @@ void Cube::swapCorners(int face)
 
 int Cube::numCorrectCorners()
 {
-	//If numCorrect ==  4 it will return 4
+	//If numCorrect == 4 it will return 4
 	//If numCorrect == 2 it will return 2nd Corner * 10 + 1st corner (i.e. 20)
 	//Else if numCorrect == 1 it will return pos of corner
 	//Else if 0 are correct return -1
@@ -1900,16 +1900,16 @@ int Cube::findBestFace(int cornerNum)
 	int corners[4] = { _cube[5][0][0], _cube[5][0][2], _cube[5][2][2], _cube[5][2][0] };
 
 	int corner1 = cornerNum + 1;
-	int corner2 = cornerNum - 1;
+	int corner2= cornerNum - 1;
 
 	if (corner1 > 3)
 	{
 		corner1 = 4 - corner1;
 	}
 
-	if (corner2 < 0)
+	if (corner2< 0)
 	{
-		corner2 = 4 + corner2;
+		corner2= 4 + corner2;
 	}
 
 	//First Determine which corner to go with
@@ -2525,12 +2525,14 @@ void Cube::removeLast()
 		return;
 	}
 	int s = moves.size();
+
+	
 	moves = moves.substr(0, s - 3);
 }
 
 void Cube::clearMoves()
 {
-	moves = "";
+	moves.clear();
 }
 
 void Cube::scramble()
@@ -2558,31 +2560,31 @@ void Cube::scramble()
 }
 
 void/* MY NAME IS */ Cube::solveCube(){
-	clearMoves();
+	//clearMoves();
 	cout << "scrambled:" << endl;
 	printCube();
 	solveTopCross();
 	cout << "Top Cross " << endl;
 	printMoves();
 
-	clearMoves();
+	//clearMoves();
 	printCube();
 	solveTopCorners();
 	cout << "Corners " << endl;
 	printMoves();
 
-	clearMoves();
+	//clearMoves();
 	printCube();
 	solveMiddleLayer();
 	cout << "Middle Layer " << endl;
 	printMoves();
 
-	clearMoves();
+	//clearMoves();
 	printCube();
 	solveBottomLayer();
 	cout << "Bottom Layer " << endl;
 	printMoves();
-	clearMoves();
+	//clearMoves();
 	printCube();
 
 }
@@ -2836,7 +2838,7 @@ string randomizeFeedback(string s){ //randomisiert den von der generateMastermin
 
 string Cube::splitQuestion(string s, int n) //by Isabella Reithner
 {
-	cout<< "--Entering splitQ"<<endl;
+	// cout<< "--Entering splitQ"<<endl;
 	int pos = 0; //Position
 	char color = ' '; //Farbe
 	int question[n]; //Farbe aus der Frage
@@ -2899,7 +2901,7 @@ string Cube::generateMastermindAnswer(int* qPos, int *qCol, int n ){
 		//cout<<"\nqPos["<<i<<"] "<< qPos[i];
 
 		if(isMitte(qPos[i]))
-		{cout<<" m ";
+		{ //cout<<" m ";
 			if(qCol[i]==getColor(middleIndexOf(qPos[i])))//Wenn die Farbe aus der Frage vom aktuellen Mittelfeld gleich der Farbe an der seleben Stelle im scrambeld Cube
 			{
 				//cout<<"b";
@@ -2910,7 +2912,7 @@ string Cube::generateMastermindAnswer(int* qPos, int *qCol, int n ){
 		}
 
 		if(isKante(qPos[i]))
-		{cout<<"k";
+		{//cout<<"k";
 
 			if(qCol[i]==getColor(qPos[i])){// weiß
 				if(qCol[i]==getColor(middleIndexOf(qPos[i]))&&getColor(getAdjecentKante(qPos[i]))==getColor(middleIndexOf(getAdjecentKante(qPos[i])))){
@@ -2928,7 +2930,7 @@ string Cube::generateMastermindAnswer(int* qPos, int *qCol, int n ){
 
 		if(isEcke(qPos[i]))
 		{
-			cout<<" e ";
+			// cout<<" e ";
 			int a,b;
 			vector<pair<int,int>> adjEcken;
 			adjEcken=getAdjecentEcken(qPos[i]);
@@ -2962,7 +2964,7 @@ string Cube::generateMastermindAnswer(int* qPos, int *qCol, int n ){
 	//cout <<"\nFeedback: "<< feedback<<endl;
 		//randomize feedbackstring
 	string temp=randomizeFeedback(feedback);
-	cout<<"Randomisiertes Feedback: "<<feedback <<endl;
+	// cout<<"Randomisiertes Feedback: "<<feedback <<endl;
 	return temp;
 
 }
@@ -2973,6 +2975,7 @@ string Cube::generateMastermindAnswer(int* qPos, int *qCol, int n ){
 void showlist2(list <int> g)
 {
     list <int> :: iterator it;
+    
     for(it = g.begin(); it != g.end(); ++it){
         cout << *it;
     cout << " ";}
@@ -2998,6 +3001,58 @@ list <vector<int>> :: iterator it;
 
 }
 
+
+void Cube::alot_like_alotlot(int n)
+{
+	//fill color array
+	//big_color_array
+	//list<vector<int>> positionen; existiert in .h
+	vector <int> farb;
+	int randy;
+
+	for(int big = 0; big < 5000; big++)
+	{
+		farb.clear();
+		for(int i=0;i<n;i++)
+	    {	//hier wird der index des arrays t erstellt, anden die abzufragende Farbe 4 ist
+	      //pos[i] = rand() % t_size;
+				randy = rand() % 6;
+				farb.push_back(randy);
+
+	      //cout<<" "<<farb[i];
+				//7 0 13 24 10 mit Farbarray {00000}
+				//7 0 11 20 50
+
+	    }
+	   positionen.push_back(farb);
+	}
+
+	//showPositionList(positionen);
+}
+
+
+void Cube::showPositionList(list <vector<int>> g)
+{
+	int z=0;
+	list <vector<int>> :: iterator it;
+
+  for(it = g.begin(); it != g.end(); ++it){
+    if(z%2==0)cout<< "\n";
+
+	  vector<int> actual_vector = *it;
+	   for (int i = 0; i < actual_vector.size(); i++) {
+			 if(actual_vector.at(i)<10)
+			 		cout<< "0";
+		   std::cout << actual_vector.at(i) << " ";
+       z++;
+	   }
+	   cout << "  ";
+
+  }
+
+}
+
+
 int Cube::amountWandBofPosAndCol(int *farb,int *PosArray,int n){
   int counter=0;
   string question, feedback;
@@ -3012,40 +3067,43 @@ int Cube::amountWandBofPosAndCol(int *farb,int *PosArray,int n){
     question.append(to_string(farb[k]));
 		//cout<<"\ngenerate question in process: "<<question<<endl;
   }
-	cout<<"Question to check: "<<question<<endl;
-  feedback=splitQuestion(question,n);//getfeedback
+	//cout<<"Question to check: "<<question<<endl;
+
+//Frage an Server schicken und Feedback evaluieren?
+
+  //feedback=splitQuestion(question,n);//getfeedback
+
+	// Hier liste aufrufen und das jeweilige Feedback zu einer Frage haben
 
 
   int b=count(feedback.begin(), feedback.end(), '1');
   int w=count(feedback.begin(), feedback.end(), '0');
-	cout<<"b "<<b <<" w "<<w<<endl;
+//	cout<<"b "<<b <<" w "<<w<<endl;
   //return (b*10)+w;
 	return b+w;
 }
 
 
-void Cube::bayes_guesser(int *posArray, int n){
 
-  list<vector<int>> positionen;
+string Cube::bayes_guesser(int n,int bayes_wurde_gefragt){
+cout<<"+bayesguessser";
   list<int> wert; //positionen ist pos-array, wert ist der counter
   vector<int> w;
-  srand(time(NULL));
-
-  //int n=3; //unser normales n FARB==[0,0,1,1] -> BestGuess[5,6,1,0]
-  int M = 10000; //anzahl an Guesses
-  int t[] = {1,1,4,4,4,0,0,1,1,1,0,0,4,4}; //Positionen die wir erraten wollen (1 seite)
-  int t_size = sizeof(t)/sizeof(t[0]);
-  int farb[n];
+  int M = 1000;
+  //int farb[n];
   int counter=0;//anzahl w und s
 
   //float cutoff= n*0.9;
 	//int cutoff=static_cast<int>(n*0.9);
-  int cutoff;
-	cout<<"cutoff eingeben";
-	cin>>cutoff;
+  int cutoff=bayes_wurde_gefragt;
+	//cout<<"cutoff eingeben";
+	//cin>>cutoff;
   //z=(int)cutoff;//funktioniert??
   int check = 0;
 
+
+
+/* ich hab dich 1000 mal gefragt
   for(int z=0;z<M;z++){//++++++++++++++BEGIN OF FOR
     counter = 0;
     vector<int> p;
@@ -3072,7 +3130,7 @@ void Cube::bayes_guesser(int *posArray, int n){
         counter++;
       } //wird ersetzt durch:
 
-    }*/
+    }
 		cout<<"++Entering-amountWandBofPosAndCol"<<endl;
     counter = amountWandBofPosAndCol(&farb[0],&posArray[0],n);
 		if(counter>=cutoff)
@@ -3092,35 +3150,57 @@ void Cube::bayes_guesser(int *posArray, int n){
     }
   }//+++++++++++++++++++++END OF FOR. bis hier wird gefüllt
 
-  cout<<"B_Gpositionen.size():"<<positionen.size()<<" "<<endl;
-  //cout << "B_Gpositionen: "<<endl;
-  showPositionList(positionen);
+*/ // Tausendmal hast du zu recht nein gesagt
+
+
+
+
+
+
+
+  // cout<<"B_Gpositionen.size():"<<positionen.size()<<" "<<endl;
+  // cout << "B_Gpositionen: "<<endl;
+
+  // showPositionList(positionen);
+
+
   //cout<< "counter: "<<endl;
   //showlist2(wert);
   vector<int> bestGuess;
   int max=0,haeufigste=0;
 
-  for(int u=0;u<n;u++){//++++++++++++++++++BEGIN OF FOR
+  for(int u=0;u<n;u++)
+  {
+  //++++++++++++++++++BEGIN OF FOR
   	max=0;
-    cout<<"\n--u = "<<u;
+    // cout<<"\n--u = "<<u;
     list <vector<int>> :: iterator iterator;
     vector<int> spalte;
-    for(iterator = positionen.begin(); iterator != positionen.end(); ++iterator){
-    	vector<int> actual_vector = *iterator;
-      //cout<< "\nactual_vector " << actual_vector.at(l);
-      spalte.push_back(actual_vector.at(u));
+		int zahlVar=0;
+		vector<int> viele_feedbacks;
+
+		list <int> :: iterator vf_it;
+    for(vf_it = Mehrere_feedbacks.begin(); vf_it != Mehrere_feedbacks.end(); ++vf_it)
+        viele_feedbacks.push_back(*vf_it);
+
+    for(iterator = positionen.begin(); iterator != positionen.end(); ++iterator)
+    {
+			if(viele_feedbacks[zahlVar]>=cutoff){//!!!!!!!//Mehrere_feedbacks soll vector werden!!!!
+				vector<int> actual_vector = *iterator;
+      	//cout<< "\nactual_vector " << actual_vector.at(l);
+      	spalte.push_back(actual_vector.at(u));
+			}
+			zahlVar++;
     }
 
     int i,last,temp;
-
     sort(spalte.begin(),spalte.end());//vector sortieren, damit einfacher evaluiert werden kann
 		/*for(int i=0;i<spalte.size();i++){
 			cout<<spalte[i];
 		}
 		cout<<endl;*/
 
-
-		cout<<"\n--spalte.size(): "<<spalte.size();
+		 //cout<<"\n--spalte.size(): "<<spalte.size();
     for(i=0;i<spalte.size();i++){
       int zahl=spalte.at(i);
 
@@ -3137,25 +3217,38 @@ void Cube::bayes_guesser(int *posArray, int n){
     }
     //cout<<"check";
     spalte.clear();//spaltenvector leeren, da ansonst alle anderen spalten dazugesepcihert werden;
-    cout<< "\nhaeufigste Zahl: "<<haeufigste<< endl;
+    //cout<< "\nhaeufigste Zahl: "<<haeufigste<< endl;
     bestGuess.push_back(haeufigste);
     //cout<<"c"<<endl;
   }//+++++++++++++++++++++++++++++END OF FOR
 
 
-  cout <<"bestGuess ";
-  for (int i = 0; i < bestGuess.size(); i++)
-  	cout << bestGuess[i] << " ";
+	cout <<"bestGuess " <<endl;
+	
+
+
+
+
+	guess = "";
+	for (int i = 0; i < bestGuess.size(); i++)
+	  {
+	  	 //	cout << bestGuess.at(i) << " " <<endl;
+	  		guess.append(to_string(bestGuess[i]));
+	  }
+cout<<"bestGuess" << guess <<endl;
+
+
+
+
+	return guess;
 
 	/*cout<<"\nColors of numbers in bestGuess:\n";
 	for (int i = 0; i < bestGuess.size(); i++)
 		cout << getColor(bestGuess[i]) << " ";*/
 
-	cout<<"\nPosArray \n";
+	/*cout<<"\nPosArray \n";
 	for (int i = 0; i < bestGuess.size(); i++)
-				cout << posArray[i] << " ";
-
-//cout << "\n\n" << t_size;
+				cout << posArray[i] << " ";*/
 
 }
 
@@ -3822,6 +3915,38 @@ void Cube::MoveSecondLayer(){
 	}
 }
 
+
+bool Cube::checkSecondLayer(){
+	if(isCorrectEdge(12) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(14) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(21) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(23) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(30) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(32) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(39) != 1){
+		return 0;
+	}
+	if(isCorrectEdge(41) != 1){
+		return 0;
+	}
+	return 1;
+
+}
+
+
+
 void Cube::solveSecondLayer(){
 	for(int i=0; i<10; i++){
 		if(getColor(12) != getColor(13)){
@@ -3912,6 +4037,21 @@ void Cube::solveSecondLayer(){
 			MoveSecondLayer();
 			//printCube();
 		}
+	}
+
+
+		if(checkSecondLayer() == 0){
+		cout << "Second Layer FAILED!" << endl;
+		scramble();
+		cout << endl << "Kantenfelder: " << endl;
+		printCube();
+		moveToTopCross();
+		switchEdgesTopCross();
+		cout << endl << "Topcross:" << endl;
+		printCube();
+		solveSecondLayer();
+		cout << endl << "Second Layer:" << endl;
+		printCube();
 	}
 }
 
@@ -4083,7 +4223,6 @@ void Cube::switchEdgesBottomCross(){
 	globalRotationD();
 	globalRotationD();
 }
-
 //-----------------------------------------------//
 //--------------- Switch Corners ----------------//
 //-----------------------------------------------//
@@ -4549,69 +4688,100 @@ void Cube::moveToTopCorners()
 
 void Cube::solvePositionCorners(){
 
-	cout<< "in solvePositionCorners" << endl;
+	int count = 0;
+	int count2 = 0;
+	//cout<< "in solvePositionCorners" << endl;
 
 	while(isCorrectCornerPosition(0) != 1 || isCorrectCornerPosition(2) != 1 || isCorrectCornerPosition(6) != 1 || isCorrectCornerPosition(8) != 1)	//solange alle Corner-Steine nicht auf richtiger Position
 	{
-		cout<< "in while 1" << endl;
+
+		//cout<< "in while 1" << endl;
 		//ist einer der Corner-Stein auf richtiger Position?
-		if(isCorrectCornerPosition(0) == 1)	//Ja -> um diesen Stein rotieren (direction) bis die anderen auch an richtiger Position sind
+		if(isCorrectCornerPosition(0) == 1 && isCorrectCornerPosition(2) != 1 && isCorrectCornerPosition(6) != 1 && isCorrectCornerPosition(8) != 1)	//Ja -> um diesen Stein rotieren (direction) bis die anderen auch an richtiger Position sind
 		{
-			cout<< "in 0" << endl;
+			//cout<< "in 0" << endl;
 			switchThreeCorners(0,2);
-			
-		}else if(isCorrectCornerPosition(2) == 1)
+
+		}else if(isCorrectCornerPosition(0) != 1 && isCorrectCornerPosition(2) == 1 && isCorrectCornerPosition(6) != 1 && isCorrectCornerPosition(8) != 1)
 		{
-			cout<< "in 2" << endl;
+			//cout<< "in 2" << endl;
 			switchThreeCorners(0,1);
 
-		}else if(isCorrectCornerPosition(6) == 1)
+		}else if(isCorrectCornerPosition(0) != 1 && isCorrectCornerPosition(2) != 1 && isCorrectCornerPosition(6) == 1 && isCorrectCornerPosition(8) != 1)
 		{
-			cout<< "in 6" << endl;
+			//cout<< "in 6" << endl;
 			switchThreeCorners(0,3);
-	
-		}else if(isCorrectCornerPosition(8) == 1)
+
+		}else if(isCorrectCornerPosition(0) != 1 && isCorrectCornerPosition(2) != 1 && isCorrectCornerPosition(6) != 1 && isCorrectCornerPosition(8) == 1)
 		{
-			cout<< "in 8" << endl;
+			//cout<< "in 8" << endl;
 			switchThreeCorners(0,0);
-			
+
 		}else{ //Nein -> einmal mit direction 0 rotieren, dann sollte einer in richtiger Postion sein
-			cout<< "in else" << endl;
-			switchThreeCorners(0,0);
+			//cout<< "in else" << endl;
+			switchThreeCorners(0,count);
+			count++;
+			count2++;
+			if(count == 4){
+				count = 0;
+			}
 		}
+
+		if(count2 > 30){
+			//cout<< "in solveCube()" << endl;
+			solveCube();
+
+		}
+
 	}
 
-while(isCorrectCornerPosition(45) != 1 || isCorrectCornerPosition(47) != 1 || isCorrectCornerPosition(51) != 1 || isCorrectCornerPosition(53) != 1)
+
+	count = 0;
+	while(isCorrectCornerPosition(45) != 1 || isCorrectCornerPosition(47) != 1 || isCorrectCornerPosition(51) != 1 || isCorrectCornerPosition(53) != 1)
 	{
-		cout<< "in while 2" << endl;
+		//cout<< "in while 2" << endl;
 		//ist einer der Corner-Stein auf richtiger Position?
-		if(isCorrectCornerPosition(45) == 1)	//Ja -> um diesen Stein rotieren (direction) bis die anderen auch an richtiger Position sind
+		if(isCorrectCornerPosition(45) == 1 && isCorrectCornerPosition(47) != 1 && isCorrectCornerPosition(51) != 1 && isCorrectCornerPosition(53) != 1)	//Ja -> um diesen Stein rotieren (direction) bis die anderen auch an richtiger Position sind
 		{
-			cout<< "in 45" << endl;
+			//cout<< "in 45" << endl;
 			switchThreeCorners(5,2);
-			
-		}else if(isCorrectCornerPosition(47) == 1)
+
+		}else if(isCorrectCornerPosition(45) != 1 && isCorrectCornerPosition(47) == 1 && isCorrectCornerPosition(51) != 1 && isCorrectCornerPosition(53) != 1)
 		{
-			cout<< "in 47" << endl;
+			//cout<< "in 47" << endl;
 			switchThreeCorners(5,1);
 
-		}else if(isCorrectCornerPosition(51) == 1)
+		}else if(isCorrectCornerPosition(45) != 1 && isCorrectCornerPosition(47) != 1 && isCorrectCornerPosition(51) == 1 && isCorrectCornerPosition(53) != 1)
 		{
-			cout<< "in 51" << endl;
+			//cout<< "in 51" << endl;
 			switchThreeCorners(5,3);
-	
-		}else if(isCorrectCornerPosition(53) == 1)
+
+		}else if(isCorrectCornerPosition(45) != 1 && isCorrectCornerPosition(47) != 1 && isCorrectCornerPosition(51) != 1 && isCorrectCornerPosition(53) == 1)
 		{
-			cout<< "in 53" << endl;
+			//cout<< "in 53" << endl;
 			switchThreeCorners(5,0);
-			
+
 		}else{ //Nein -> einmal mit direction 0 rotieren, dann sollte einer in richtiger Postion sein
-			cout<< "in else 2" << endl;
-			switchThreeCorners(5,0);
+			//cout<< "in else 2" << endl;
+			switchThreeCorners(5,count);
+			count++;
+			count2++;
+			if(count == 4){
+				count = 0;
+			}
 		}
+
+		if(count2 > 30){
+			//cout<< "in solveCube() 2" << endl;
+			solveCube();
+
+		}
+
 	}
 
 }
+
+
 
 
 void Cube::solveOrientationCorners(){
@@ -4646,8 +4816,8 @@ void Cube::solveOrientationCorners(){
 			cout << "orientCorners(0, " << direction << ")" << endl;
 			orientCorners(0, direction);
 			printCube();
-			cout << "Test:" << endl;
-			cin >> test;
+			//cout << "Test:" << endl;
+			////cin >> test;
 		}
 
 		if(isCorrectCornerOrientation(0) != 1 || isCorrectCornerOrientation(2) != 1 || isCorrectCornerOrientation(6) != 1 || isCorrectCornerOrientation(8) != 1)
@@ -4655,8 +4825,8 @@ void Cube::solveOrientationCorners(){
 			cout << "orientCornersNextCorner(0)" << endl;
 			orientCornersNextCorner(0);	//nächsten Corner nehmen
 			printCube();
-			cout << "Test:" << endl;
-			cin >> test;
+			//cout << "Test:" << endl;
+			//cin >> test;
 		}
 	}
 
@@ -4692,15 +4862,40 @@ void Cube::solveOrientationCorners(){
 			orientCornersNextCorner(5);	//nächsten Corner nehmen
 		}
 	}
+
+
+
 }
 
-void  Cube::solveCorners(){
+void Cube::solveCorners(){
 
 	moveToTopCorners();
 	solvePositionCorners();
 	solveOrientationCorners();
+}
+
+
+bool Cube::isCubeSolved(){
+
+	if(	isCorrectEdge(1) != 1 || isCorrectEdge(3) != 1 || isCorrectEdge(5) != 1 || isCorrectEdge(7) != 1 ||
+		isCorrectEdge(10) != 1 || isCorrectEdge(12) != 1 || isCorrectEdge(14) != 1 || isCorrectEdge(16) != 1 ||
+		isCorrectEdge(19) != 1 || isCorrectEdge(21) != 1 || isCorrectEdge(23) != 1 || isCorrectEdge(25) != 1 ||
+		isCorrectEdge(28) != 1 || isCorrectEdge(30) != 1 || isCorrectEdge(32) != 1 || isCorrectEdge(34) != 1 ||
+		isCorrectEdge(37) != 1 || isCorrectEdge(39) != 1 || isCorrectEdge(41) != 1 || isCorrectEdge(43) != 1 ||
+		isCorrectEdge(46) != 1 || isCorrectEdge(48) != 1 || isCorrectEdge(50) != 1 || isCorrectEdge(52) != 1 ||
+		isCorrectCornerOrientation(0) != 1 || isCorrectCornerOrientation(2) != 1 || isCorrectCornerOrientation(6) != 1 ||
+		isCorrectCornerOrientation(8) != 1 || isCorrectCornerOrientation(45) != 1 || isCorrectCornerOrientation(47) != 1 ||
+		isCorrectCornerOrientation(51) != 1 || isCorrectCornerOrientation(53) != 1)
+	{
+		return 1;
+	} else{
+		return 0;
+	}
 
 }
+
+
+
 
 
 //-----------------------------------------------//
